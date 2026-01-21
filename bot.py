@@ -1,4 +1,8 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 import os
+import sys
 import time
 import json
 import requests
@@ -6,462 +10,362 @@ from datetime import datetime, timedelta
 import google.generativeai as genai
 from pathlib import Path
 import subprocess
-import shutil
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import threading
 
-# Configurações das APIs
+# Força prints aparecerem imediatamente nos logs
+sys.stdout.reconfigure(line_buffering=True)
+sys.stderr.reconfigure(line_buffering=True)
+
+def log(msg):
+    """Log com flush forçado"""
+    print(msg, flush=True)
+
+# Configurações
 NEWS_API_KEY = os.getenv('NEWS_API_KEY', '802ea477f29d423f8b333d69a2271ab0')
 GEMINI_API_KEY = os.getenv('GEMINI_API_KEY', 'AIzaSyA8fqdomGBQ4f4ypqOn5k53W4JrCf7iZbI')
-GITHUB_TOKEN = os.getenv('GITHUB_TOKEN', '')
+GITHUB_TOKEN = os.getenv('GITHUB_TOKEN', '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')
 REPO_PATH = os.getenv('REPO_PATH', '/opt/render/project/src')
 
 # Configurar Gemini
 genai.configure(api_key=GEMINI_API_KEY)
 model = genai.GenerativeModel('gemini-pro')
 
-# Temas em rotação
+# Temas
 TEMAS = [
     {"nome": "Esportes", "query": "esportes Brasil", "categoria": "esportes"},
     {"nome": "Entretenimento", "query": "entretenimento Brasil", "categoria": "entretenimento"},
     {"nome": "Tecnologia", "query": "tecnologia", "categoria": "tecnologia"},
-    {"nome": "Videogames", "query": "videogames", "categoria": "videogames"},
+    {"nome": "Videogames", "query": "videogames games", "categoria": "videogames"},
     {"nome": "Política Nacional", "query": "política Brasil", "categoria": "politica-nacional"},
     {"nome": "Política Internacional", "query": "política internacional", "categoria": "politica-internacional"}
 ]
 
-tema_atual = 0
-contador_posts = 0
+tema_idx = 0
+total_posts = 0
 
-# Servidor HTTP para manter o Render feliz
-class HealthCheckHandler(BaseHTTPRequestHandler):
+# Servidor HTTP minimalista
+class SimpleHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
-        self.send_header('Content-type', 'text/html')
+        self.send_header('Content-type', 'text/html; charset=utf-8')
         self.end_headers()
-        
-        status_html = f"""
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <title>Vivimundo Bot Status</title>
-            <meta http-equiv="refresh" content="30">
-            <style>
-                body {{ 
-                    font-family: Arial; 
-                    background: #1a1a1a; 
-                    color: #d4af37; 
-                    padding: 40px;
-                    text-align: center;
-                }}
-                h1 {{ color: #d4af37; }}
-                .status {{ 
-                    background: #2d2d2d; 
-                    padding: 20px; 
-                    border-radius: 8px; 
-                    margin: 20px auto;
-                    max-width: 600px;
-                }}
-            </style>
-        </head>
-        <body>
-            <h1>🌍 VIVIMUNDO BOT</h1>
-            <div class="status">
-                <h2>✅ Bot está rodando!</h2>
-                <p>Matérias publicadas: {contador_posts}</p>
-                <p>Próximo tema: {TEMAS[tema_atual]['nome']}</p>
-                <p>Horário: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}</p>
-            </div>
-            <p>Site: <a href="https://vivimundo-blog.vercel.app" style="color: #d4af37;">vivimundo-blog.vercel.app</a></p>
-        </body>
-        </html>
-        """
-        self.wfile.write(status_html.encode())
-    
+        html = f"""<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Vivimundo Bot</title>
+<style>body{{background:#1a1a1a;color:#d4af37;font-family:Arial;padding:40px;text-align:center}}</style>
+</head><body>
+<h1>🌍 VIVIMUNDO BOT ATIVO</h1>
+<p>Posts: {total_posts} | Próximo: {TEMAS[tema_idx]['nome']}</p>
+<p>{datetime.now().strftime('%d/%m/%Y %H:%M:%S')}</p>
+</body></html>"""
+        self.wfile.write(html.encode())
     def log_message(self, format, *args):
-        # Silencia logs do servidor HTTP
         pass
 
-def start_http_server():
-    """Inicia servidor HTTP em background"""
+def start_server():
     port = int(os.getenv('PORT', 10000))
-    server = HTTPServer(('0.0.0.0', port), HealthCheckHandler)
-    print(f"🌐 Servidor HTTP rodando na porta {port}")
+    server = HTTPServer(('0.0.0.0', port), SimpleHandler)
+    log(f"✅ Servidor HTTP ativo na porta {port}")
     server.serve_forever()
 
-def setup_git():
-    """Configura Git"""
+def setup_repo():
+    """Configura repositório Git"""
     try:
-        # Vai para o diretório do projeto
         os.chdir(REPO_PATH)
+        log("📂 Configurando Git...")
         
-        # Configura credenciais
-        subprocess.run(['git', 'config', 'user.name', 'Vivimundo Bot'], check=True)
-        subprocess.run(['git', 'config', 'user.email', 'bot@vivimundo.com'], check=True)
+        subprocess.run(['git', 'config', 'user.name', 'Vivimundo Bot'], check=True, capture_output=True)
+        subprocess.run(['git', 'config', 'user.email', 'bot@vivimundo.com'], check=True, capture_output=True)
         
-        # Configura remote com token
-        repo_url = f'https://{GITHUB_TOKEN}@github.com/Chriscodef/Vivimundo-blog.git'
-        
-        # Remove remote antigo se existir
+        # Remove e recria remote com token
         subprocess.run(['git', 'remote', 'remove', 'origin'], capture_output=True)
+        repo_url = f'https://{GITHUB_TOKEN}@github.com/Chriscodef/Vivimundo-blog.git'
+        subprocess.run(['git', 'remote', 'add', 'origin', repo_url], check=True, capture_output=True)
         
-        # Adiciona remote com token
-        subprocess.run(['git', 'remote', 'add', 'origin', repo_url], check=True)
-        
-        # Garante que está na branch main
+        # Checkout main
         subprocess.run(['git', 'checkout', 'main'], capture_output=True)
+        subprocess.run(['git', 'pull', 'origin', 'main'], check=True, capture_output=True)
         
-        # Pull das últimas mudanças
-        subprocess.run(['git', 'pull', 'origin', 'main'], check=True)
-        
-        print("Git configurado com sucesso!")
+        log("✅ Git configurado!")
         return True
     except Exception as e:
-        print(f"Erro ao configurar Git: {e}")
+        log(f"❌ Erro Git: {e}")
         return False
 
 def buscar_noticia(tema):
-    """Busca notícia recente via NewsAPI em português brasileiro"""
-    url = "https://newsapi.org/v2/everything"
-    ontem = (datetime.now() - timedelta(hours=24)).strftime('%Y-%m-%dT%H:%M:%S')
-    
-    params = {
-        'q': tema['query'],
-        'language': 'pt',
-        'from': ontem,
-        'sortBy': 'publishedAt',
-        'apiKey': NEWS_API_KEY,
-        'pageSize': 10
-    }
-    
+    """Busca notícia via NewsAPI"""
     try:
-        resp = requests.get(url, params=params, timeout=15)
+        ontem = (datetime.now() - timedelta(hours=24)).isoformat()
+        params = {
+            'q': tema['query'],
+            'language': 'pt',
+            'from': ontem,
+            'sortBy': 'publishedAt',
+            'apiKey': NEWS_API_KEY,
+            'pageSize': 5
+        }
+        
+        resp = requests.get('https://newsapi.org/v2/everything', params=params, timeout=10)
         resp.raise_for_status()
         data = resp.json()
         
-        if data.get('articles') and len(data['articles']) > 0:
-            # Filtra artigos que tenham conteúdo
-            for article in data['articles']:
-                if article.get('description') and article.get('content'):
-                    return article
-            # Se não encontrou com filtro, retorna o primeiro
-            return data['articles'][0]
+        if data.get('articles'):
+            for art in data['articles']:
+                if art.get('title') and art.get('description'):
+                    return art
         return None
     except Exception as e:
-        print(f"Erro ao buscar notícia: {e}")
+        log(f"❌ Erro buscar notícia: {e}")
         return None
 
-def gerar_materia(noticia, tema):
-    """Gera matéria de 500 palavras usando Gemini"""
-    titulo = noticia.get('title', 'Notícia')
-    descricao = noticia.get('description', '')
-    conteudo = noticia.get('content', '')
-    
-    prompt = f"""Você é um jornalista profissional brasileiro escrevendo para o portal Vivimundo.
-
-IMPORTANTE: Escreva EXATAMENTE 500 palavras em português brasileiro, sem nunca mencionar a fonte original ou outros sites.
-
-Baseado nas informações abaixo, crie uma matéria jornalística completa:
-
-Título: {titulo}
-Informações: {descricao} {conteudo}
-
-FORMATO:
-- Escreva em parágrafos bem estruturados (não use listas ou bullets)
-- Tom jornalístico e profissional
-- Seja objetivo e informativo
-- NÃO mencione fontes ou outros sites
-- Conte com EXATAMENTE 500 palavras"""
-    
+def gerar_texto(noticia):
+    """Gera matéria com Gemini"""
     try:
-        response = model.generate_content(prompt)
-        texto = response.text.strip()
+        prompt = f"""Você é jornalista do portal Vivimundo. Escreva uma matéria de 500 palavras em português brasileiro sobre:
+
+Título: {noticia['title']}
+Informações: {noticia.get('description', '')} {noticia.get('content', '')}
+
+IMPORTANTE:
+- Exatamente 500 palavras
+- Tom jornalístico profissional
+- Em parágrafos (não use listas)
+- NÃO mencione fontes externas
+- Seja objetivo e informativo"""
+
+        resp = model.generate_content(prompt)
+        texto = resp.text.strip()
         
-        # Valida se tem conteúdo
-        if len(texto) < 200:
-            print("Texto gerado muito curto, tentando novamente...")
+        if len(texto) < 300:
             return None
-            
         return texto
     except Exception as e:
-        print(f"Erro ao gerar matéria: {e}")
+        log(f"❌ Erro Gemini: {e}")
         return None
 
-def criar_slug(titulo):
-    """Cria slug para URL da matéria"""
-    import unicodedata
-    import re
+def salvar_post(titulo, texto, img, cat, data):
+    """Salva post HTML"""
+    global total_posts
+    total_posts += 1
     
-    titulo = unicodedata.normalize('NFKD', titulo)
-    titulo = titulo.encode('ascii', 'ignore').decode('ascii')
-    titulo = titulo.lower()
-    titulo = re.sub(r'[^a-z0-9\s-]', '', titulo)
-    titulo = re.sub(r'[\s]+', '-', titulo)
+    slug = titulo.lower()[:50].replace(' ', '-').replace('?', '').replace('!', '')
+    fname = f"post-{total_posts:04d}-{slug}.html"
     
-    return titulo[:60]
-
-def salvar_materia(titulo, conteudo, imagem_url, categoria, data):
-    """Salva matéria como HTML"""
-    global contador_posts
-    contador_posts += 1
-    
-    slug = criar_slug(titulo)
-    filename = f"post-{contador_posts:04d}-{slug}.html"
-    
-    # Formata conteúdo em parágrafos
-    paragrafos = conteudo.split('\n\n')
-    conteudo_html = '\n'.join([f'<p>{p.strip()}</p>' for p in paragrafos if p.strip()])
+    paragrafos = '\n'.join([f'<p>{p.strip()}</p>' for p in texto.split('\n\n') if p.strip()])
     
     html = f"""<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{titulo} - Vivimundo</title>
-    <link rel="stylesheet" href="../style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{titulo} - Vivimundo</title>
+<link rel="stylesheet" href="../style.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1 class="logo">VIVIMUNDO</h1>
-            <nav>
-                <a href="../index.html">Início</a>
-                <a href="../categoria-esportes.html">Esportes</a>
-                <a href="../categoria-entretenimento.html">Entretenimento</a>
-                <a href="../categoria-tecnologia.html">Tecnologia</a>
-                <a href="../categoria-videogames.html">Videogames</a>
-                <a href="../categoria-politica-nacional.html">Política Nacional</a>
-                <a href="../categoria-politica-internacional.html">Política Internacional</a>
-                <a href="../sobre.html">Sobre</a>
-            </nav>
-        </div>
-    </header>
-
-    <main class="container">
-        <article class="post-completo">
-            <div class="post-meta">
-                <span class="categoria categoria-{categoria}">{categoria.replace('-', ' ').title()}</span>
-                <span class="data">{data}</span>
-            </div>
-            <h1>{titulo}</h1>
-            <p class="autor">Por Kevin Ribeiro</p>
-            
-            <img src="{imagem_url}" alt="{titulo}" class="post-imagem">
-            
-            <div class="post-conteudo">
-                {conteudo_html}
-            </div>
-        </article>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Vivimundo - Todos os direitos reservados</p>
-            <a href="https://x.com/Kevin_RSP0" target="_blank">Twitter</a>
-        </div>
-    </footer>
+<header>
+<div class="container">
+<h1 class="logo">VIVIMUNDO</h1>
+<nav>
+<a href="../index.html">Início</a>
+<a href="../categoria-esportes.html">Esportes</a>
+<a href="../categoria-entretenimento.html">Entretenimento</a>
+<a href="../categoria-tecnologia.html">Tecnologia</a>
+<a href="../categoria-videogames.html">Videogames</a>
+<a href="../categoria-politica-nacional.html">Política Nacional</a>
+<a href="../categoria-politica-internacional.html">Política Internacional</a>
+<a href="../sobre.html">Sobre</a>
+</nav>
+</div>
+</header>
+<main class="container">
+<article class="post-completo">
+<div class="post-meta">
+<span class="categoria categoria-{cat}">{cat.replace('-', ' ').title()}</span>
+<span class="data">{data}</span>
+</div>
+<h1>{titulo}</h1>
+<p class="autor">Por Kevin Ribeiro</p>
+<img src="{img}" alt="{titulo}" class="post-imagem">
+<div class="post-conteudo">
+{paragrafos}
+</div>
+</article>
+</main>
+<footer>
+<div class="container">
+<p>&copy; 2026 Vivimundo - Todos os direitos reservados</p>
+<a href="https://x.com/Kevin_RSP0" target="_blank">Twitter</a>
+</div>
+</footer>
 </body>
 </html>"""
     
-    posts_dir = Path(REPO_PATH) / "posts"
-    posts_dir.mkdir(exist_ok=True)
-    
-    filepath = posts_dir / filename
-    with open(filepath, 'w', encoding='utf-8') as f:
+    (Path(REPO_PATH) / "posts").mkdir(exist_ok=True)
+    with open(Path(REPO_PATH) / "posts" / fname, 'w', encoding='utf-8') as f:
         f.write(html)
     
     return {
         'titulo': titulo,
-        'url': f"posts/{filename}",
-        'imagem': imagem_url,
-        'categoria': categoria,
+        'url': f"posts/{fname}",
+        'imagem': img,
+        'categoria': cat,
         'data': data
     }
 
-def atualizar_index(posts_recentes):
-    """Atualiza página inicial com últimas 10 matérias"""
-    posts_html = ""
-    for post in reversed(posts_recentes[-10:]):
-        posts_html += f"""
-        <article class="post-card">
-            <img src="{post['imagem']}" alt="{post['titulo']}">
-            <div class="post-info">
-                <span class="categoria categoria-{post['categoria']}">{post['categoria'].replace('-', ' ').title()}</span>
-                <h2><a href="{post['url']}">{post['titulo']}</a></h2>
-                <p class="meta">Por Kevin Ribeiro • {post['data']}</p>
-            </div>
-        </article>"""
+def atualizar_home(posts):
+    """Atualiza index.html"""
+    cards = ""
+    for p in reversed(posts[-10:]):
+        cards += f"""<article class="post-card">
+<img src="{p['imagem']}" alt="{p['titulo']}">
+<div class="post-info">
+<span class="categoria categoria-{p['categoria']}">{p['categoria'].replace('-', ' ').title()}</span>
+<h2><a href="{p['url']}">{p['titulo']}</a></h2>
+<p class="meta">Por Kevin Ribeiro • {p['data']}</p>
+</div>
+</article>"""
     
     html = f"""<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vivimundo - Portal de Notícias</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vivimundo - Portal de Notícias</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1 class="logo">VIVIMUNDO</h1>
-            <nav>
-                <a href="index.html">Início</a>
-                <a href="categoria-esportes.html">Esportes</a>
-                <a href="categoria-entretenimento.html">Entretenimento</a>
-                <a href="categoria-tecnologia.html">Tecnologia</a>
-                <a href="categoria-videogames.html">Videogames</a>
-                <a href="categoria-politica-nacional.html">Política Nacional</a>
-                <a href="categoria-politica-internacional.html">Política Internacional</a>
-                <a href="sobre.html">Sobre</a>
-            </nav>
-        </div>
-    </header>
-
-    <main class="container">
-        <h2 class="secao-titulo">Últimas Notícias</h2>
-        <div class="posts-grid">
-            {posts_html}
-        </div>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Vivimundo - Todos os direitos reservados</p>
-            <a href="https://x.com/Kevin_RSP0" target="_blank">Twitter</a>
-        </div>
-    </footer>
+<header>
+<div class="container">
+<h1 class="logo">VIVIMUNDO</h1>
+<nav>
+<a href="index.html">Início</a>
+<a href="categoria-esportes.html">Esportes</a>
+<a href="categoria-entretenimento.html">Entretenimento</a>
+<a href="categoria-tecnologia.html">Tecnologia</a>
+<a href="categoria-videogames.html">Videogames</a>
+<a href="categoria-politica-nacional.html">Política Nacional</a>
+<a href="categoria-politica-internacional.html">Política Internacional</a>
+<a href="sobre.html">Sobre</a>
+</nav>
+</div>
+</header>
+<main class="container">
+<h2 class="secao-titulo">Últimas Notícias</h2>
+<div class="posts-grid">
+{cards}
+</div>
+</main>
+<footer>
+<div class="container">
+<p>&copy; 2026 Vivimundo - Todos os direitos reservados</p>
+<a href="https://x.com/Kevin_RSP0" target="_blank">Twitter</a>
+</div>
+</footer>
 </body>
 </html>"""
     
     with open(Path(REPO_PATH) / "index.html", 'w', encoding='utf-8') as f:
         f.write(html)
 
-def fazer_deploy():
-    """Faz push para GitHub"""
+def publicar():
+    """Git push"""
     try:
         os.chdir(REPO_PATH)
+        subprocess.run(['git', 'add', '.'], check=True, capture_output=True)
         
-        subprocess.run(['git', 'add', '.'], check=True)
-        
-        # Verifica se tem algo para commitar
         result = subprocess.run(['git', 'status', '--porcelain'], capture_output=True, text=True)
         if not result.stdout.strip():
-            print("Nada para commitar")
+            log("⚠️ Nada para commitar")
             return
-            
-        subprocess.run(['git', 'commit', '-m', f'Nova matéria - {datetime.now().strftime("%d/%m/%Y %H:%M")}'], check=True)
-        subprocess.run(['git', 'push'], check=True)
-        print("✅ Deploy realizado com sucesso!")
+        
+        subprocess.run(['git', 'commit', '-m', f'Nova matéria - {datetime.now().strftime("%d/%m/%Y %H:%M")}'], check=True, capture_output=True)
+        subprocess.run(['git', 'push', 'origin', 'main'], check=True, capture_output=True)
+        log("✅ Publicado no GitHub!")
     except Exception as e:
-        print(f"❌ Erro no deploy: {e}")
+        log(f"❌ Erro publicar: {e}")
 
-def executar_ciclo():
-    """Executa um ciclo completo do bot"""
-    global tema_atual
+def executar():
+    """Executa um ciclo"""
+    global tema_idx
     
-    print(f"\n{'='*60}")
-    print(f"🔄 NOVO CICLO - Tema: {TEMAS[tema_atual]['nome']}")
-    print(f"{'='*60}\n")
+    tema = TEMAS[tema_idx]
+    log(f"\n{'='*60}")
+    log(f"🔄 CICLO #{total_posts + 1} - {tema['nome']}")
+    log(f"{'='*60}")
     
-    # Busca notícia
-    print(f"🔍 Buscando notícia sobre {TEMAS[tema_atual]['nome']}...")
-    noticia = buscar_noticia(TEMAS[tema_atual])
+    # Busca
+    log(f"🔍 Buscando notícia...")
+    noticia = buscar_noticia(tema)
     if not noticia:
-        print("❌ Nenhuma notícia encontrada")
-        tema_atual = (tema_atual + 1) % len(TEMAS)
+        log("❌ Nenhuma notícia encontrada")
+        tema_idx = (tema_idx + 1) % len(TEMAS)
         return
     
-    print(f"✅ Notícia encontrada: {noticia['title'][:60]}...")
+    log(f"✅ Encontrada: {noticia['title'][:50]}...")
     
-    # Gera matéria
-    print(f"✍️  Gerando matéria com Gemini...")
-    conteudo = gerar_materia(noticia, TEMAS[tema_atual])
-    if not conteudo:
-        print("❌ Erro ao gerar matéria")
-        tema_atual = (tema_atual + 1) % len(TEMAS)
+    # Gera
+    log(f"✍️ Gerando matéria...")
+    texto = gerar_texto(noticia)
+    if not texto:
+        log("❌ Falha ao gerar texto")
+        tema_idx = (tema_idx + 1) % len(TEMAS)
         return
     
-    print(f"✅ Matéria gerada ({len(conteudo.split())} palavras)")
+    log(f"✅ Matéria gerada ({len(texto.split())} palavras)")
     
-    # Pega imagem
-    imagem_url = noticia.get('urlToImage')
-    if not imagem_url or not imagem_url.startswith('http'):
-        imagem_url = 'https://via.placeholder.com/800x450/1a1a1a/d4af37?text=Vivimundo'
+    # Salva
+    img = noticia.get('urlToImage') or 'https://via.placeholder.com/800x450/1a1a1a/d4af37?text=Vivimundo'
+    data = datetime.now().strftime('%d/%m/%Y às %H:%M')
     
-    # Salva matéria
-    data_br = datetime.now().strftime('%d/%m/%Y às %H:%M')
-    post_info = salvar_materia(
-        noticia['title'],
-        conteudo,
-        imagem_url,
-        TEMAS[tema_atual]['categoria'],
-        data_br
-    )
+    info = salvar_post(noticia['title'], texto, img, tema['categoria'], data)
+    log(f"💾 Post salvo: {info['url']}")
     
-    print(f"💾 Matéria salva: {post_info['url']}")
+    # Atualiza posts.json
+    pfile = Path(REPO_PATH) / "posts.json"
+    posts = json.load(open(pfile)) if pfile.exists() else []
+    posts.append(info)
+    json.dump(posts, open(pfile, 'w'), ensure_ascii=False, indent=2)
     
-    # Carrega posts existentes
-    posts_file = Path(REPO_PATH) / "posts.json"
-    if posts_file.exists():
-        with open(posts_file, 'r', encoding='utf-8') as f:
-            posts = json.load(f)
-    else:
-        posts = []
+    # Atualiza home
+    atualizar_home(posts)
+    log("📝 Index atualizado")
     
-    posts.append(post_info)
+    # Publica
+    publicar()
     
-    # Salva lista de posts
-    with open(posts_file, 'w', encoding='utf-8') as f:
-        json.dump(posts, f, ensure_ascii=False, indent=2)
-    
-    # Atualiza index
-    print("📝 Atualizando index...")
-    atualizar_index(posts)
-    
-    # Faz deploy
-    print("🚀 Fazendo deploy...")
-    fazer_deploy()
-    
-    # Próximo tema
-    tema_atual = (tema_atual + 1) % len(TEMAS)
-    
-    print(f"\n✅ CICLO CONCLUÍDO!")
-    print(f"⏭️  Próximo tema: {TEMAS[tema_atual]['nome']}\n")
+    tema_idx = (tema_idx + 1) % len(TEMAS)
+    log(f"✅ CONCLUÍDO! Próximo: {TEMAS[tema_idx]['nome']}\n")
 
 if __name__ == "__main__":
-    print("""
-╔══════════════════════════════════════════════════════════╗
-║           🌍 BOT VIVIMUNDO INICIADO 🌍                  ║
-║                                                          ║
-║  📰 24 matérias/dia - Uma a cada hora                   ║
-║  🔄 Rotação automática de temas                         ║
-║  🤖 Powered by Gemini AI                                ║
-╚══════════════════════════════════════════════════════════╝
-    """)
+    log("\n╔══════════════════════════════════════════════╗")
+    log("║       🌍 BOT VIVIMUNDO INICIADO 🌍          ║")
+    log("║                                              ║")
+    log("║  📰 24 matérias/dia (1 por hora)            ║")
+    log("║  🤖 Powered by Gemini AI                    ║")
+    log("╚══════════════════════════════════════════════╝\n")
     
-    # Inicia servidor HTTP em thread separada
-    http_thread = threading.Thread(target=start_http_server, daemon=True)
-    http_thread.start()
+    # Inicia servidor HTTP
+    http = threading.Thread(target=start_server, daemon=True)
+    http.start()
     
-    # Setup inicial
-    if not setup_git():
-        print("❌ Falha ao configurar Git. Encerrando...")
-        exit(1)
+    # Setup Git
+    if not setup_repo():
+        log("❌ FALHA NO SETUP - ENCERRANDO")
+        sys.exit(1)
     
-    print("✅ Git configurado!")
-    print("⏰ Executando ciclo a cada 1 hora...\n")
+    log("⏰ Iniciando loop (1 matéria/hora)...\n")
     
-    # Loop infinito
+    # Loop principal
     while True:
         try:
-            executar_ciclo()
-            print(f"⏳ Aguardando 1 hora para próxima matéria...")
-            print(f"   Próxima execução: {(datetime.now() + timedelta(hours=1)).strftime('%d/%m/%Y às %H:%M')}\n")
-            time.sleep(3600)  # 1 hora
+            executar()
+            prox = datetime.now() + timedelta(hours=1)
+            log(f"😴 Aguardando 1 hora... (próximo: {prox.strftime('%H:%M')})")
+            time.sleep(3600)
         except KeyboardInterrupt:
-            print("\n\n👋 Bot encerrado pelo usuário")
+            log("\n👋 Encerrado")
             break
         except Exception as e:
-            print(f"\n❌ ERRO NO CICLO: {e}")
-            print("⏳ Aguardando 5 minutos antes de tentar novamente...\n")
+            log(f"\n❌ ERRO: {e}")
+            log("⏳ Aguardando 5min...\n")
             time.sleep(300)

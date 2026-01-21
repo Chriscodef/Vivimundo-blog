@@ -32,23 +32,29 @@ tema_atual = 0
 contador_posts = 0
 
 def setup_git():
-    """Configura Git e clona o repositório"""
+    """Configura Git"""
     try:
-        # Configura credenciais
-        subprocess.run(['git', 'config', '--global', 'user.name', 'Vivimundo Bot'], check=True)
-        subprocess.run(['git', 'config', '--global', 'user.email', 'bot@vivimundo.com'], check=True)
+        # Vai para o diretório do projeto
+        os.chdir(REPO_PATH)
         
-        # Se o diretório já existe, remove
-        if Path(REPO_PATH).exists() and (Path(REPO_PATH) / '.git').exists():
-            print("Repositório já existe, fazendo pull...")
-            os.chdir(REPO_PATH)
-            subprocess.run(['git', 'pull'], check=True)
-        else:
-            print("Clonando repositório...")
-            # Clona o repositório
-            repo_url = f'https://{GITHUB_TOKEN}@github.com/Chriscodef/Vivimundo-blog.git'
-            subprocess.run(['git', 'clone', repo_url, REPO_PATH], check=True)
-            os.chdir(REPO_PATH)
+        # Configura credenciais
+        subprocess.run(['git', 'config', 'user.name', 'Vivimundo Bot'], check=True)
+        subprocess.run(['git', 'config', 'user.email', 'bot@vivimundo.com'], check=True)
+        
+        # Configura remote com token
+        repo_url = f'https://{GITHUB_TOKEN}@github.com/Chriscodef/Vivimundo-blog.git'
+        
+        # Remove remote antigo se existir
+        subprocess.run(['git', 'remote', 'remove', 'origin'], capture_output=True)
+        
+        # Adiciona remote com token
+        subprocess.run(['git', 'remote', 'add', 'origin', repo_url], check=True)
+        
+        # Garante que está na branch main
+        subprocess.run(['git', 'checkout', 'main'], capture_output=True)
+        
+        # Pull das últimas mudanças
+        subprocess.run(['git', 'pull', 'origin', 'main'], check=True)
         
         print("Git configurado com sucesso!")
         return True

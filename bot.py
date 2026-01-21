@@ -12,6 +12,8 @@ from pathlib import Path
 import subprocess
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import threading
+import random
+from bs4 import BeautifulSoup
 
 # Força prints aparecerem imediatamente nos logs
 sys.stdout.reconfigure(line_buffering=True)
@@ -33,13 +35,23 @@ model = genai.GenerativeModel('gemini-pro')
 
 # Temas
 TEMAS = [
-    {"nome": "Esportes", "query": "esportes Brasil", "categoria": "esportes"},
-    {"nome": "Entretenimento", "query": "entretenimento Brasil", "categoria": "entretenimento"},
-    {"nome": "Tecnologia", "query": "tecnologia", "categoria": "tecnologia"},
-    {"nome": "Videogames", "query": "videogames games", "categoria": "videogames"},
-    {"nome": "Política Nacional", "query": "política Brasil", "categoria": "politica-nacional"},
-    {"nome": "Política Internacional", "query": "política internacional", "categoria": "politica-internacional"}
+    {"nome": "Esportes", "categoria": "esportes", "sites": ["https://ge.globo.com/", "https://www.espn.com.br/"]},
+    {"nome": "Entretenimento", "categoria": "entretenimento", "sites": ["https://www.adorocinema.com/noticias/", "https://www.tecmundo.com.br/cultura"]},
+    {"nome": "Tecnologia", "categoria": "tecnologia", "sites": ["https://www.tecmundo.com.br/", "https://olhardigital.com.br/"]},
+    {"nome": "Videogames", "categoria": "videogames", "sites": ["https://www.theenemy.com.br/", "https://www.tecmundo.com.br/games"]},
+    {"nome": "Política Nacional", "categoria": "politica-nacional", "sites": ["https://g1.globo.com/politica/", "https://noticias.uol.com.br/politica/"]},
+    {"nome": "Política Internacional", "categoria": "politica-internacional", "sites": ["https://g1.globo.com/mundo/", "https://www.bbc.com/portuguese/internacional"]}
 ]
+
+# Headers realistas para evitar bloqueio
+HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+    'Accept-Language': 'pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7',
+    'Accept-Encoding': 'gzip, deflate, br',
+    'Connection': 'keep-alive',
+    'Upgrade-Insecure-Requests': '1'
+}
 
 tema_idx = 0
 total_posts = 0
@@ -95,30 +107,38 @@ def setup_repo():
 def buscar_noticia(tema):
     """Busca notícia via NewsAPI"""
     try:
-        # Tenta top-headlines primeiro (mais confiável)
+        # Usa everything com queries em português
+        ontem = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
+        
+        # Queries mais genéricas que funcionam
+        queries = {
+            'esportes': 'futebol OR basquete OR olimpiadas',
+            'entretenimento': 'cinema OR música OR celebridade OR filme',
+            'tecnologia': 'tecnologia OR inovação OR inteligência artificial',
+            'videogames': 'videogame OR playstation OR xbox OR nintendo',
+            'politica-nacional': 'brasil OR lula OR governo brasileiro',
+            'politica-internacional': 'EUA OR europa OR china OR mundo'
+        }
+        
+        query = queries.get(tema['categoria'], 'notícias')
+        
         params = {
-            'country': 'br',
+            'q': query,
+            'language': 'pt',
+            'from': ontem,
+            'sortBy': 'publishedAt',
             'apiKey': NEWS_API_KEY,
             'pageSize': 10
         }
         
-        resp = requests.get('https://newsapi.org/v2/top-headlines', params=params, timeout=10)
+        resp = requests.get('https://newsapi.org/v2/everything', params=params, timeout=15)
         resp.raise_for_status()
         data = resp.json()
         
-        # Filtra por tema
-        if data.get('articles'):
-            query_lower = tema['query'].lower()
+        if data.get('status') == 'ok' and data.get('articles'):
+            # Pega a primeira com título e descrição
             for art in data['articles']:
-                titulo = (art.get('title') or '').lower()
-                desc = (art.get('description') or '').lower()
-                if any(word in titulo or word in desc for word in query_lower.split()):
-                    if art.get('title') and art.get('description'):
-                        return art
-            
-            # Se não achou nada relacionado, retorna qualquer uma
-            for art in data['articles']:
-                if art.get('title') and art.get('description'):
+                if art.get('title') and art.get('description') and len(art.get('description', '')) > 50:
                     return art
         
         return None

@@ -95,24 +95,32 @@ def setup_repo():
 def buscar_noticia(tema):
     """Busca notícia via NewsAPI"""
     try:
-        ontem = (datetime.now() - timedelta(hours=24)).isoformat()
+        # Tenta top-headlines primeiro (mais confiável)
         params = {
-            'q': tema['query'],
-            'language': 'pt',
-            'from': ontem,
-            'sortBy': 'publishedAt',
+            'country': 'br',
             'apiKey': NEWS_API_KEY,
-            'pageSize': 5
+            'pageSize': 10
         }
         
-        resp = requests.get('https://newsapi.org/v2/everything', params=params, timeout=10)
+        resp = requests.get('https://newsapi.org/v2/top-headlines', params=params, timeout=10)
         resp.raise_for_status()
         data = resp.json()
         
+        # Filtra por tema
         if data.get('articles'):
+            query_lower = tema['query'].lower()
+            for art in data['articles']:
+                titulo = (art.get('title') or '').lower()
+                desc = (art.get('description') or '').lower()
+                if any(word in titulo or word in desc for word in query_lower.split()):
+                    if art.get('title') and art.get('description'):
+                        return art
+            
+            # Se não achou nada relacionado, retorna qualquer uma
             for art in data['articles']:
                 if art.get('title') and art.get('description'):
                     return art
+        
         return None
     except Exception as e:
         log(f"❌ Erro buscar notícia: {e}")

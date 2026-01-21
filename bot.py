@@ -7,6 +7,8 @@ import google.generativeai as genai
 from pathlib import Path
 import subprocess
 import shutil
+from http.server import HTTPServer, BaseHTTPRequestHandler
+import threading
 
 # Configurações das APIs
 NEWS_API_KEY = os.getenv('NEWS_API_KEY', '802ea477f29d423f8b333d69a2271ab0')
@@ -30,6 +32,62 @@ TEMAS = [
 
 tema_atual = 0
 contador_posts = 0
+
+# Servidor HTTP para manter o Render feliz
+class HealthCheckHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header('Content-type', 'text/html')
+        self.end_headers()
+        
+        status_html = f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Vivimundo Bot Status</title>
+            <meta http-equiv="refresh" content="30">
+            <style>
+                body {{ 
+                    font-family: Arial; 
+                    background: #1a1a1a; 
+                    color: #d4af37; 
+                    padding: 40px;
+                    text-align: center;
+                }}
+                h1 {{ color: #d4af37; }}
+                .status {{ 
+                    background: #2d2d2d; 
+                    padding: 20px; 
+                    border-radius: 8px; 
+                    margin: 20px auto;
+                    max-width: 600px;
+                }}
+            </style>
+        </head>
+        <body>
+            <h1>🌍 VIVIMUNDO BOT</h1>
+            <div class="status">
+                <h2>✅ Bot está rodando!</h2>
+                <p>Matérias publicadas: {contador_posts}</p>
+                <p>Próximo tema: {TEMAS[tema_atual]['nome']}</p>
+                <p>Horário: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}</p>
+            </div>
+            <p>Site: <a href="https://vivimundo-blog.vercel.app" style="color: #d4af37;">vivimundo-blog.vercel.app</a></p>
+        </body>
+        </html>
+        """
+        self.wfile.write(status_html.encode())
+    
+    def log_message(self, format, *args):
+        # Silencia logs do servidor HTTP
+        pass
+
+def start_http_server():
+    """Inicia servidor HTTP em background"""
+    port = int(os.getenv('PORT', 10000))
+    server = HTTPServer(('0.0.0.0', port), HealthCheckHandler)
+    print(f"🌐 Servidor HTTP rodando na porta {port}")
+    server.serve_forever()
 
 def setup_git():
     """Configura Git"""
@@ -380,6 +438,10 @@ if __name__ == "__main__":
 ║  🤖 Powered by Gemini AI                                ║
 ╚══════════════════════════════════════════════════════════╝
     """)
+    
+    # Inicia servidor HTTP em thread separada
+    http_thread = threading.Thread(target=start_http_server, daemon=True)
+    http_thread.start()
     
     # Setup inicial
     if not setup_git():

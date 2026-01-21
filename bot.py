@@ -6,11 +6,13 @@ from datetime import datetime, timedelta
 import google.generativeai as genai
 from pathlib import Path
 import subprocess
+import shutil
 
-# Configurações
-NEWS_API_KEY = "802ea477f29d423f8b333d69a2271ab0"
-GEMINI_API_KEY = "AIzaSyA8fqdomGBQ4f4ypqOn5k53W4JrCf7iZbI"
-REPO_PATH = "/opt/render/project/src/Vivimundo-blog"
+# Configurações das APIs
+NEWS_API_KEY = os.getenv('NEWS_API_KEY', '802ea477f29d423f8b333d69a2271ab0')
+GEMINI_API_KEY = os.getenv('GEMINI_API_KEY', 'AIzaSyA8fqdomGBQ4f4ypqOn5k53W4JrCf7iZbI')
+GITHUB_TOKEN = os.getenv('GITHUB_TOKEN', '')
+REPO_PATH = os.getenv('REPO_PATH', '/opt/render/project/src')
 
 # Configurar Gemini
 genai.configure(api_key=GEMINI_API_KEY)
@@ -18,21 +20,46 @@ model = genai.GenerativeModel('gemini-pro')
 
 # Temas em rotação
 TEMAS = [
-    {"nome": "Esportes", "query": "esportes OR futebol OR basquete", "categoria": "esportes"},
-    {"nome": "Entretenimento", "query": "entretenimento OR cinema OR música OR celebridades", "categoria": "entretenimento"},
-    {"nome": "Tecnologia", "query": "tecnologia OR inovação OR ciência", "categoria": "tecnologia"},
-    {"nome": "Videogames", "query": "videogames OR games OR esports", "categoria": "videogames"},
-    {"nome": "Política Nacional", "query": "política brasil", "categoria": "politica-nacional"},
-    {"nome": "Política Internacional", "query": "política internacional OR mundial", "categoria": "politica-internacional"}
+    {"nome": "Esportes", "query": "esportes Brasil", "categoria": "esportes"},
+    {"nome": "Entretenimento", "query": "entretenimento Brasil", "categoria": "entretenimento"},
+    {"nome": "Tecnologia", "query": "tecnologia", "categoria": "tecnologia"},
+    {"nome": "Videogames", "query": "videogames", "categoria": "videogames"},
+    {"nome": "Política Nacional", "query": "política Brasil", "categoria": "politica-nacional"},
+    {"nome": "Política Internacional", "query": "política internacional", "categoria": "politica-internacional"}
 ]
 
 tema_atual = 0
 contador_posts = 0
 
+def setup_git():
+    """Configura Git e clona o repositório"""
+    try:
+        # Configura credenciais
+        subprocess.run(['git', 'config', '--global', 'user.name', 'Vivimundo Bot'], check=True)
+        subprocess.run(['git', 'config', '--global', 'user.email', 'bot@vivimundo.com'], check=True)
+        
+        # Se o diretório já existe, remove
+        if Path(REPO_PATH).exists() and (Path(REPO_PATH) / '.git').exists():
+            print("Repositório já existe, fazendo pull...")
+            os.chdir(REPO_PATH)
+            subprocess.run(['git', 'pull'], check=True)
+        else:
+            print("Clonando repositório...")
+            # Clona o repositório
+            repo_url = f'https://{GITHUB_TOKEN}@github.com/Chriscodef/Vivimundo-blog.git'
+            subprocess.run(['git', 'clone', repo_url, REPO_PATH], check=True)
+            os.chdir(REPO_PATH)
+        
+        print("Git configurado com sucesso!")
+        return True
+    except Exception as e:
+        print(f"Erro ao configurar Git: {e}")
+        return False
+
 def buscar_noticia(tema):
-    """Busca notícia recente via NewsAPI"""
+    """Busca notícia recente via NewsAPI em português brasileiro"""
     url = "https://newsapi.org/v2/everything"
-    ontem = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
+    ontem = (datetime.now() - timedelta(hours=24)).strftime('%Y-%m-%dT%H:%M:%S')
     
     params = {
         'q': tema['query'],
@@ -40,15 +67,20 @@ def buscar_noticia(tema):
         'from': ontem,
         'sortBy': 'publishedAt',
         'apiKey': NEWS_API_KEY,
-        'pageSize': 5
+        'pageSize': 10
     }
     
     try:
-        resp = requests.get(url, params=params, timeout=10)
+        resp = requests.get(url, params=params, timeout=15)
         resp.raise_for_status()
         data = resp.json()
         
-        if data.get('articles'):
+        if data.get('articles') and len(data['articles']) > 0:
+            # Filtra artigos que tenham conteúdo
+            for article in data['articles']:
+                if article.get('description') and article.get('content'):
+                    return article
+            # Se não encontrou com filtro, retorna o primeiro
             return data['articles'][0]
         return None
     except Exception as e:
@@ -61,17 +93,32 @@ def gerar_materia(noticia, tema):
     descricao = noticia.get('description', '')
     conteudo = noticia.get('content', '')
     
-    prompt = f"""Você é um jornalista profissional brasileiro. Reescreva esta notícia em português brasileiro com exatamente 500 palavras, mantendo um tom jornalístico e profissional.
+    prompt = f"""Você é um jornalista profissional brasileiro escrevendo para o portal Vivimundo.
 
-Título original: {titulo}
-Descrição: {descricao}
-Conteúdo: {conteudo}
+IMPORTANTE: Escreva EXATAMENTE 500 palavras em português brasileiro, sem nunca mencionar a fonte original ou outros sites.
 
-Crie uma matéria completa, bem estruturada, com introdução, desenvolvimento e conclusão. Não invente informações, apenas reescreva de forma profissional o conteúdo fornecido."""
+Baseado nas informações abaixo, crie uma matéria jornalística completa:
+
+Título: {titulo}
+Informações: {descricao} {conteudo}
+
+FORMATO:
+- Escreva em parágrafos bem estruturados (não use listas ou bullets)
+- Tom jornalístico e profissional
+- Seja objetivo e informativo
+- NÃO mencione fontes ou outros sites
+- Conte com EXATAMENTE 500 palavras"""
     
     try:
         response = model.generate_content(prompt)
-        return response.text
+        texto = response.text.strip()
+        
+        # Valida se tem conteúdo
+        if len(texto) < 200:
+            print("Texto gerado muito curto, tentando novamente...")
+            return None
+            
+        return texto
     except Exception as e:
         print(f"Erro ao gerar matéria: {e}")
         return None
@@ -81,11 +128,8 @@ def criar_slug(titulo):
     import unicodedata
     import re
     
-    # Remove acentos
     titulo = unicodedata.normalize('NFKD', titulo)
     titulo = titulo.encode('ascii', 'ignore').decode('ascii')
-    
-    # Converte para minúsculas e remove caracteres especiais
     titulo = titulo.lower()
     titulo = re.sub(r'[^a-z0-9\s-]', '', titulo)
     titulo = re.sub(r'[\s]+', '-', titulo)
@@ -99,6 +143,10 @@ def salvar_materia(titulo, conteudo, imagem_url, categoria, data):
     
     slug = criar_slug(titulo)
     filename = f"post-{contador_posts:04d}-{slug}.html"
+    
+    # Formata conteúdo em parágrafos
+    paragrafos = conteudo.split('\n\n')
+    conteudo_html = '\n'.join([f'<p>{p.strip()}</p>' for p in paragrafos if p.strip()])
     
     html = f"""<!DOCTYPE html>
 <html lang="pt-BR">
@@ -137,7 +185,7 @@ def salvar_materia(titulo, conteudo, imagem_url, categoria, data):
             <img src="{imagem_url}" alt="{titulo}" class="post-imagem">
             
             <div class="post-conteudo">
-                {conteudo.replace(chr(10), '</p><p>')}
+                {conteudo_html}
             </div>
         </article>
     </main>
@@ -151,7 +199,6 @@ def salvar_materia(titulo, conteudo, imagem_url, categoria, data):
 </body>
 </html>"""
     
-    # Salva arquivo
     posts_dir = Path(REPO_PATH) / "posts"
     posts_dir.mkdir(exist_ok=True)
     
@@ -170,7 +217,7 @@ def salvar_materia(titulo, conteudo, imagem_url, categoria, data):
 def atualizar_index(posts_recentes):
     """Atualiza página inicial com últimas 10 matérias"""
     posts_html = ""
-    for post in posts_recentes[-10:]:
+    for post in reversed(posts_recentes[-10:]):
         posts_html += f"""
         <article class="post-card">
             <img src="{post['imagem']}" alt="{post['titulo']}">
@@ -229,44 +276,56 @@ def fazer_deploy():
     """Faz push para GitHub"""
     try:
         os.chdir(REPO_PATH)
+        
         subprocess.run(['git', 'add', '.'], check=True)
-        subprocess.run(['git', 'commit', '-m', f'Nova matéria - {datetime.now().strftime("%Y-%m-%d %H:%M")}'], check=True)
+        
+        # Verifica se tem algo para commitar
+        result = subprocess.run(['git', 'status', '--porcelain'], capture_output=True, text=True)
+        if not result.stdout.strip():
+            print("Nada para commitar")
+            return
+            
+        subprocess.run(['git', 'commit', '-m', f'Nova matéria - {datetime.now().strftime("%d/%m/%Y %H:%M")}'], check=True)
         subprocess.run(['git', 'push'], check=True)
-        print("Deploy realizado com sucesso!")
+        print("✅ Deploy realizado com sucesso!")
     except Exception as e:
-        print(f"Erro no deploy: {e}")
+        print(f"❌ Erro no deploy: {e}")
 
 def executar_ciclo():
     """Executa um ciclo completo do bot"""
     global tema_atual
     
-    print(f"\n{'='*50}")
-    print(f"Iniciando ciclo - Tema: {TEMAS[tema_atual]['nome']}")
-    print(f"{'='*50}\n")
+    print(f"\n{'='*60}")
+    print(f"🔄 NOVO CICLO - Tema: {TEMAS[tema_atual]['nome']}")
+    print(f"{'='*60}\n")
     
     # Busca notícia
+    print(f"🔍 Buscando notícia sobre {TEMAS[tema_atual]['nome']}...")
     noticia = buscar_noticia(TEMAS[tema_atual])
     if not noticia:
-        print("Nenhuma notícia encontrada")
+        print("❌ Nenhuma notícia encontrada")
         tema_atual = (tema_atual + 1) % len(TEMAS)
         return
     
-    print(f"Notícia encontrada: {noticia['title'][:60]}...")
+    print(f"✅ Notícia encontrada: {noticia['title'][:60]}...")
     
     # Gera matéria
+    print(f"✍️  Gerando matéria com Gemini...")
     conteudo = gerar_materia(noticia, TEMAS[tema_atual])
     if not conteudo:
-        print("Erro ao gerar matéria")
+        print("❌ Erro ao gerar matéria")
         tema_atual = (tema_atual + 1) % len(TEMAS)
         return
     
-    print("Matéria gerada com sucesso")
+    print(f"✅ Matéria gerada ({len(conteudo.split())} palavras)")
     
     # Pega imagem
-    imagem_url = noticia.get('urlToImage', 'https://via.placeholder.com/800x450?text=Vivimundo')
+    imagem_url = noticia.get('urlToImage')
+    if not imagem_url or not imagem_url.startswith('http'):
+        imagem_url = 'https://via.placeholder.com/800x450/1a1a1a/d4af37?text=Vivimundo'
     
     # Salva matéria
-    data_br = datetime.now().strftime('%d/%m/%Y %H:%M')
+    data_br = datetime.now().strftime('%d/%m/%Y às %H:%M')
     post_info = salvar_materia(
         noticia['title'],
         conteudo,
@@ -275,7 +334,7 @@ def executar_ciclo():
         data_br
     )
     
-    print(f"Matéria salva: {post_info['url']}")
+    print(f"💾 Matéria salva: {post_info['url']}")
     
     # Carrega posts existentes
     posts_file = Path(REPO_PATH) / "posts.json"
@@ -292,26 +351,49 @@ def executar_ciclo():
         json.dump(posts, f, ensure_ascii=False, indent=2)
     
     # Atualiza index
+    print("📝 Atualizando index...")
     atualizar_index(posts)
     
     # Faz deploy
+    print("🚀 Fazendo deploy...")
     fazer_deploy()
     
     # Próximo tema
     tema_atual = (tema_atual + 1) % len(TEMAS)
     
-    print(f"\nCiclo concluído! Próximo tema: {TEMAS[tema_atual]['nome']}")
+    print(f"\n✅ CICLO CONCLUÍDO!")
+    print(f"⏭️  Próximo tema: {TEMAS[tema_atual]['nome']}\n")
 
 if __name__ == "__main__":
-    print("Bot Vivimundo iniciado!")
-    print("Executando uma matéria por hora, 24/7")
+    print("""
+╔══════════════════════════════════════════════════════════╗
+║           🌍 BOT VIVIMUNDO INICIADO 🌍                  ║
+║                                                          ║
+║  📰 24 matérias/dia - Uma a cada hora                   ║
+║  🔄 Rotação automática de temas                         ║
+║  🤖 Powered by Gemini AI                                ║
+╚══════════════════════════════════════════════════════════╝
+    """)
     
+    # Setup inicial
+    if not setup_git():
+        print("❌ Falha ao configurar Git. Encerrando...")
+        exit(1)
+    
+    print("✅ Git configurado!")
+    print("⏰ Executando ciclo a cada 1 hora...\n")
+    
+    # Loop infinito
     while True:
         try:
             executar_ciclo()
-            print("\nAguardando 1 hora para próxima matéria...")
+            print(f"⏳ Aguardando 1 hora para próxima matéria...")
+            print(f"   Próxima execução: {(datetime.now() + timedelta(hours=1)).strftime('%d/%m/%Y às %H:%M')}\n")
             time.sleep(3600)  # 1 hora
+        except KeyboardInterrupt:
+            print("\n\n👋 Bot encerrado pelo usuário")
+            break
         except Exception as e:
-            print(f"Erro no ciclo: {e}")
-            print("Aguardando 5 minutos antes de tentar novamente...")
+            print(f"\n❌ ERRO NO CICLO: {e}")
+            print("⏳ Aguardando 5 minutos antes de tentar novamente...\n")
             time.sleep(300)

@@ -31,7 +31,7 @@ REPO_PATH = os.getenv('REPO_PATH', '/opt/render/project/src')
 
 # Configurar Gemini
 genai.configure(api_key=GEMINI_API_KEY)
-model = genai.GenerativeModel('gemini-pro')
+model = genai.GenerativeModel('gemini-1.5-flash')
 
 # Temas
 TEMAS = [

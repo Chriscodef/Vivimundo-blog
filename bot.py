@@ -7,7 +7,6 @@ import time
 import json
 import requests
 from datetime import datetime, timedelta
-import google.generativeai as genai
 from pathlib import Path
 import subprocess
 from http.server import HTTPServer, BaseHTTPRequestHandler
@@ -24,14 +23,9 @@ def log(msg):
     print(msg, flush=True)
 
 # Configurações
-NEWS_API_KEY = os.getenv('NEWS_API_KEY', '802ea477f29d423f8b333d69a2271ab0')
-GEMINI_API_KEY = os.getenv('GEMINI_API_KEY', 'AIzaSyA8fqdomGBQ4f4ypqOn5k53W4JrCf7iZbI')
+GROQ_API_KEY = os.getenv('GROQ_API_KEY', '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')
 GITHUB_TOKEN = os.getenv('GITHUB_TOKEN', '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')
 REPO_PATH = os.getenv('REPO_PATH', '/opt/render/project/src')
-
-# Configurar Gemini
-genai.configure(api_key=GEMINI_API_KEY)
-model = genai.GenerativeModel('gemini-1.5-pro')
 
 # Temas
 TEMAS = [
@@ -147,7 +141,7 @@ def buscar_noticia(tema):
         return None
 
 def gerar_texto(noticia):
-    """Gera matéria com Gemini"""
+    """Gera matéria usando Groq"""
     try:
         prompt = f"""Você é jornalista do portal Vivimundo. Escreva uma matéria de 500 palavras em português brasileiro sobre:
 
@@ -161,14 +155,31 @@ IMPORTANTE:
 - NÃO mencione fontes externas
 - Seja objetivo e informativo"""
 
-        resp = model.generate_content(prompt)
-        texto = resp.text.strip()
+        headers = {
+            'Authorization': f'Bearer {GROQ_API_KEY}',
+            'Content-Type': 'application/json'
+        }
+        
+        data = {
+            'model': 'llama-3.3-70b-versatile',
+            'messages': [{'role': 'user', 'content': prompt}],
+            'temperature': 0.7,
+            'max_tokens': 2000
+        }
+        
+        resp = requests.post('https://api.groq.com/openai/v1/chat/completions', 
+                            headers=headers, json=data, timeout=30)
+        resp.raise_for_status()
+        
+        result = resp.json()
+        texto = result['choices'][0]['message']['content'].strip()
         
         if len(texto) < 300:
             return None
         return texto
+        
     except Exception as e:
-        log(f"❌ Erro Gemini: {e}")
+        log(f"❌ Erro Groq: {e}")
         return None
 
 def salvar_post(titulo, texto, img, cat, data):
@@ -369,7 +380,7 @@ if __name__ == "__main__":
     log("║       🌍 BOT VIVIMUNDO INICIADO 🌍          ║")
     log("║                                              ║")
     log("║  📰 24 matérias/dia (1 por hora)            ║")
-    log("║  🤖 Powered by Gemini AI                    ║")
+    log("║  🤖 Powered by Groq AI                      ║")
     log("╚══════════════════════════════════════════════╝\n")
     
     # Inicia servidor HTTP

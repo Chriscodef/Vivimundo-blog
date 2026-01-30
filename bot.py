@@ -14,7 +14,7 @@ import threading
 import random
 from bs4 import BeautifulSoup
 
-# Força prints aparecerem imediatamente nos logs
+# Força prints aparecerem imediatamente
 sys.stdout.reconfigure(line_buffering=True)
 sys.stderr.reconfigure(line_buffering=True)
 
@@ -27,7 +27,7 @@ GROQ_API_KEY = os.getenv('GROQ_API_KEY', 'gsk_7K65fIcHUMFjyqenLhXjWGdyb3FYGlfHKn
 GITHUB_TOKEN = os.getenv('GITHUB_TOKEN', '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')
 REPO_PATH = os.getenv('REPO_PATH', '/opt/render/project/src')
 
-# Temas
+# Temas com sites para scraping
 TEMAS = [
     {"nome": "Esportes", "categoria": "esportes", "sites": ["https://ge.globo.com/", "https://www.espn.com.br/"]},
     {"nome": "Entretenimento", "categoria": "entretenimento", "sites": ["https://www.adorocinema.com/noticias/", "https://www.tecmundo.com.br/cultura"]},
@@ -37,20 +37,17 @@ TEMAS = [
     {"nome": "Política Internacional", "categoria": "politica-internacional", "sites": ["https://g1.globo.com/mundo/", "https://www.bbc.com/portuguese/internacional"]}
 ]
 
-# Headers realistas para evitar bloqueio
+# Headers para scraping
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-    'Accept-Language': 'pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7',
-    'Accept-Encoding': 'gzip, deflate, br',
-    'Connection': 'keep-alive',
-    'Upgrade-Insecure-Requests': '1'
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+    'Accept-Language': 'pt-BR,pt;q=0.9,en;q=0.8',
 }
 
 tema_idx = 0
 total_posts = 0
 
-# Servidor HTTP minimalista
+# Servidor HTTP
 class SimpleHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
@@ -82,13 +79,10 @@ def setup_repo():
         
         subprocess.run(['git', 'config', 'user.name', 'Vivimundo Bot'], check=True, capture_output=True)
         subprocess.run(['git', 'config', 'user.email', 'bot@vivimundo.com'], check=True, capture_output=True)
-        
-        # Remove e recria remote com token
         subprocess.run(['git', 'remote', 'remove', 'origin'], capture_output=True)
+        
         repo_url = f'https://{GITHUB_TOKEN}@github.com/Chriscodef/Vivimundo-blog.git'
         subprocess.run(['git', 'remote', 'add', 'origin', repo_url], check=True, capture_output=True)
-        
-        # Checkout main
         subprocess.run(['git', 'checkout', 'main'], capture_output=True)
         subprocess.run(['git', 'pull', 'origin', 'main'], check=True, capture_output=True)
         
@@ -99,45 +93,72 @@ def setup_repo():
         return False
 
 def buscar_noticia(tema):
-    """Busca notícia via NewsAPI"""
+    """Busca notícia via web scraping"""
     try:
-        # Usa everything com queries em português
-        ontem = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
+        time.sleep(random.uniform(1, 3))
         
-        # Queries mais genéricas que funcionam
-        queries = {
-            'esportes': 'futebol OR basquete OR olimpiadas',
-            'entretenimento': 'cinema OR música OR celebridade OR filme',
-            'tecnologia': 'tecnologia OR inovação OR inteligência artificial',
-            'videogames': 'videogame OR playstation OR xbox OR nintendo',
-            'politica-nacional': 'brasil OR lula OR governo brasileiro',
-            'politica-internacional': 'EUA OR europa OR china OR mundo'
-        }
-        
-        query = queries.get(tema['categoria'], 'notícias')
-        
-        params = {
-            'q': query,
-            'language': 'pt',
-            'from': ontem,
-            'sortBy': 'publishedAt',
-            'apiKey': NEWS_API_KEY,
-            'pageSize': 10
-        }
-        
-        resp = requests.get('https://newsapi.org/v2/everything', params=params, timeout=15)
-        resp.raise_for_status()
-        data = resp.json()
-        
-        if data.get('status') == 'ok' and data.get('articles'):
-            # Pega a primeira com título e descrição
-            for art in data['articles']:
-                if art.get('title') and art.get('description') and len(art.get('description', '')) > 50:
-                    return art
+        for site_url in tema['sites']:
+            try:
+                log(f"  Tentando {site_url}...")
+                
+                resp = requests.get(site_url, headers=HEADERS, timeout=15)
+                resp.raise_for_status()
+                soup = BeautifulSoup(resp.text, 'html.parser')
+                
+                links = []
+                links.extend(soup.find_all('a', class_=['feed-post-link', 'post__title', 'bastian-feed-item']))
+                links.extend(soup.find_all('a', href=True))
+                
+                for link in links[:30]:
+                    href = link.get('href', '')
+                    titulo = link.get_text(strip=True)
+                    
+                    if not titulo or len(titulo) < 20 or len(titulo) > 200:
+                        continue
+                    
+                    if href.startswith('/'):
+                        from urllib.parse import urljoin
+                        href = urljoin(site_url, href)
+                    
+                    if not href.startswith('http'):
+                        continue
+                    
+                    try:
+                        time.sleep(random.uniform(0.5, 1.5))
+                        art_resp = requests.get(href, headers=HEADERS, timeout=10)
+                        art_soup = BeautifulSoup(art_resp.text, 'html.parser')
+                        
+                        for script in art_soup(['script', 'style']):
+                            script.decompose()
+                        
+                        paragrafos = art_soup.find_all('p')
+                        texto = ' '.join([p.get_text(strip=True) for p in paragrafos])
+                        
+                        img_tag = art_soup.find('img')
+                        img_url = img_tag.get('src', '') if img_tag else ''
+                        
+                        if img_url and not img_url.startswith('http'):
+                            from urllib.parse import urljoin
+                            img_url = urljoin(href, img_url)
+                        
+                        if len(texto) > 300:
+                            log(f"  ✅ Notícia encontrada: {titulo[:50]}...")
+                            return {
+                                'title': titulo,
+                                'description': texto[:500],
+                                'content': texto,
+                                'urlToImage': img_url or 'https://via.placeholder.com/800x450/1a1a1a/d4af37?text=Vivimundo',
+                                'url': href
+                            }
+                    except Exception:
+                        continue
+            except Exception as e:
+                log(f"  ⚠️ Erro em {site_url}: {str(e)[:50]}")
+                continue
         
         return None
     except Exception as e:
-        log(f"❌ Erro buscar notícia: {e}")
+        log(f"❌ Erro geral scraping: {e}")
         return None
 
 def gerar_texto(noticia):
@@ -177,7 +198,6 @@ IMPORTANTE:
         if len(texto) < 300:
             return None
         return texto
-        
     except Exception as e:
         log(f"❌ Erro Groq: {e}")
         return None
@@ -332,7 +352,6 @@ def executar():
     log(f"🔄 CICLO #{total_posts + 1} - {tema['nome']}")
     log(f"{'='*60}")
     
-    # Busca
     log(f"🔍 Buscando notícia...")
     noticia = buscar_noticia(tema)
     if not noticia:
@@ -342,7 +361,6 @@ def executar():
     
     log(f"✅ Encontrada: {noticia['title'][:50]}...")
     
-    # Gera
     log(f"✍️ Gerando matéria...")
     texto = gerar_texto(noticia)
     if not texto:
@@ -352,24 +370,20 @@ def executar():
     
     log(f"✅ Matéria gerada ({len(texto.split())} palavras)")
     
-    # Salva
     img = noticia.get('urlToImage') or 'https://via.placeholder.com/800x450/1a1a1a/d4af37?text=Vivimundo'
     data = datetime.now().strftime('%d/%m/%Y às %H:%M')
     
     info = salvar_post(noticia['title'], texto, img, tema['categoria'], data)
     log(f"💾 Post salvo: {info['url']}")
     
-    # Atualiza posts.json
     pfile = Path(REPO_PATH) / "posts.json"
     posts = json.load(open(pfile)) if pfile.exists() else []
     posts.append(info)
     json.dump(posts, open(pfile, 'w'), ensure_ascii=False, indent=2)
     
-    # Atualiza home
     atualizar_home(posts)
     log("📝 Index atualizado")
     
-    # Publica
     publicar()
     
     tema_idx = (tema_idx + 1) % len(TEMAS)
@@ -383,18 +397,15 @@ if __name__ == "__main__":
     log("║  🤖 Powered by Groq AI                      ║")
     log("╚══════════════════════════════════════════════╝\n")
     
-    # Inicia servidor HTTP
     http = threading.Thread(target=start_server, daemon=True)
     http.start()
     
-    # Setup Git
     if not setup_repo():
         log("❌ FALHA NO SETUP - ENCERRANDO")
         sys.exit(1)
     
     log("⏰ Iniciando loop (1 matéria/hora)...\n")
     
-    # Loop principal
     while True:
         try:
             executar()

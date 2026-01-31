@@ -27,6 +27,12 @@ GROQ_API_KEY = os.getenv('GROQ_API_KEY', 'gsk_7K65fIcHUMFjyqenLhXjWGdyb3FYGlfHKn
 GITHUB_TOKEN = os.getenv('GITHUB_TOKEN', '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')
 REPO_PATH = os.getenv('REPO_PATH', '/opt/render/project/src')
 
+if 'GROQ_API_KEY' not in os.environ:
+    log("⚠️ Usando GROQ_API_KEY padrão (teste)")
+
+if 'GITHUB_TOKEN' not in os.environ:
+    log("⚠️ Usando GITHUB_TOKEN padrão (teste)")
+
 # Temas com sites para scraping
 TEMAS = [
     {"nome": "Esportes", "categoria": "esportes", "sites": ["https://ge.globo.com/", "https://www.espn.com.br/"]},
@@ -76,16 +82,28 @@ def setup_repo():
     try:
         os.chdir(REPO_PATH)
         log("📂 Configurando Git...")
-        
+
         subprocess.run(['git', 'config', 'user.name', 'Vivimundo Bot'], check=True, capture_output=True)
         subprocess.run(['git', 'config', 'user.email', 'bot@vivimundo.com'], check=True, capture_output=True)
         subprocess.run(['git', 'remote', 'remove', 'origin'], capture_output=True)
-        
+
         repo_url = f'https://{GITHUB_TOKEN}@github.com/Chriscodef/Vivimundo-blog.git'
         subprocess.run(['git', 'remote', 'add', 'origin', repo_url], check=True, capture_output=True)
-        subprocess.run(['git', 'checkout', 'main'], capture_output=True)
-        subprocess.run(['git', 'pull', 'origin', 'main'], check=True, capture_output=True)
-        
+
+        # Checkout main
+        try:
+            subprocess.run(['git', 'checkout', 'main'], check=True, capture_output=True)
+        except subprocess.CalledProcessError:
+            log("⚠️ Branch main não existe, criando...")
+            subprocess.run(['git', 'checkout', '-b', 'main'], check=True, capture_output=True)
+
+        # Pull com reset se necessário
+        try:
+            subprocess.run(['git', 'pull', 'origin', 'main'], check=True, capture_output=True)
+        except subprocess.CalledProcessError:
+            log("⚠️ Pull falhou, fazendo reset hard...")
+            subprocess.run(['git', 'reset', '--hard', 'origin/main'], check=True, capture_output=True)
+
         log("✅ Git configurado!")
         return True
     except Exception as e:
@@ -330,18 +348,40 @@ def publicar():
     """Git push"""
     try:
         os.chdir(REPO_PATH)
-        subprocess.run(['git', 'add', '.'], check=True, capture_output=True)
-        
-        result = subprocess.run(['git', 'status', '--porcelain'], capture_output=True, text=True)
+        log("📤 Preparando push...")
+
+        # Verificar status
+        result = subprocess.run(['git', 'status', '--porcelain'], capture_output=True, text=True, check=True)
         if not result.stdout.strip():
             log("⚠️ Nada para commitar")
             return
-        
-        subprocess.run(['git', 'commit', '-m', f'Nova matéria - {datetime.now().strftime("%d/%m/%Y %H:%M")}'], check=True, capture_output=True)
-        subprocess.run(['git', 'push', 'origin', 'main'], check=True, capture_output=True)
-        log("✅ Publicado no GitHub!")
+
+        # Add
+        subprocess.run(['git', 'add', '.'], check=True, capture_output=True)
+        log("✅ Arquivos adicionados")
+
+        # Commit
+        commit_msg = f'Nova matéria - {datetime.now().strftime("%d/%m/%Y %H:%M")}'
+        subprocess.run(['git', 'commit', '-m', commit_msg], check=True, capture_output=True)
+        log("✅ Commit realizado")
+
+        # Push com mais detalhes
+        try:
+            result = subprocess.run(['git', 'push', 'origin', 'main'], check=True, capture_output=True, text=True, timeout=30)
+            log("✅ Publicado no GitHub!")
+        except subprocess.CalledProcessError as e:
+            log(f"❌ Erro no push: {e}")
+            log(f"Stdout: {e.stdout}")
+            log(f"Stderr: {e.stderr}")
+            # Tentar push forçado se houver conflitos
+            try:
+                log("🔄 Tentando push forçado...")
+                subprocess.run(['git', 'push', '--force', 'origin', 'main'], check=True, capture_output=True, timeout=30)
+                log("✅ Push forçado realizado!")
+            except Exception as e2:
+                log(f"❌ Falha no push forçado: {e2}")
     except Exception as e:
-        log(f"❌ Erro publicar: {e}")
+        log(f"❌ Erro geral publicar: {e}")
 
 def executar():
     """Executa um ciclo"""

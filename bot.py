@@ -75,6 +75,7 @@ def buscar_noticia(tema):
     time.sleep(random.uniform(1, 3))
     for site_url in tema['sites']:
         try:
+            log(f"  🔍 Tentando {site_url}...")
             resp = requests.get(site_url, headers=HEADERS, timeout=15)
             resp.raise_for_status()
             soup = BeautifulSoup(resp.text, 'html.parser')
@@ -82,7 +83,7 @@ def buscar_noticia(tema):
             for link in links[:30]:
                 href = link.get('href', '')
                 titulo = link.get_text(strip=True)
-                if not titulo or len(titulo) < 30 or len(titulo) > 150:
+                if not titulo or len(titulo) < 20 or len(titulo) > 200:
                     continue
                 if href.startswith('/'):
                     from urllib.parse import urljoin
@@ -90,7 +91,8 @@ def buscar_noticia(tema):
                 if not href.startswith('http'):
                     continue
                 try:
-                    art_resp = requests.get(href, headers=HEADERS, timeout=10)
+                    time.sleep(random.uniform(0.3, 0.8))
+                    art_resp = requests.get(href, headers=HEADERS, timeout=15)
                     art_soup = BeautifulSoup(art_resp.text, 'html.parser')
                     for script in art_soup(['script', 'style']): script.decompose()
                     texto = ' '.join(p.get_text(strip=True) for p in art_soup.find_all('p'))
@@ -100,10 +102,13 @@ def buscar_noticia(tema):
                         from urllib.parse import urljoin
                         img_url = urljoin(href, img_url)
                     if len(texto) > 400:
+                        log(f"  ✅ Encontrada: {titulo[:50]}...")
                         return {'title': titulo, 'content': texto, 'urlToImage': img_url or 'https://via.placeholder.com/800x450/1a1a1a/d4af37?text=Vivimundo', 'url': href}
-                except:
+                except Exception as e:
                     continue
-        except:
+            log(f"  ⚠️ Nada encontrado em {site_url}")
+        except Exception as e:
+            log(f"  ❌ Erro em {site_url}: {str(e)[:50]}")
             continue
     return None
 
@@ -118,13 +123,15 @@ Não mencione fontes. Seja objetivo."""
         resp = requests.post(
             'https://api.groq.com/openai/v1/chat/completions',
             headers={'Authorization': f'Bearer {GROQ_API_KEY}', 'Content-Type': 'application/json'},
-            json={'model': 'mixtral-8x7b-32768', 'messages': [{'role': 'user', 'content': prompt}], 'temperature': 0.7, 'max_tokens': 2000},
+            json={'model': 'llama-3.3-70b-versatile', 'messages': [{'role': 'user', 'content': prompt}], 'temperature': 0.7, 'max_tokens': 2000},
             timeout=60
         )
         resp.raise_for_status()
-        return resp.json()['choices'][0]['message']['content'].strip()
+        texto = resp.json()['choices'][0]['message']['content'].strip()
+        log(f"  ✅ Matéria gerada ({len(texto.split())} palavras)")
+        return texto
     except Exception as e:
-        log(f"❌ Groq: {e}")
+        log(f"  ❌ Groq: {e}")
         return None
 
 def salvar_post(titulo, texto, img, cat, data, post_id):
@@ -168,6 +175,7 @@ def salvar_post(titulo, texto, img, cat, data, post_id):
     Path("posts").mkdir(exist_ok=True)
     with open(Path("posts") / fname, 'w', encoding='utf-8') as f:
         f.write(html)
+    log(f"  💾 Post salvo: {fname}")
     return {'titulo': titulo, 'url': f"posts/{fname}", 'imagem': img, 'categoria': cat, 'data': data}
 
 def atualizar_home(posts):
@@ -207,18 +215,20 @@ def atualizar_home(posts):
 </body></html>"""
     with open("index.html", 'w', encoding='utf-8') as f:
         f.write(html)
+    log("  📝 Index atualizado")
 
 def publicar():
     try:
         result = subprocess.run(['git', 'status', '--porcelain'], capture_output=True, text=True)
         if not result.stdout.strip():
+            log("  ⚠️ Nada para commitar")
             return
         subprocess.run(['git', 'add', '.'], check=True)
         subprocess.run(['git', 'commit', '-m', f'Nova matéria - {datetime.now().strftime("%d/%m/%Y %H:%M")}'], check=True)
         subprocess.run(['git', 'push', 'origin', 'main'], check=True, timeout=30)
-        log("✅ Push realizado!")
+        log("  ✅ Push realizado!")
     except Exception as e:
-        log(f"❌ Push: {e}")
+        log(f"  ❌ Push: {e}")
 
 def executar():
     pfile = Path("posts.json")
@@ -226,14 +236,18 @@ def executar():
     tema_idx, total_posts = carregar_estado()
     tema = TEMAS[tema_idx]
 
-    log(f"\n🔄 POST #{total_posts + 1} - {tema['nome']}")
+    log(f"\n{'='*60}")
+    log(f"🔄 POST #{total_posts + 1} - {tema['nome']}")
+    log(f"{'='*60}")
+    
     noticia = buscar_noticia(tema)
     if not noticia:
-        log("❌ Sem notícia")
+        log("❌ Nenhuma notícia encontrada")
         return
+    
     texto = gerar_texto(noticia)
     if not texto:
-        log("❌ Falha Groq")
+        log("❌ Falha ao gerar texto")
         return
 
     info = salvar_post(noticia['title'], texto, noticia.get('urlToImage'), tema['categoria'], datetime.now().strftime('%d/%m/%Y às %H:%M'), total_posts + 1)
@@ -245,7 +259,7 @@ def executar():
     # Salva estado para próxima execução
     tema_idx = (tema_idx + 1) % len(TEMAS)
     salvar_estado(tema_idx, total_posts + 1)
-    log("✅ CONCLUÍDO")
+    log("\n✅ CICLO CONCLUÍDO!")
 
 if __name__ == "__main__":
     log("🌍 VIVIMUNDO BOT - GitHub Actions")

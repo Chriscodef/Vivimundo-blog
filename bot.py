@@ -12,8 +12,9 @@ import subprocess
 import random
 from bs4 import BeautifulSoup
 
-sys.stdout.reconfigure(line_buffering=True)
-sys.stderr.reconfigure(line_buffering=True)
+sys.stdout.reconfigure(line_buffering=True, encoding='utf-8')
+sys.stderr.reconfigure(line_buffering=True, encoding='utf-8')
+os.environ['PYTHONIOENCODING'] = 'utf-8'
 
 def log(msg):
     print(msg, flush=True)
@@ -43,12 +44,12 @@ def salvar_estado(tema_idx, total_posts):
         json.dump({'tema_idx': tema_idx, 'total_posts': total_posts}, f)
 
 TEMAS = [
-    {"nome": "Esportes", "categoria": "esportes", "sites": ["https://ge.globo.com/", "https://www.espn.com.br/"]},
-    {"nome": "Entretenimento", "categoria": "entretenimento", "sites": ["https://www.adorocinema.com/noticias/", "https://www.tecmundo.com.br/cultura"]},
-    {"nome": "Tecnologia", "categoria": "tecnologia", "sites": ["https://www.tecmundo.com.br/", "https://olhardigital.com.br/"]},
-    {"nome": "Videogames", "categoria": "videogames", "sites": ["https://www.theenemy.com.br/", "https://www.tecmundo.com.br/games"]},
-    {"nome": "Política Nacional", "categoria": "politica-nacional", "sites": ["https://g1.globo.com/politica/", "https://noticias.uol.com.br/politica/"]},
-    {"nome": "Política Internacional", "categoria": "politica-internacional", "sites": ["https://g1.globo.com/mundo/", "https://www.bbc.com/portuguese/internacional"]}
+    {"nome": "Esportes", "categoria": "esportes", "sites": ["https://ge.globo.com/", "https://www.espn.com.br/", "https://www.uol.com.br/esporte/"]},
+    {"nome": "Entretenimento", "categoria": "entretenimento", "sites": ["https://www.omelete.com.br/", "https://www.tecmundo.com.br/cultura", "https://noticiasdocinema.com.br/"]},
+    {"nome": "Tecnologia", "categoria": "tecnologia", "sites": ["https://www.tecmundo.com.br/", "https://olhardigital.com.br/", "https://www.hardware.com.br/"]},
+    {"nome": "Videogames", "categoria": "videogames", "sites": ["https://www.gamerant.com/", "https://www.ign.com.br/", "https://www.thegamer.com.br/"]},
+    {"nome": "Política Nacional", "categoria": "politica-nacional", "sites": ["https://g1.globo.com/politica/", "https://noticias.uol.com.br/politica/", "https://www.folhapress.com.br/"]},
+    {"nome": "Política Internacional", "categoria": "politica-internacional", "sites": ["https://g1.globo.com/mundo/", "https://www.bbc.com/portuguese/internacional", "https://noticias.uol.com.br/internacional/"]}
 ]
 
 HEADERS = {
@@ -71,45 +72,133 @@ def setup_repo():
         log(f"⚠️ {e}")
         return True
 
+def extrair_imagem_meta(soup, url):
+    """Extrai imagem de meta tags (og:image, twitter:image)"""
+    try:
+        # Tenta og:image primeiro
+        img = soup.find('meta', property='og:image')
+        if img and img.get('content'):
+            return img['content']
+        
+        # Tenta twitter:image
+        img = soup.find('meta', attrs={'name': 'twitter:image'})
+        if img and img.get('content'):
+            return img['content']
+        
+        # Tenta img com classe específica
+        img = soup.find('img', class_=lambda x: x and any(palavra in str(x).lower() for palavra in ['article', 'post', 'destaque', 'noticia', 'manchete']))
+        if img and img.get('src'):
+            return img['src']
+    except:
+        pass
+    return None
+
 def buscar_noticia(tema):
     time.sleep(random.uniform(1, 3))
     for site_url in tema['sites']:
         try:
             log(f"  🔍 Tentando {site_url}...")
-            resp = requests.get(site_url, headers=HEADERS, timeout=15)
+            
+            resp = requests.get(site_url, headers=HEADERS, timeout=20)
+            resp.encoding = 'utf-8'
             resp.raise_for_status()
             soup = BeautifulSoup(resp.text, 'html.parser')
+            
+            # Busca links em artigos, posts ou seções de notícias
             links = soup.find_all('a', href=True)
-            for link in links[:30]:
+            links = links[:60]  # Busca em mais links
+            
+            for link in links:
                 href = link.get('href', '')
                 titulo = link.get_text(strip=True)
-                if not titulo or len(titulo) < 20 or len(titulo) > 200:
+                
+                # Filtros de qualidade
+                if not titulo or len(titulo) < 15 or len(titulo) > 250:
                     continue
+                
+                # Palavras-chave para excluir
+                palavras_bloqueadas = [
+                    'publicidade', 'anúncio', 'assine', 'login', 'cadastro', 'newsletter',
+                    'amazon', 'aliexpress', 'mercado livre', 'shopee', 'custo', 'preço',
+                    'compre', 'oferta', 'desconto', 'cupom', 'promoção', 'black friday',
+                    'aviso', 'clique', 'compartilhe', 'siga', 'inscreva', 'download'
+                ]
+                
+                if any(palavra in titulo.lower() for palavra in palavras_bloqueadas):
+                    continue
+                
+                # Formata URL relativa
                 if href.startswith('/'):
                     from urllib.parse import urljoin
                     href = urljoin(site_url, href)
+                
                 if not href.startswith('http'):
                     continue
+                
+                # Bloqueia links para plataformas de compra
+                urls_bloqueadas = ['amazon.com', 'aliexpress.com', 'mercadolivre.com', 'shopee.com', 'ebay.com']
+                if any(bloqueado in href.lower() for bloqueado in urls_bloqueadas):
+                    continue
+                
                 try:
-                    time.sleep(random.uniform(0.3, 0.8))
-                    art_resp = requests.get(href, headers=HEADERS, timeout=15)
+                    time.sleep(random.uniform(0.7, 1.5))
+                    
+                    # Acessa artigo
+                    art_resp = requests.get(href, headers=HEADERS, timeout=20)
+                    art_resp.encoding = 'utf-8'
                     art_soup = BeautifulSoup(art_resp.text, 'html.parser')
-                    for script in art_soup(['script', 'style']): script.decompose()
-                    texto = ' '.join(p.get_text(strip=True) for p in art_soup.find_all('p'))
-                    img = art_soup.find('img')
-                    img_url = img.get('src') if img else ''
+                    
+                    # Remove lixo
+                    for tag in art_soup(['script', 'style', 'nav', 'footer', 'aside']):
+                        tag.decompose()
+                    
+                    # Busca conteúdo em parágrafos
+                    paragrafos = art_soup.find_all('p')
+                    texto = ' '.join(p.get_text(strip=True) for p in paragrafos if len(p.get_text(strip=True)) > 30)
+                    
+                    # Se não encontrou em <p>, tenta em divs com classes de artigo
+                    if len(texto) < 400:
+                        article = art_soup.find(['article', 'div', 'main'], class_=lambda x: x and any(palavra in str(x).lower() for palavra in ['article', 'post', 'content', 'corpo', 'noticia', 'body', 'text']))
+                        if article:
+                            paragrafos = article.find_all('p')
+                            texto = ' '.join(p.get_text(strip=True) for p in paragrafos if len(p.get_text(strip=True)) > 30)
+                    
+                    # Busca imagem
+                    img_url = extrair_imagem_meta(art_soup, href)
+                    
+                    # Se não encontrou em meta, busca em img
+                    if not img_url:
+                        for img in art_soup.find_all('img'):
+                            img_src = img.get('src', '')
+                            if img_src and not 'logo' in img_src.lower() and not 'icon' in img_src.lower():
+                                img_url = img_src
+                                break
+                    
+                    # Formata URL da imagem
                     if img_url and not img_url.startswith('http'):
                         from urllib.parse import urljoin
                         img_url = urljoin(href, img_url)
-                    if len(texto) > 400:
-                        log(f"  ✅ Encontrada: {titulo[:50]}...")
-                        return {'title': titulo, 'content': texto, 'urlToImage': img_url or 'https://via.placeholder.com/800x450/1a1a1a/d4af37?text=Vivimundo', 'url': href}
+                    
+                    # Valida conteúdo
+                    if len(texto) > 500:
+                        log(f"  ✅ Encontrada: {titulo[:60]}...")
+                        return {
+                            'title': titulo, 
+                            'content': texto, 
+                            'urlToImage': img_url or 'https://via.placeholder.com/800x450/1a1a1a/d4af37?text=Vivimundo', 
+                            'url': href
+                        }
+                except requests.exceptions.Timeout:
+                    log(f"  ⏱ Timeout em {href[:40]}")
+                    continue
                 except Exception as e:
                     continue
+            
             log(f"  ⚠️ Nada encontrado em {site_url}")
         except Exception as e:
-            log(f"  ❌ Erro em {site_url}: {str(e)[:50]}")
+            log(f"  ❌ Erro em {site_url}: {str(e)[:60]}")
             continue
+    
     return None
 
 def gerar_texto(noticia):

@@ -437,6 +437,12 @@ def salvar_post(titulo, texto, img, cat, data, post_id):
 def atualizar_home(posts):
     cards = ""
     for p in reversed(posts[-10:]):
+        # Verifica se o arquivo HTML do post existe
+        post_file = Path(p['url'])
+        if not post_file.exists():
+            log(f"  ⚠️ Post {p['titulo'][:40]} não tem arquivo HTML, pulando")
+            continue
+        
         cards += f"""<article class="post-card">
 <img src="{p['imagem']}" alt="{p['titulo']}">
 <div class="post-info">
@@ -485,6 +491,11 @@ def gerar_paginas_categorias(posts):
     for cat, artigos in categorias.items():
         cards = ""
         for p in reversed(artigos[-20:]):
+            # Verifica se o arquivo HTML do post existe
+            post_file = Path(p['url'])
+            if not post_file.exists():
+                continue
+            
             cards += f"""<article class="post-card">
 <img src="{p['imagem']}" alt="{p['titulo']}">
 <div class="post-info">

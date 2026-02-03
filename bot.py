@@ -344,28 +344,6 @@ def salvar_post(titulo, texto, img, cat, data, post_id):
 <meta property="og:type" content="article">
 <title>{titulo} - Vivimundo</title>
 <link rel="stylesheet" href="../style.css">
-<style>
-.post-imagem {{
-    width: 100%;
-    height: auto;
-    max-height: 500px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin: 30px 0;
-}}
-.post-conteudo {{
-    line-height: 1.8;
-    font-size: 16px;
-    color: #333;
-}}
-.post-conteudo p {{
-    margin: 20px 0;
-    text-align: justify;
-}}
-.post-conteudo p:first-letter {{
-    font-weight: bold;
-}}
-</style>
 </head>
 <body>
 <header><div class="container"><h1 class="logo">VIVIMUNDO</h1>
@@ -382,10 +360,12 @@ def salvar_post(titulo, texto, img, cat, data, post_id):
 </div></header>
 <main class="container">
 <article class="post-completo">
-<div class="post-meta"><span class="categoria categoria-{cat}">{cat.replace('-',' ').title()}</span> <span>{data}</span></div>
-<h1>{titulo}</h1>
-<p class="autor">Por Kevin Ribeiro</p>
-<img src="{img}" class="post-imagem" alt="{titulo}" loading="lazy">
+<div class="post-header">
+<span class="post-categoria">{cat.replace('-',' ').title()}</span>
+<h1 class="post-titulo">{titulo}</h1>
+<div class="post-data">Por Kevin Ribeiro • {data}</div>
+</div>
+<img src="{img}" class="post-principal-imagem" alt="{titulo}" loading="lazy">
 <div class="post-conteudo">
 {paragrafos}
 </div>

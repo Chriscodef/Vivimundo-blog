@@ -11,6 +11,10 @@ from pathlib import Path
 import subprocess
 import random
 from bs4 import BeautifulSoup
+import urllib3
+
+# Desabilitar SSL warnings
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 sys.stdout.reconfigure(line_buffering=True, encoding='utf-8')
 sys.stderr.reconfigure(line_buffering=True, encoding='utf-8')
@@ -99,7 +103,7 @@ def buscar_noticia(tema):
         try:
             log(f"  🔍 Tentando {site_url}...")
             
-            resp = requests.get(site_url, headers=HEADERS, timeout=20)
+            resp = requests.get(site_url, headers=HEADERS, timeout=20, verify=False)
             resp.encoding = 'utf-8'
             resp.raise_for_status()
             soup = BeautifulSoup(resp.text, 'html.parser')

@@ -18,7 +18,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT_TOKEN }}
           fetch-depth: 0
 
       # 2. Configura Python
@@ -37,12 +37,12 @@ jobs:
       # 4. Configura Git com credenciais
       - name: Configure Git
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           git config user.name "Vivimundo Bot"
           git config user.email "bot@vivimundo.com"
           git config --global credential.helper store
-          echo "https://x-access-token:${GITHUB_TOKEN}@github.com" > ~/.git-credentials
+          echo "https://${PAT_TOKEN}@github.com" > ~/.git-credentials
 
       # 5. Executa o bot
       - name: Run bot

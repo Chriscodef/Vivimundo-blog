@@ -99,6 +99,17 @@ def extrair_imagem_meta(soup, url):
 
 def buscar_noticia(tema):
     time.sleep(random.uniform(1, 3))
+    
+    # Palavras-chave por categoria para validação semântica
+    palavras_categoria = {
+        'esportes': ['futebol', 'basquete', 'tênis', 'voley', 'natação', 'atletismo', 'olimpíada', 'campeonato', 'jogo', 'time', 'jogador', 'gol', 'jogadores', 'partida', 'sport', 'football', 'basketball', 'soccer'],
+        'entretenimento': ['filme', 'série', 'ator', 'atriz', 'cinema', 'netflix', 'novela', 'música', 'cantor', 'artista', 'show', 'teatro', 'premiação', 'oscar', 'grammy', 'music', 'movie'],
+        'tecnologia': ['tecnologia', 'app', 'software', 'hardware', 'computador', 'smartphone', 'inteligência artificial', 'ia', 'programação', 'data', 'tech', 'digital', 'inovação', 'startup'],
+        'videogames': ['jogo', 'game', 'console', 'xbox', 'playstation', 'nintendo', 'pc gaming', 'esports', 'twitch', 'gamer', 'rpg', 'ação', 'multiplayer', 'lançamento de jogo'],
+        'politica-nacional': ['brasil', 'congresso', 'senado', 'câmara', 'presidente', 'eleição', 'voto', 'lei', 'decreto', 'governo', 'ministro', 'política', 'democracia', 'brasileiro'],
+        'politica-internacional': ['país', 'presidente', 'premier', 'chanceler', 'eleição', 'guerra', 'diplomacia', 'onu', 'tratado', 'internacional', 'relações', 'exterior', 'conflito', 'global', 'mundial']
+    }
+    
     for site_url in tema['sites']:
         try:
             log(f"  🔍 Tentando {site_url}...")
@@ -128,7 +139,8 @@ def buscar_noticia(tema):
                     'aviso', 'clique', 'compartilhe', 'siga', 'inscreva', 'download',
                     'vpn', 'antivírus', 'norton', 'testegrátis', 'teste grátis', '% off', '% offert',
                     'código', 'cupom', 'deal', 'cyber', 'viagem', 'hotel', 'passagem',
-                    'fone', 'fones', 'headphone', 'smartphone', 'iphone', 'samsung'
+                    'fone', 'fones', 'headphone', 'smartphone', 'iphone', 'samsung',
+                    'termos', 'condições', 'privacidade', 'cookies', 'contato'
                 ]
                 
                 if any(palavra in titulo.lower() for palavra in palavras_bloqueadas):
@@ -151,7 +163,7 @@ def buscar_noticia(tema):
                     time.sleep(random.uniform(0.7, 1.5))
                     
                     # Acessa artigo
-                    art_resp = requests.get(href, headers=HEADERS, timeout=20)
+                    art_resp = requests.get(href, headers=HEADERS, timeout=20, verify=False)
                     art_resp.encoding = 'utf-8'
                     art_soup = BeautifulSoup(art_resp.text, 'html.parser')
                     
@@ -170,6 +182,25 @@ def buscar_noticia(tema):
                             paragrafos = article.find_all('p')
                             texto = ' '.join(p.get_text(strip=True) for p in paragrafos if len(p.get_text(strip=True)) > 30)
                     
+                    # Validação semântica: verifica se o conteúdo corresponde à categoria
+                    categoria_nome = tema['nome']
+                    palavras_validas = palavras_categoria.get(categoria_nome, [])
+                    conteudo_baixo = (titulo + ' ' + texto).lower()
+                    
+                    # Conta quantas palavras-chave da categoria estão presentes
+                    palavras_encontradas = sum(1 for palavra in palavras_validas if palavra in conteudo_baixo)
+                    
+                    # Precisa ter pelo menos 2 palavras-chave da categoria ou mais de 30% das palavras
+                    minimo_palavras = max(2, len(palavras_validas) // 5)
+                    if palavras_encontradas < minimo_palavras:
+                        log(f"    ⚠️ Artigo rejeitado: baixa relevância para {categoria_nome} ({palavras_encontradas}/{minimo_palavras})")
+                        continue
+                    
+                    # Verifica comprimento mínimo do conteúdo
+                    if len(texto) < 400:
+                        log(f"    ⚠️ Artigo rejeitado: conteúdo muito curto ({len(texto)}/400 caracteres)")
+                        continue
+                    
                     # Busca imagem com função melhorada
                     img_url = extrair_imagem_melhorada(art_soup, href)
                     
@@ -177,6 +208,7 @@ def buscar_noticia(tema):
                     if img_url and not img_url.startswith('http'):
                         from urllib.parse import urljoin
                         img_url = urljoin(href, img_url)
+
                     
                     # Valida conteúdo
                     if len(texto) > 500:

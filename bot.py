@@ -167,6 +167,38 @@ def buscar_noticia(tema):
                     art_resp.encoding = 'utf-8'
                     art_soup = BeautifulSoup(art_resp.text, 'html.parser')
                     
+                    # Extrai título real da página (não do link)
+                    titulo_real = None
+                    
+                    # Tenta title tag primeiro
+                    title_tag = art_soup.find('title')
+                    if title_tag:
+                        titulo_real = title_tag.get_text(strip=True)
+                        # Remove sufixo comum de sites
+                        for sufixo in [' - ', ' | ', ' - UOL', ' - G1', ' - Globo']:
+                            if sufixo in titulo_real:
+                                titulo_real = titulo_real.split(sufixo)[0]
+                    
+                    # Se não conseguiu, tenta og:title
+                    if not titulo_real:
+                        og_title = art_soup.find('meta', property='og:title')
+                        if og_title and og_title.get('content'):
+                            titulo_real = og_title['content']
+                    
+                    # Se ainda não tem, tenta h1
+                    if not titulo_real:
+                        h1 = art_soup.find('h1')
+                        if h1:
+                            titulo_real = h1.get_text(strip=True)
+                    
+                    # Usa o título original se não conseguiu extrair
+                    if not titulo_real:
+                        titulo_real = titulo
+                    
+                    # Valida o título real
+                    if not titulo_real or len(titulo_real) < 15 or len(titulo_real) > 250:
+                        continue
+                    
                     # Remove lixo
                     for tag in art_soup(['script', 'style', 'nav', 'footer', 'aside']):
                         tag.decompose()
@@ -185,7 +217,7 @@ def buscar_noticia(tema):
                     # Validação semântica: verifica se o conteúdo corresponde à categoria
                     categoria_nome = tema['categoria']
                     palavras_validas = palavras_categoria.get(categoria_nome, [])
-                    conteudo_baixo = (titulo + ' ' + texto).lower()
+                    conteudo_baixo = (titulo_real + ' ' + texto).lower()
                     
                     # Conta quantas palavras-chave da categoria estão presentes
                     palavras_encontradas = sum(1 for palavra in palavras_validas if palavra in conteudo_baixo)
@@ -197,7 +229,6 @@ def buscar_noticia(tema):
                     
                     # Verifica comprimento mínimo do conteúdo
                     if len(texto) < 400:
-                        log(f"    ⚠️ Artigo rejeitado: conteúdo muito curto ({len(texto)}/400 caracteres)")
                         continue
                     
                     # Busca imagem com função melhorada
@@ -211,9 +242,9 @@ def buscar_noticia(tema):
                     
                     # Valida conteúdo
                     if len(texto) > 500:
-                        log(f"  ✅ Encontrada: {titulo[:60]}...")
+                        log(f"  ✅ Encontrada: {titulo_real[:60]}...")
                         return {
-                            'title': titulo, 
+                            'title': titulo_real, 
                             'content': texto, 
                             'urlToImage': img_url or 'https://via.placeholder.com/800x450/1a1a1a/d4af37?text=Vivimundo', 
                             'url': href

@@ -204,12 +204,21 @@ def limpar_markdown(texto):
     texto = re.sub(r'__(.*?)__', r'\1', texto)
     # Remove # titulo -> titulo
     texto = re.sub(r'^#+\s+', '', texto, flags=re.MULTILINE)
+    # Remove tags HTML malformadas
+    texto = re.sub(r'<p><h\d>(.*?)</h\d></p>', r'\1', texto)
+    texto = re.sub(r'<p><p>(.*?)</p></p>', r'\1', texto)
+    # Remove tags HTML abertas
+    texto = re.sub(r'<h\d>|</h\d>', '', texto)
     return texto
 
 def formatar_paragrafos(texto):
     """Formata texto em parágrafos HTML bem estruturados"""
+    import re
     # Limpa markdown primeiro
     texto = limpar_markdown(texto)
+    
+    # Remove tags HTML restantes
+    texto = re.sub(r'<[^>]+>', '', texto)
     
     # Divide em parágrafos por quebras duplas ou por pontos finais
     blocos = texto.split('\n\n')
@@ -218,6 +227,8 @@ def formatar_paragrafos(texto):
     for bloco in blocos:
         bloco = bloco.strip()
         if len(bloco) > 50:  # Ignora blocos muito pequenos
+            # Remove espaços múltiplos
+            bloco = re.sub(r'\s+', ' ', bloco)
             html += f'<p>{bloco}</p>\n'
     
     return html

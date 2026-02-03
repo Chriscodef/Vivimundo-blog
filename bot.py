@@ -404,13 +404,13 @@ def atualizar_home(posts):
 <header><div class="container"><h1 class="logo">VIVIMUNDO</h1>
 <nav>
 <a href="index.html">Início</a>
-<a href="../categoria-esportes.html">Esportes</a>
-<a href="../categoria-entretenimento.html">Entretenimento</a>
-<a href="../categoria-tecnologia.html">Tecnologia</a>
-<a href="../categoria-videogames.html">Videogames</a>
-<a href="../categoria-politica-nacional.html">Política Nacional</a>
-<a href="../categoria-politica-internacional.html">Política Internacional</a>
-<a href="../sobre.html">Sobre</a>
+<a href="categoria-esportes.html">Esportes</a>
+<a href="categoria-entretenimento.html">Entretenimento</a>
+<a href="categoria-tecnologia.html">Tecnologia</a>
+<a href="categoria-videogames.html">Videogames</a>
+<a href="categoria-politica-nacional.html">Política Nacional</a>
+<a href="categoria-politica-internacional.html">Política Internacional</a>
+<a href="sobre.html">Sobre</a>
 </nav>
 </div></header>
 <main class="container">
@@ -422,6 +422,56 @@ def atualizar_home(posts):
     with open("index.html", 'w', encoding='utf-8') as f:
         f.write(html)
     log("  📝 Index atualizado")
+
+def gerar_paginas_categorias(posts):
+    """Gera páginas para cada categoria com artigos filtrados"""
+    categorias = {}
+    for p in posts:
+        cat = p['categoria']
+        if cat not in categorias:
+            categorias[cat] = []
+        categorias[cat].append(p)
+    
+    for cat, artigos in categorias.items():
+        cards = ""
+        for p in reversed(artigos[-20:]):
+            cards += f"""<article class="post-card">
+<img src="{p['imagem']}" alt="{p['titulo']}">
+<div class="post-info">
+<span class="categoria categoria-{p['categoria']}">{p['categoria'].replace('-',' ').title()}</span>
+<h2><a href="{p['url']}">{p['titulo']}</a></h2>
+<p class="meta">Por Kevin Ribeiro • {p['data']}</p>
+</div>
+</article>"""
+        
+        html = f"""<!DOCTYPE html>
+<html lang="pt-BR">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{cat.replace('-',' ').title()} - Vivimundo</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<header><div class="container"><h1 class="logo">VIVIMUNDO</h1>
+<nav>
+<a href="index.html">Início</a>
+<a href="categoria-esportes.html">Esportes</a>
+<a href="categoria-entretenimento.html">Entretenimento</a>
+<a href="categoria-tecnologia.html">Tecnologia</a>
+<a href="categoria-videogames.html">Videogames</a>
+<a href="categoria-politica-nacional.html">Política Nacional</a>
+<a href="categoria-politica-internacional.html">Política Internacional</a>
+<a href="sobre.html">Sobre</a>
+</nav>
+</div></header>
+<main class="container">
+<h2 class="secao-titulo">{cat.replace('-',' ').title()}</h2>
+<div class="posts-grid">{cards}</div>
+</main>
+<footer><div class="container"><p>© 2026 Vivimundo</p><a href="https://x.com/Kevin_RSP0" target="_blank">Twitter</a></div></footer>
+</body></html>"""
+        
+        fname = f"categoria-{cat}.html"
+        with open(fname, 'w', encoding='utf-8') as f:
+            f.write(html)
+        log(f"  📚 Categoria '{cat}' atualizada")
 
 def publicar():
     try:
@@ -460,6 +510,7 @@ def executar():
     posts.append(info)
     json.dump(posts, open(pfile, 'w'), ensure_ascii=False, indent=2)
     atualizar_home(posts)
+    gerar_paginas_categorias(posts)
     publicar()
 
     # Salva estado para próxima execução

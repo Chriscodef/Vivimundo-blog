@@ -49,4 +49,4 @@ jobs:
       - name: Commit and push
         run: |
           git add .
-          git diff --quiet && git diff --staged --quiet || (git commit -m "🤖 Nova matéria - $(date +'%d/%m/%Y %H:%M')" && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "🤖 Nova matéria - $(date +'%d/%m/%Y %H:%M')" && git push --set-upstream origin main)

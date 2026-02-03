@@ -163,16 +163,8 @@ def buscar_noticia(tema):
                             paragrafos = article.find_all('p')
                             texto = ' '.join(p.get_text(strip=True) for p in paragrafos if len(p.get_text(strip=True)) > 30)
                     
-                    # Busca imagem
-                    img_url = extrair_imagem_meta(art_soup, href)
-                    
-                    # Se não encontrou em meta, busca em img
-                    if not img_url:
-                        for img in art_soup.find_all('img'):
-                            img_src = img.get('src', '')
-                            if img_src and not 'logo' in img_src.lower() and not 'icon' in img_src.lower():
-                                img_url = img_src
-                                break
+                    # Busca imagem com função melhorada
+                    img_url = extrair_imagem_melhorada(art_soup, href)
                     
                     # Formata URL da imagem
                     if img_url and not img_url.startswith('http'):
@@ -201,6 +193,81 @@ def buscar_noticia(tema):
     
     return None
 
+def limpar_markdown(texto):
+    """Remove formatação markdown do texto"""
+    import re
+    # Remove **texto** -> texto
+    texto = re.sub(r'\*\*(.*?)\*\*', r'\1', texto)
+    # Remove *texto* -> texto
+    texto = re.sub(r'\*(.*?)\*', r'\1', texto)
+    # Remove __texto__ -> texto
+    texto = re.sub(r'__(.*?)__', r'\1', texto)
+    # Remove # titulo -> titulo
+    texto = re.sub(r'^#+\s+', '', texto, flags=re.MULTILINE)
+    return texto
+
+def formatar_paragrafos(texto):
+    """Formata texto em parágrafos HTML bem estruturados"""
+    # Limpa markdown primeiro
+    texto = limpar_markdown(texto)
+    
+    # Divide em parágrafos por quebras duplas ou por pontos finais
+    blocos = texto.split('\n\n')
+    
+    html = ""
+    for bloco in blocos:
+        bloco = bloco.strip()
+        if len(bloco) > 50:  # Ignora blocos muito pequenos
+            html += f'<p>{bloco}</p>\n'
+    
+    return html
+
+def extrair_imagem_melhorada(soup, url):
+    """Extrai a melhor imagem do artigo"""
+    try:
+        # Tenta og:image primeiro (mais confiável)
+        img = soup.find('meta', property='og:image')
+        if img and img.get('content'):
+            img_url = img['content']
+            # Evita logos e ícones
+            if not any(x in img_url.lower() for x in ['logo', 'icon', 'badge', 'avatar', 'profile']):
+                return img_url
+        
+        # Tenta twitter:image
+        img = soup.find('meta', attrs={'name': 'twitter:image'})
+        if img and img.get('content'):
+            return img['content']
+        
+        # Procura por imagem grande no artigo
+        imgs = soup.find_all('img')
+        melhor_img = None
+        melhor_tamanho = 0
+        
+        for img in imgs:
+            src = img.get('src', '')
+            alt = img.get('alt', '')
+            
+            # Ignora logos, ícones, banners pequenos
+            if any(x in src.lower() or x in alt.lower() for x in ['logo', 'icon', 'badge', 'avatar', 'gif', 'svg', 'button']):
+                continue
+            
+            # Prefere imagens com atributos de tamanho
+            width = img.get('width', '0')
+            height = img.get('height', '0')
+            try:
+                tamanho = int(width) * int(height) if width and height else 0
+                if tamanho > melhor_tamanho:
+                    melhor_tamanho = tamanho
+                    melhor_img = src
+            except:
+                if src and not melhor_img:
+                    melhor_img = src
+        
+        return melhor_img
+    except:
+        pass
+    return None
+
 def gerar_texto_fallback(noticia):
     """Gera texto com fallback quando Groq falha"""
     titulo = noticia['title']
@@ -226,7 +293,7 @@ def gerar_texto(noticia):
 Título: {noticia['title']}
 Conteúdo: {noticia.get('content', '')[:3000]}
 
-Não mencione fontes. Seja objetivo."""
+Não mencione fontes. Seja objetivo. Use apenas HTML simples (sem markdown)."""
     try:
         resp = requests.post(
             'https://api.groq.com/openai/v1/chat/completions',
@@ -236,6 +303,8 @@ Não mencione fontes. Seja objetivo."""
         )
         resp.raise_for_status()
         texto = resp.json()['choices'][0]['message']['content'].strip()
+        # Limpa markdown do texto gerado
+        texto = limpar_markdown(texto)
         log(f"  ✅ Matéria gerada ({len(texto.split())} palavras)")
         return texto
     except Exception as e:
@@ -246,15 +315,43 @@ Não mencione fontes. Seja objetivo."""
 def salvar_post(titulo, texto, img, cat, data, post_id):
     slug = titulo.lower()[:50].replace(' ', '-').replace('?', '').replace('!', '').replace('/', '-')
     fname = f"post-{post_id:04d}-{slug}.html"
-    paragrafos = '\n'.join([f'<p>{p.strip()}</p>' for p in texto.split('\n\n') if p.strip()])
     
+    # Formata parágrafos com função melhorada
+    paragrafos = formatar_paragrafos(texto)
+    
+    # HTML com styling melhorado
     html = f"""<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:title" content="{titulo}">
+<meta property="og:image" content="{img}">
+<meta property="og:type" content="article">
 <title>{titulo} - Vivimundo</title>
 <link rel="stylesheet" href="../style.css">
+<style>
+.post-imagem {{
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 30px 0;
+}}
+.post-conteudo {{
+    line-height: 1.8;
+    font-size: 16px;
+    color: #333;
+}}
+.post-conteudo p {{
+    margin: 20px 0;
+    text-align: justify;
+}}
+.post-conteudo p:first-letter {{
+    font-weight: bold;
+}}
+</style>
 </head>
 <body>
 <header><div class="container"><h1 class="logo">VIVIMUNDO</h1>
@@ -274,8 +371,10 @@ def salvar_post(titulo, texto, img, cat, data, post_id):
 <div class="post-meta"><span class="categoria categoria-{cat}">{cat.replace('-',' ').title()}</span> <span>{data}</span></div>
 <h1>{titulo}</h1>
 <p class="autor">Por Kevin Ribeiro</p>
-<img src="{img}" class="post-imagem" alt="{titulo}">
-<div class="post-conteudo">{paragrafos}</div>
+<img src="{img}" class="post-imagem" alt="{titulo}" loading="lazy">
+<div class="post-conteudo">
+{paragrafos}
+</div>
 </article>
 </main>
 <footer><div class="container"><p>© 2026 Vivimundo</p><a href="https://x.com/Kevin_RSP0" target="_blank">Twitter</a></div></footer>

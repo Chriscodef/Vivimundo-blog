@@ -163,7 +163,7 @@ def buscar_noticia(tema):
                     time.sleep(random.uniform(0.7, 1.5))
                     
                     # Acessa artigo
-                    art_resp = requests.get(href, headers=HEADERS, timeout=20, verify=False)
+                    art_resp = requests.get(href, headers=HEADERS, timeout=10, verify=False)
                     art_resp.encoding = 'utf-8'
                     art_soup = BeautifulSoup(art_resp.text, 'html.parser')
                     
@@ -201,7 +201,7 @@ def buscar_noticia(tema):
                         continue
                     
                     # Busca imagem com função melhorada
-                    img_url = extrair_imagem_melhorada(art_soup, href)
+                    img_url = extrair_imagem_meta(art_soup, href)
                     
                     # Formata URL da imagem
                     if img_url and not img_url.startswith('http'):
@@ -218,8 +218,7 @@ def buscar_noticia(tema):
                             'urlToImage': img_url or 'https://via.placeholder.com/800x450/1a1a1a/d4af37?text=Vivimundo', 
                             'url': href
                         }
-                except requests.exceptions.Timeout:
-                    log(f"  ⏱ Timeout em {href[:40]}")
+                except (requests.exceptions.Timeout, TimeoutError):
                     continue
                 except Exception as e:
                     continue

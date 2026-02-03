@@ -542,10 +542,9 @@ def publicar():
             return
         subprocess.run(['git', 'add', '.'], check=True)
         subprocess.run(['git', 'commit', '-m', f'Nova matéria - {datetime.now().strftime("%d/%m/%Y %H:%M")}'], check=True)
-        subprocess.run(['git', 'push', 'origin', 'main'], check=True, timeout=30)
-        log("  ✅ Push realizado!")
+        log("  ✅ Commit realizado! (Push será feito pelo GitHub Actions)")
     except Exception as e:
-        log(f"  ❌ Push: {e}")
+        log(f"  ❌ Commit: {e}")
 
 def executar():
     pfile = Path("posts.json")

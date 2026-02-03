@@ -45,8 +45,12 @@ jobs:
           GITHUB_WORKSPACE: ${{ github.workspace }}
         run: python bot.py
 
-      # 6. Faz commit e push das mudanças
+      # 6. Configura upstream branch
+      - name: Set upstream branch
+        run: git branch --set-upstream-to=origin/main main
+
+      # 7. Faz commit e push das mudanças
       - name: Commit and push
         run: |
           git add .
-          git diff --quiet && git diff --staged --quiet || (git commit -m "🤖 Nova matéria - $(date +'%d/%m/%Y %H:%M')" && git push --set-upstream origin main)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "🤖 Nova matéria - $(date +'%d/%m/%Y %H:%M')" && git push)

@@ -99,17 +99,6 @@ def extrair_imagem_meta(soup, url):
 
 def buscar_noticia(tema):
     time.sleep(random.uniform(1, 3))
-    
-    # Palavras-chave por categoria para validação semântica
-    palavras_categoria = {
-        'esportes': ['futebol', 'basquete', 'tênis', 'voley', 'natação', 'atletismo', 'olimpíada', 'campeonato', 'jogo', 'time', 'jogador', 'gol', 'jogadores', 'partida', 'sport', 'football', 'basketball', 'soccer', 'nfl', 'nba', 'champions'],
-        'entretenimento': ['filme', 'série', 'ator', 'atriz', 'cinema', 'netflix', 'novela', 'música', 'cantor', 'artista', 'show', 'teatro', 'premiação', 'oscar', 'grammy', 'music', 'movie', 'streaming', 'pop', 'rock', 'episódio', 'produção'],
-        'tecnologia': ['tecnologia', 'app', 'software', 'hardware', 'computador', 'smartphone', 'inteligência artificial', 'ia', 'programação', 'data', 'tech', 'digital', 'inovação', 'startup', 'código', 'sistema', 'programa', 'internet', 'web', 'nuvem', 'banco de dados'],
-        'videogames': ['jogo', 'game', 'console', 'xbox', 'playstation', 'nintendo', 'pc gaming', 'esports', 'twitch', 'gamer', 'rpg', 'ação', 'multiplayer', 'lançamento', 'videogame', 'ps5', 'ps4', 'switch', 'elden ring'],
-        'politica-nacional': ['brasil', 'congresso', 'senado', 'câmara', 'presidente', 'eleição', 'voto', 'lei', 'decreto', 'governo', 'ministro', 'política', 'democracia', 'brasileiro', 'nacional', 'estado', 'deputado', 'senador'],
-        'politica-internacional': ['país', 'presidente', 'premier', 'chanceler', 'eleição', 'guerra', 'diplomacia', 'onu', 'tratado', 'internacional', 'relações', 'exterior', 'conflito', 'global', 'mundial', 'união europeia', 'rússia', 'china', 'eua', 'geopolítica']
-    }
-    
     for site_url in tema['sites']:
         try:
             log(f"  🔍 Tentando {site_url}...")
@@ -139,8 +128,7 @@ def buscar_noticia(tema):
                     'aviso', 'clique', 'compartilhe', 'siga', 'inscreva', 'download',
                     'vpn', 'antivírus', 'norton', 'testegrátis', 'teste grátis', '% off', '% offert',
                     'código', 'cupom', 'deal', 'cyber', 'viagem', 'hotel', 'passagem',
-                    'fone', 'fones', 'headphone', 'smartphone', 'iphone', 'samsung',
-                    'termos', 'condições', 'privacidade', 'cookies', 'contato'
+                    'fone', 'fones', 'headphone', 'smartphone', 'iphone', 'samsung'
                 ]
                 
                 if any(palavra in titulo.lower() for palavra in palavras_bloqueadas):
@@ -163,41 +151,9 @@ def buscar_noticia(tema):
                     time.sleep(random.uniform(0.7, 1.5))
                     
                     # Acessa artigo
-                    art_resp = requests.get(href, headers=HEADERS, timeout=10, verify=False)
+                    art_resp = requests.get(href, headers=HEADERS, timeout=20, verify=False)
                     art_resp.encoding = 'utf-8'
                     art_soup = BeautifulSoup(art_resp.text, 'html.parser')
-                    
-                    # Extrai título real da página (não do link)
-                    titulo_real = None
-                    
-                    # Tenta title tag primeiro
-                    title_tag = art_soup.find('title')
-                    if title_tag:
-                        titulo_real = title_tag.get_text(strip=True)
-                        # Remove sufixo comum de sites
-                        for sufixo in [' - ', ' | ', ' - UOL', ' - G1', ' - Globo']:
-                            if sufixo in titulo_real:
-                                titulo_real = titulo_real.split(sufixo)[0]
-                    
-                    # Se não conseguiu, tenta og:title
-                    if not titulo_real:
-                        og_title = art_soup.find('meta', property='og:title')
-                        if og_title and og_title.get('content'):
-                            titulo_real = og_title['content']
-                    
-                    # Se ainda não tem, tenta h1
-                    if not titulo_real:
-                        h1 = art_soup.find('h1')
-                        if h1:
-                            titulo_real = h1.get_text(strip=True)
-                    
-                    # Usa o título original se não conseguiu extrair
-                    if not titulo_real:
-                        titulo_real = titulo
-                    
-                    # Valida o título real
-                    if not titulo_real or len(titulo_real) < 15 or len(titulo_real) > 250:
-                        continue
                     
                     # Remove lixo
                     for tag in art_soup(['script', 'style', 'nav', 'footer', 'aside']):
@@ -214,42 +170,25 @@ def buscar_noticia(tema):
                             paragrafos = article.find_all('p')
                             texto = ' '.join(p.get_text(strip=True) for p in paragrafos if len(p.get_text(strip=True)) > 30)
                     
-                    # Validação semântica: verifica se o conteúdo corresponde à categoria
-                    categoria_nome = tema['categoria']
-                    palavras_validas = palavras_categoria.get(categoria_nome, [])
-                    conteudo_baixo = (titulo_real + ' ' + texto).lower()
-                    
-                    # Conta quantas palavras-chave da categoria estão presentes
-                    palavras_encontradas = sum(1 for palavra in palavras_validas if palavra in conteudo_baixo)
-                    
-                    # Precisa ter pelo menos 1-2 palavras-chave da categoria
-                    minimo_palavras = max(1, len(palavras_validas) // 10)
-                    if palavras_encontradas < minimo_palavras:
-                        continue
-                    
-                    # Verifica comprimento mínimo do conteúdo
-                    if len(texto) < 400:
-                        continue
-                    
                     # Busca imagem com função melhorada
-                    img_url = extrair_imagem_meta(art_soup, href)
+                    img_url = extrair_imagem_melhorada(art_soup, href)
                     
                     # Formata URL da imagem
                     if img_url and not img_url.startswith('http'):
                         from urllib.parse import urljoin
                         img_url = urljoin(href, img_url)
-
                     
                     # Valida conteúdo
                     if len(texto) > 500:
-                        log(f"  ✅ Encontrada: {titulo_real[:60]}...")
+                        log(f"  ✅ Encontrada: {titulo[:60]}...")
                         return {
-                            'title': titulo_real, 
+                            'title': titulo, 
                             'content': texto, 
                             'urlToImage': img_url or 'https://via.placeholder.com/800x450/1a1a1a/d4af37?text=Vivimundo', 
                             'url': href
                         }
-                except (requests.exceptions.Timeout, TimeoutError):
+                except requests.exceptions.Timeout:
+                    log(f"  ⏱ Timeout em {href[:40]}")
                     continue
                 except Exception as e:
                     continue

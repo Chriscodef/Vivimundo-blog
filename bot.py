@@ -183,7 +183,7 @@ def buscar_noticia(tema):
                             texto = ' '.join(p.get_text(strip=True) for p in paragrafos if len(p.get_text(strip=True)) > 30)
                     
                     # Validação semântica: verifica se o conteúdo corresponde à categoria
-                    categoria_nome = tema['nome']
+                    categoria_nome = tema['categoria']
                     palavras_validas = palavras_categoria.get(categoria_nome, [])
                     conteudo_baixo = (titulo + ' ' + texto).lower()
                     

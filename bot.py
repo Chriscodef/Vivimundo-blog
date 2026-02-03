@@ -121,7 +121,10 @@ def buscar_noticia(tema):
                     'publicidade', 'anúncio', 'assine', 'login', 'cadastro', 'newsletter',
                     'amazon', 'aliexpress', 'mercado livre', 'shopee', 'custo', 'preço',
                     'compre', 'oferta', 'desconto', 'cupom', 'promoção', 'black friday',
-                    'aviso', 'clique', 'compartilhe', 'siga', 'inscreva', 'download'
+                    'aviso', 'clique', 'compartilhe', 'siga', 'inscreva', 'download',
+                    'vpn', 'antivírus', 'norton', 'testegrátis', 'teste grátis', '% off', '% offert',
+                    'código', 'cupom', 'deal', 'cyber', 'viagem', 'hotel', 'passagem',
+                    'fone', 'fones', 'headphone', 'smartphone', 'iphone', 'samsung'
                 ]
                 
                 if any(palavra in titulo.lower() for palavra in palavras_bloqueadas):

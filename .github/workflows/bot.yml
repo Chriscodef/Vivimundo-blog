@@ -34,11 +34,15 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
-      # 4. Configura Git
+      # 4. Configura Git com credenciais
       - name: Configure Git
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "Vivimundo Bot"
           git config user.email "bot@vivimundo.com"
+          git config --global credential.helper store
+          echo "https://x-access-token:${GITHUB_TOKEN}@github.com" > ~/.git-credentials
 
       # 5. Executa o bot
       - name: Run bot
@@ -48,12 +52,8 @@ jobs:
           GITHUB_WORKSPACE: ${{ github.workspace }}
         run: python bot.py
 
-      # 6. Configura upstream branch
-      - name: Set upstream branch
-        run: git branch --set-upstream-to=origin/main main
-
-      # 7. Faz commit e push das mudanças
+      # 6. Faz commit e push das mudanças
       - name: Commit and push
         run: |
           git add .
-          git diff --quiet && git diff --staged --quiet || (git commit -m "🤖 Nova matéria - $(date +'%d/%m/%Y %H:%M')" && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "🤖 Nova matéria - $(date +'%d/%m/%Y %H:%M')" && git push origin main)

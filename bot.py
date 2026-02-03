@@ -33,6 +33,19 @@ if not GROQ_API_KEY:
 
 # Arquivo para salvar estado
 STATE_FILE = Path(REPO_PATH) / "bot_state.json"
+ARTICLES_CACHE = Path(REPO_PATH) / "articles_cache.json"
+
+def carregar_cache_artigos():
+    """Carrega URLs já processadas"""
+    if ARTICLES_CACHE.exists():
+        with open(ARTICLES_CACHE, 'r') as f:
+            return set(json.load(f))
+    return set()
+
+def salvar_cache_artigos(urls):
+    """Salva URLs processadas"""
+    with open(ARTICLES_CACHE, 'w') as f:
+        json.dump(list(urls), f)
 
 def carregar_estado():
     """Carrega o índice do último tema executado"""
@@ -97,8 +110,35 @@ def extrair_imagem_meta(soup, url):
         pass
     return None
 
+def eh_titulo_valido(titulo):
+    """Valida se o título é real (não é número de telefone, sequência, etc)"""
+    # Remove espaços extras
+    titulo = titulo.strip()
+    
+    # Muito curto ou longo
+    if len(titulo) < 15 or len(titulo) > 250:
+        return False
+    
+    # Parece número de telefone ou ID
+    if titulo.replace('-', '').replace('(', '').replace(')', '').isdigit():
+        return False
+    
+    # Muitos números (telefone, CEP, etc)
+    num_count = sum(1 for c in titulo if c.isdigit())
+    if num_count > len(titulo) * 0.3:  # Mais de 30% números
+        return False
+    
+    # Palavras válidas mínimas (não é só números e símbolos)
+    palavras = [p for p in titulo.split() if len(p) > 2 and not p.isdigit()]
+    if len(palavras) < 3:  # Menos de 3 palavras válidas
+        return False
+    
+    return True
+
 def buscar_noticia(tema):
     time.sleep(random.uniform(1, 3))
+    urls_processadas = carregar_cache_artigos()
+    
     for site_url in tema['sites']:
         try:
             log(f"  🔍 Tentando {site_url}...")
@@ -110,14 +150,14 @@ def buscar_noticia(tema):
             
             # Busca links em artigos, posts ou seções de notícias
             links = soup.find_all('a', href=True)
-            links = links[:60]  # Busca em mais links
+            links = links[:80]  # Aumentar para buscar mais links
             
             for link in links:
                 href = link.get('href', '')
                 titulo = link.get_text(strip=True)
                 
-                # Filtros de qualidade
-                if not titulo or len(titulo) < 15 or len(titulo) > 250:
+                # Valida título
+                if not eh_titulo_valido(titulo):
                     continue
                 
                 # Palavras-chave para excluir
@@ -140,6 +180,10 @@ def buscar_noticia(tema):
                     href = urljoin(site_url, href)
                 
                 if not href.startswith('http'):
+                    continue
+                
+                # Pula URL já processada
+                if href in urls_processadas:
                     continue
                 
                 # Bloqueia links para plataformas de compra
@@ -181,12 +225,18 @@ def buscar_noticia(tema):
                     # Valida conteúdo
                     if len(texto) > 500:
                         log(f"  ✅ Encontrada: {titulo[:60]}...")
+                        # Marca como processada
+                        urls_processadas.add(href)
+                        salvar_cache_artigos(urls_processadas)
                         return {
                             'title': titulo, 
                             'content': texto, 
                             'urlToImage': img_url or 'https://via.placeholder.com/800x450/1a1a1a/d4af37?text=Vivimundo', 
                             'url': href
                         }
+                    else:
+                        # Marca como processada mesmo sem conteúdo suficiente
+                        urls_processadas.add(href)
                 except requests.exceptions.Timeout:
                     log(f"  ⏱ Timeout em {href[:40]}")
                     continue

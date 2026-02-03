@@ -102,12 +102,12 @@ def buscar_noticia(tema):
     
     # Palavras-chave por categoria para validação semântica
     palavras_categoria = {
-        'esportes': ['futebol', 'basquete', 'tênis', 'voley', 'natação', 'atletismo', 'olimpíada', 'campeonato', 'jogo', 'time', 'jogador', 'gol', 'jogadores', 'partida', 'sport', 'football', 'basketball', 'soccer'],
-        'entretenimento': ['filme', 'série', 'ator', 'atriz', 'cinema', 'netflix', 'novela', 'música', 'cantor', 'artista', 'show', 'teatro', 'premiação', 'oscar', 'grammy', 'music', 'movie'],
-        'tecnologia': ['tecnologia', 'app', 'software', 'hardware', 'computador', 'smartphone', 'inteligência artificial', 'ia', 'programação', 'data', 'tech', 'digital', 'inovação', 'startup'],
-        'videogames': ['jogo', 'game', 'console', 'xbox', 'playstation', 'nintendo', 'pc gaming', 'esports', 'twitch', 'gamer', 'rpg', 'ação', 'multiplayer', 'lançamento de jogo'],
-        'politica-nacional': ['brasil', 'congresso', 'senado', 'câmara', 'presidente', 'eleição', 'voto', 'lei', 'decreto', 'governo', 'ministro', 'política', 'democracia', 'brasileiro'],
-        'politica-internacional': ['país', 'presidente', 'premier', 'chanceler', 'eleição', 'guerra', 'diplomacia', 'onu', 'tratado', 'internacional', 'relações', 'exterior', 'conflito', 'global', 'mundial']
+        'esportes': ['futebol', 'basquete', 'tênis', 'voley', 'natação', 'atletismo', 'olimpíada', 'campeonato', 'jogo', 'time', 'jogador', 'gol', 'jogadores', 'partida', 'sport', 'football', 'basketball', 'soccer', 'nfl', 'nba', 'champions'],
+        'entretenimento': ['filme', 'série', 'ator', 'atriz', 'cinema', 'netflix', 'novela', 'música', 'cantor', 'artista', 'show', 'teatro', 'premiação', 'oscar', 'grammy', 'music', 'movie', 'streaming', 'pop', 'rock', 'episódio', 'produção'],
+        'tecnologia': ['tecnologia', 'app', 'software', 'hardware', 'computador', 'smartphone', 'inteligência artificial', 'ia', 'programação', 'data', 'tech', 'digital', 'inovação', 'startup', 'código', 'sistema', 'programa', 'internet', 'web', 'nuvem', 'banco de dados'],
+        'videogames': ['jogo', 'game', 'console', 'xbox', 'playstation', 'nintendo', 'pc gaming', 'esports', 'twitch', 'gamer', 'rpg', 'ação', 'multiplayer', 'lançamento', 'videogame', 'ps5', 'ps4', 'switch', 'elden ring'],
+        'politica-nacional': ['brasil', 'congresso', 'senado', 'câmara', 'presidente', 'eleição', 'voto', 'lei', 'decreto', 'governo', 'ministro', 'política', 'democracia', 'brasileiro', 'nacional', 'estado', 'deputado', 'senador'],
+        'politica-internacional': ['país', 'presidente', 'premier', 'chanceler', 'eleição', 'guerra', 'diplomacia', 'onu', 'tratado', 'internacional', 'relações', 'exterior', 'conflito', 'global', 'mundial', 'união europeia', 'rússia', 'china', 'eua', 'geopolítica']
     }
     
     for site_url in tema['sites']:
@@ -190,10 +190,9 @@ def buscar_noticia(tema):
                     # Conta quantas palavras-chave da categoria estão presentes
                     palavras_encontradas = sum(1 for palavra in palavras_validas if palavra in conteudo_baixo)
                     
-                    # Precisa ter pelo menos 2 palavras-chave da categoria ou mais de 30% das palavras
-                    minimo_palavras = max(2, len(palavras_validas) // 5)
+                    # Precisa ter pelo menos 1-2 palavras-chave da categoria
+                    minimo_palavras = max(1, len(palavras_validas) // 10)
                     if palavras_encontradas < minimo_palavras:
-                        log(f"    ⚠️ Artigo rejeitado: baixa relevância para {categoria_nome} ({palavras_encontradas}/{minimo_palavras})")
                         continue
                     
                     # Verifica comprimento mínimo do conteúdo

@@ -201,6 +201,25 @@ def buscar_noticia(tema):
     
     return None
 
+def gerar_texto_fallback(noticia):
+    """Gera texto com fallback quando Groq falha"""
+    titulo = noticia['title']
+    conteudo = noticia.get('content', '')[:2000]
+    
+    # Estrutura básica de matéria
+    paragrafos = conteudo.split('\n\n')
+    texto = f"{titulo}\n\n"
+    
+    for i, p in enumerate(paragrafos[:10]):
+        if len(p.strip()) > 50:
+            texto += f"{p.strip()}\n\n"
+    
+    # Se ficou muito curto, repete o conteúdo
+    if len(texto) < 800:
+        texto += "\n" + conteudo
+    
+    return texto[:3000]  # Limita a 3000 caracteres
+
 def gerar_texto(noticia):
     prompt = f"""Escreva uma matéria jornalística completa em português brasileiro (mínimo 450 palavras, parágrafos, tom profissional) sobre:
 
@@ -220,8 +239,9 @@ Não mencione fontes. Seja objetivo."""
         log(f"  ✅ Matéria gerada ({len(texto.split())} palavras)")
         return texto
     except Exception as e:
-        log(f"  ❌ Groq: {e}")
-        return None
+        log(f"  ⚠️ Groq falhou: {str(e)[:60]}")
+        log(f"  📝 Usando fallback (conteúdo extraído)...")
+        return gerar_texto_fallback(noticia)
 
 def salvar_post(titulo, texto, img, cat, data, post_id):
     slug = titulo.lower()[:50].replace(' ', '-').replace('?', '').replace('!', '').replace('/', '-')
@@ -336,7 +356,7 @@ def executar():
     
     texto = gerar_texto(noticia)
     if not texto:
-        log("❌ Falha ao gerar texto")
+        log("⚠️ Sem conteúdo para salvar")
         return
 
     info = salvar_post(noticia['title'], texto, noticia.get('urlToImage'), tema['categoria'], datetime.now().strftime('%d/%m/%Y às %H:%M'), total_posts + 1)

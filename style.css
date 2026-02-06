@@ -178,6 +178,33 @@ main {
     letter-spacing: 0.5px;
 }
 
+.subcategoria {
+    display: inline-block;
+    background-color: var(--cinza-claro);
+    color: var(--branco);
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 10px;
+    font-weight: 600;
+    margin-left: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.post-subcategoria {
+    display: inline-block;
+    background-color: var(--cinza-claro);
+    color: var(--branco);
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-left: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+
 .post-data {
     color: var(--texto-secundario);
     font-size: 12px;

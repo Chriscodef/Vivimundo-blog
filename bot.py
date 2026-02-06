@@ -36,16 +36,64 @@ STATE_FILE = Path(REPO_PATH) / "bot_state.json"
 ARTICLES_CACHE = Path(REPO_PATH) / "articles_cache.json"
 
 def carregar_cache_artigos():
-    """Carrega URLs já processadas"""
+    """Carrega URLs e títulos já processados"""
     if ARTICLES_CACHE.exists():
         with open(ARTICLES_CACHE, 'r') as f:
-            return set(json.load(f))
-    return set()
+            data = json.load(f)
+            if isinstance(data, dict):
+                return set(data.get('urls', [])), set(data.get('titulos', []))
+            # Compatibilidade com formato antigo (apenas URLs)
+            return set(data), set()
+    return set(), set()
 
-def salvar_cache_artigos(urls):
-    """Salva URLs processadas"""
+def salvar_cache_artigos(urls, titulos):
+    """Salva URLs e títulos processados"""
     with open(ARTICLES_CACHE, 'w') as f:
-        json.dump(list(urls), f)
+        json.dump({'urls': list(urls), 'titulos': list(titulos)}, f)
+
+def normalizar_url(url):
+    """Normaliza URL para comparação consistente no cache"""
+    from urllib.parse import urlparse, urlunparse, parse_qs, urlencode
+    
+    # Converte para lowercase
+    url = url.lower().strip()
+    
+    # Remove trailing slash
+    if url.endswith('/'):
+        url = url[:-1]
+    
+    # Parse URL
+    parsed = urlparse(url)
+    
+    # Remove parâmetros de tracking comuns (utm_, fbclid, etc)
+    query_params = parse_qs(parsed.query)
+    params_limpos = {k: v for k, v in query_params.items() 
+                     if not k.startswith(('utm_', 'fbclid', 'gclid', 'ref'))}
+    
+    # Reconstrói query string ordenada
+    nova_query = urlencode(params_limpos, doseq=True) if params_limpos else ''
+    
+    # Reconstrói URL normalizada
+    return urlunparse((
+        parsed.scheme,
+        parsed.netloc,
+        parsed.path,
+        parsed.params,
+        nova_query,
+        ''  # Remove fragmento (#)
+    ))
+
+def normalizar_titulo(titulo):
+    """Normaliza título para detecção de duplicatas"""
+    import re
+    # Remove espaços extras, converte para lowercase
+    titulo = titulo.lower().strip()
+    # Remove pontuação
+    titulo = re.sub(r'[^\w\s]', '', titulo)
+    # Remove espaços múltiplos
+    titulo = re.sub(r'\s+', ' ', titulo)
+    return titulo
+
 
 def carregar_estado():
     """Carrega o índice do último tema executado"""
@@ -61,13 +109,16 @@ def salvar_estado(tema_idx, total_posts):
         json.dump({'tema_idx': tema_idx, 'total_posts': total_posts}, f)
 
 TEMAS = [
-    {"nome": "Esportes", "categoria": "esportes", "sites": ["https://ge.globo.com/", "https://www.espn.com.br/", "https://www.uol.com.br/esporte/"]},
+    {"nome": "Esportes", "categoria": "esportes", "sites": ["https://ge.globo.com/", "https://www.espn.com.br/", "https://www.uol.com.br/esporte/", "https://www.espn.com.br/futebol/", "https://www.grandepremio.com.br/"]},
     {"nome": "Entretenimento", "categoria": "entretenimento", "sites": ["https://www.omelete.com.br/", "https://www.tecmundo.com.br/cultura", "https://noticiasdocinema.com.br/"]},
-    {"nome": "Tecnologia", "categoria": "tecnologia", "sites": ["https://www.tecmundo.com.br/", "https://olhardigital.com.br/", "https://www.hardware.com.br/"]},
-    {"nome": "Videogames", "categoria": "videogames", "sites": ["https://www.gamerant.com/", "https://www.ign.com.br/", "https://www.thegamer.com.br/"]},
-    {"nome": "Política Nacional", "categoria": "politica-nacional", "sites": ["https://g1.globo.com/politica/", "https://noticias.uol.com.br/politica/", "https://www.folhapress.com.br/"]},
-    {"nome": "Política Internacional", "categoria": "politica-internacional", "sites": ["https://g1.globo.com/mundo/", "https://www.bbc.com/portuguese/internacional", "https://noticias.uol.com.br/internacional/"]}
+    {"nome": "Tecnologia", "categoria": "tecnologia", "sites": ["https://www.tecmundo.com.br/", "https://olhardigital.com.br/", "https://www.hardware.com.br/", "https://www.tecmundo.com.br/voxel", "https://tecnoblog.net/"]},
+    {"nome": "Videogames", "categoria": "videogames", "sites": ["https://www.gamerant.com/", "https://www.ign.com.br/", "https://www.thegamer.com.br/", "https://br.ign.com/"]},
+    {"nome": "Política Nacional", "categoria": "politica-nacional", "sites": ["https://g1.globo.com/politica/", "https://noticias.uol.com.br/politica/", "https://www.folhapress.com.br/", "https://www.poder360.com.br/"]},
+    {"nome": "Política Internacional", "categoria": "politica-internacional", "sites": ["https://g1.globo.com/mundo/", "https://www.bbc.com/portuguese/internacional", "https://noticias.uol.com.br/internacional/", "https://hojenomundomilitar.com.br/"]},
+    {"nome": "Rio de Janeiro", "categoria": "rio-de-janeiro", "sites": ["https://g1.globo.com/rj/rio-de-janeiro/", "https://odia.ig.com.br/"]},
+    {"nome": "São Paulo", "categoria": "sao-paulo", "sites": ["https://g1.globo.com/sp/sao-paulo/"]}
 ]
+
 
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
@@ -110,6 +161,24 @@ def extrair_imagem_meta(soup, url):
         pass
     return None
 
+def limpar_titulo(titulo):
+    """Limpa títulos com palavras grudadas (ex: 'JacksonVeja' -> 'Jackson Veja')"""
+    import re
+    
+    # Padrão 1: letra minúscula seguida de maiúscula (ex: "JacksonVeja")
+    titulo = re.sub(r'([a-z])([A-Z])', r'\1 \2', titulo)
+    
+    # Padrão 2: pontuação seguida de letra maiúscula sem espaço (ex: "AÍ!Baldur's")
+    titulo = re.sub(r'([!?:.])([A-Z])', r'\1 \2', titulo)
+    
+    # Padrão 3: palavra completamente maiúscula seguida de palavra capitalizada (ex: "HPComo")
+    titulo = re.sub(r'([A-Z]{2,})([A-Z][a-z])', r'\1 \2', titulo)
+    
+    # Remove espaços múltiplos
+    titulo = re.sub(r'\s+', ' ', titulo)
+    
+    return titulo.strip()
+
 def eh_titulo_valido(titulo):
     """Valida se o título é real (não é número de telefone, sequência, etc)"""
     # Remove espaços extras
@@ -133,13 +202,39 @@ def eh_titulo_valido(titulo):
     if len(palavras) < 3:  # Menos de 3 palavras válidas
         return False
     
+    # Rejeita títulos genéricos de seção (não são notícias reais)
+    titulo_lower = titulo.lower()
+    palavras_secao = [
+        'advance', 'latest', 'more', 'daily', 'special', 'featured',
+        'esportes a motor', 'game rant', 'puzzles and games',
+        'trending', 'popular', 'recommended', 'breaking'
+    ]
+    for palavra in palavras_secao:
+        if palavra in titulo_lower:
+            log(f"  🚫 Título rejeitado (seção genérica): {titulo[:60]}...")
+            return False
+    
+    # Rejeita títulos muito curtos com poucas palavras significativas (provavelmente categorias)
+    palavras_significativas = [p for p in titulo.split() if len(p) > 3 and p.isalpha()]
+    if len(palavras_significativas) < 4:
+        # Verifica se parece uma categoria (sem verbos de ação)
+        verbos_acao = ['ganha', 'lança', 'confirma', 'aprova', 'revela', 'anuncia', 
+                       'chega', 'vence', 'perde', 'encontra', 'descobre', 'morre',
+                       'nasce', 'cresce', 'cai', 'sobe', 'muda', 'fica', 'vai', 'vem']
+        tem_verbo = any(verbo in titulo_lower for verbo in verbos_acao)
+        if not tem_verbo:
+            log(f"  🚫 Título rejeitado (sem verbo de ação): {titulo[:60]}...")
+            return False
+    
     return True
+
 
 def buscar_noticia(tema):
     time.sleep(random.uniform(1, 3))
-    urls_processadas = carregar_cache_artigos()
+    urls_processadas, titulos_processados = carregar_cache_artigos()
     
     for site_url in tema['sites']:
+
         try:
             log(f"  🔍 Tentando {site_url}...")
             
@@ -156,8 +251,12 @@ def buscar_noticia(tema):
                 href = link.get('href', '')
                 titulo = link.get_text(strip=True)
                 
+                # Limpa títulos grudados
+                titulo = limpar_titulo(titulo)
+                
                 # Valida título
                 if not eh_titulo_valido(titulo):
+
                     continue
                 
                 # Palavras-chave para excluir
@@ -182,9 +281,20 @@ def buscar_noticia(tema):
                 if not href.startswith('http'):
                     continue
                 
-                # Pula URL já processada
-                if href in urls_processadas:
+                # Normaliza URL para verificação
+                href_normalizada = normalizar_url(href)
+                
+                # Pula URL já processada (verificação normalizada)
+                if href_normalizada in urls_processadas:
+                    log(f"  🔄 URL já processada: {href[:50]}...")
                     continue
+                
+                # Verifica duplicata por título normalizado
+                titulo_normalizado = normalizar_titulo(titulo)
+                if titulo_normalizado in titulos_processados:
+                    log(f"  🔄 Título duplicado: {titulo[:50]}...")
+                    continue
+
                 
                 # Bloqueia links para plataformas de compra
                 urls_bloqueadas = ['amazon.com', 'aliexpress.com', 'mercadolivre.com', 'shopee.com', 'ebay.com']
@@ -222,21 +332,34 @@ def buscar_noticia(tema):
                         from urllib.parse import urljoin
                         img_url = urljoin(href, img_url)
                     
+                    # Rejeita notícias sem imagem real
+                    if not img_url:
+                        log(f"  🚫 Notícia sem imagem, pulando: {titulo[:50]}...")
+                        urls_processadas.add(href_normalizada)
+                        titulos_processados.add(titulo_normalizado)
+                        salvar_cache_artigos(urls_processadas, titulos_processados)
+                        continue
+                    
                     # Valida conteúdo
                     if len(texto) > 500:
                         log(f"  ✅ Encontrada: {titulo[:60]}...")
-                        # Marca como processada
-                        urls_processadas.add(href)
-                        salvar_cache_artigos(urls_processadas)
+                        # Marca como processada (URL normalizada e título)
+                        urls_processadas.add(href_normalizada)
+                        titulos_processados.add(titulo_normalizado)
+                        salvar_cache_artigos(urls_processadas, titulos_processados)
                         return {
                             'title': titulo, 
                             'content': texto, 
-                            'urlToImage': img_url or 'https://via.placeholder.com/800x450/1a1a1a/d4af37?text=Vivimundo', 
+                            'urlToImage': img_url, 
                             'url': href
                         }
+
                     else:
                         # Marca como processada mesmo sem conteúdo suficiente
-                        urls_processadas.add(href)
+                        urls_processadas.add(href_normalizada)
+                        salvar_cache_artigos(urls_processadas, titulos_processados)
+
+
                 except requests.exceptions.Timeout:
                     log(f"  ⏱ Timeout em {href[:40]}")
                     continue
@@ -380,14 +503,84 @@ Não mencione fontes. Seja objetivo. Use apenas HTML simples (sem markdown)."""
         log(f"  📝 Usando fallback (conteúdo extraído)...")
         return gerar_texto_fallback(noticia)
 
-def salvar_post(titulo, texto, img, cat, data, post_id):
+def classificar_subcategoria(titulo, categoria_principal):
+    """Classifica automaticamente a subcategoria usando regras de palavras-chave"""
+    titulo_lower = titulo.lower()
+    
+    # Mapeamento de subcategorias por categoria principal
+    subcategorias = {
+        'esportes': {
+            'futebol': ['futebol', 'flamengo', 'palmeiras', 'corinthians', 'são paulo', 'santos', 'vasco', 'botafogo', 'fluminense', 'gremio', 'internacional', 'cruzeiro', 'atletico', 'brasileirão', 'copa do brasil', 'libertadores', 'mundial', 'seleção brasileira', 'neymar', 'messi', 'cristiano ronaldo', 'mbappe', 'haaland'],
+            'automobilismo': ['fórmula 1', 'formula 1', 'f1', 'stock car', 'nascar', 'rally', 'motogp', 'verstappen', 'hamilton', 'leclerc', 'pérez', 'alonso', 'sainz', 'norris', 'piastri', 'pilotos', 'gp', 'grande prêmio', 'corrida'],
+            'basquete': ['nba', 'basquete', 'lebron', 'jordan', 'curry', 'durant', 'giannis', 'lakers', 'celtics', 'warriors', 'bulls', 'playoffs', 'finals'],
+            'olimpiadas': ['olimpíadas', 'olimpiadas', 'paris 2024', 'los angeles 2028', 'atletismo', 'natação', 'ginástica', 'judô', 'vôlei', 'handebol']
+        },
+        'entretenimento': {
+            'cinema-series': ['filme', 'cinema', 'série', 'netflix', 'hbo', 'disney+', 'amazon prime', 'star+', 'paramount', 'trailer', 'estreia', 'bilheteria', 'oscar', 'emmy', 'globo de ouro', 'ator', 'atriz', 'diretor', 'cinebiografia'],
+            'musica': ['música', 'banda', 'cantor', 'cantora', 'show', 'turnê', 'álbum', 'single', 'grammy', 'rock', 'pop', 'sertanejo', 'funk', 'rap', 'hip hop', 'anitta', 'taylor swift', 'beyoncé', 'the weeknd', 'drake'],
+            'cultura-pop': ['marvel', 'dc', 'star wars', 'harry potter', 'anime', 'mangá', 'cosplay', 'convenção', 'ccxp', 'comic con', 'super-herói', 'vingadores', 'batman', 'superman', 'homem-aranha'],
+            'teatro': ['teatro', 'peça', 'musical', 'broadway', 'west end', 'drama', 'comédia', 'atuação', 'palco']
+        },
+        'tecnologia': {
+            'hardware': ['hardware', 'processador', 'cpu', 'gpu', 'placa de vídeo', 'memória ram', 'ssd', 'hd', 'notebook', 'desktop', 'pc', 'gamer', 'intel', 'amd', 'nvidia', 'cooler', 'fonte'],
+            'software': ['software', 'windows', 'linux', 'macos', 'android', 'ios', 'aplicativo', 'app', 'programa', 'sistema operacional', 'atualização', 'microsoft', 'google'],
+            'inteligencia-artificial': ['inteligência artificial', 'ia', 'ai', 'chatgpt', 'gpt', 'llm', 'machine learning', 'deep learning', 'neural', 'openai', 'google gemini', 'claude', 'copilot', 'bard'],
+            'ciberseguranca': ['cibersegurança', 'hacker', 'vírus', 'malware', 'ransomware', 'phishing', 'golpe', 'fraude', 'vazamento de dados', 'privacidade', 'senha', 'autenticação']
+        },
+        'videogames': {
+            'noticias': ['jogo', 'novo jogo', 'lançamento', 'trailer', 'gameplay', 'revelado', 'anunciado', 'confirmado', 'adiado', 'cancelado'],
+            'reviews': ['review', 'análise', 'nota', 'avaliação', 'impressões', 'primeiras impressões', 'testamos', 'jogamos'],
+            'esports': ['esports', 'e-sports', 'campeonato', 'torneio', 'competitivo', 'valorant', 'cs2', 'counter-strike', 'lol', 'league of legends', 'dota', 'fortnite', 'free fire', 'rainbow six'],
+            'indies': ['indie', 'jogo independente', 'steam', 'itch.io', 'pixel art', 'roguelike', 'metroidvania', 'desenvolvedor independente']
+        },
+        'politica-nacional': {
+            'congresso': ['câmara', 'senado', 'congresso', 'deputado', 'senador', 'votação', 'projeto de lei', 'pec', 'impeachment', 'cpi', 'comissão'],
+            'governo-federal': ['lula', 'bolsonaro', 'presidente', 'ministro', 'governo', 'planalto', 'pt', 'pl', 'psdb', 'mdb', 'união brasil', 'executivo'],
+            'eleicoes': ['eleição', 'eleições', 'campanha', 'candidato', 'pesquisa', 'ibope', 'datafolha', 'urna eletrônica', 'voto', 'debate', 'horário eleitoral'],
+            'justica': ['stf', 'supremo', 'alexandre de moraes', 'rosa weber', 'barroso', 'fachin', 'ministro do stf', 'pgr', 'polícia federal', 'lava jato', 'prisão', 'condenação']
+        },
+        'politica-internacional': {
+            'eua': ['eua', 'estados unidos', 'biden', 'trump', 'casa branca', 'pentágono', 'congresso americano', 'republicanos', 'democratas', 'eleições americanas'],
+            'europa': ['ue', 'união europeia', 'alemanha', 'frança', 'inglaterra', 'reino unido', 'italia', 'espanha', 'macron', 'scholz', 'sunak', 'meloni', 'brexit', 'nato', 'otan'],
+            'asia': ['china', 'xi jinping', 'taiwan', 'japão', 'índia', 'coreia do norte', 'coreia do sul', 'putin', 'rússia', 'ucrânia', 'guerra', 'tensão', 'brics'],
+            'america-latina': ['argentina', 'chile', 'colômbia', 'venezuela', 'nicarágua', 'cuba', 'mexico', 'milei', 'boric', 'maduro', 'ortega', 'lópez obrador']
+        },
+        'rio-de-janeiro': {
+            'seguranca': ['crime', 'polícia', 'pm', 'bope', 'tráfico', 'milícia', 'violência', 'assalto', 'roubo', 'homicídio', 'favela', 'complexo', 'tiroteio'],
+            'transporte': ['ônibus', 'metrô', 'brt', 'trem', 'supervia', 'linha amarela', 'linha vermelha', 'ponte', 'túnel', 'engarrafamento', 'transito'],
+            'cultura-eventos': ['carnaval', 'réveillon', 'rock in rio', 'show', 'festa', 'praia', 'copacabana', 'ipanema', 'cristo', 'pão de açúcar', 'museu', 'teatro municipal']
+        },
+        'sao-paulo': {
+            'economia-negocios': ['bolsa', 'bovespa', 'empresas', 'startup', 'faria lima', 'paulista', 'itaim', 'vila olímpia', 'economia', 'negócios', 'investimentos'],
+            'transporte': ['metro', 'metrô', 'cptm', 'ônibus', 'marginal', 'paulista', 'congestionamento', 'rodízio', 'bilhete único', 'linha amarela', 'linha verde'],
+            'cultura-lazer': ['parque', 'ibirapuera', 'museu', 'masp', 'pinacoteca', 'teatro', 'show', 'evento', 'exposição', 'bienal', 'parada gay', 'virada cultural']
+        }
+    }
+    
+    # Verifica se a categoria principal tem subcategorias definidas
+    if categoria_principal not in subcategorias:
+        return None
+    
+    # Procura por palavras-chave no título
+    cat_subs = subcategorias[categoria_principal]
+    for subcat, palavras in cat_subs.items():
+        if any(palavra in titulo_lower for palavra in palavras):
+            return subcat
+    
+    # Se não encontrou, retorna None (sem subcategoria)
+    return None
+
+def salvar_post(titulo, texto, img, cat, data, post_id, subcategoria=None):
     slug = titulo.lower()[:50].replace(' ', '-').replace('?', '').replace('!', '').replace('/', '-')
     fname = f"post-{post_id:04d}-{slug}.html"
     
     # Formata parágrafos com função melhorada
     paragrafos = formatar_paragrafos(texto)
+
     
     # HTML com styling melhorado
+    subcat_html = f'<span class="post-subcategoria">{subcategoria.replace("-"," ").title()}</span>' if subcategoria else ''
+    
     html = f"""<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -409,6 +602,8 @@ def salvar_post(titulo, texto, img, cat, data, post_id):
 <a href="../categoria-videogames.html">Videogames</a>
 <a href="../categoria-politica-nacional.html">Política Nacional</a>
 <a href="../categoria-politica-internacional.html">Política Internacional</a>
+<a href="../categoria-rio-de-janeiro.html">Rio de Janeiro</a>
+<a href="../categoria-sao-paulo.html">São Paulo</a>
 <a href="../sobre.html">Sobre</a>
 </nav>
 </div></header>
@@ -416,6 +611,7 @@ def salvar_post(titulo, texto, img, cat, data, post_id):
 <article class="post-completo">
 <div class="post-header">
 <span class="post-categoria">{cat.replace('-',' ').title()}</span>
+{subcat_html}
 <h1 class="post-titulo">{titulo}</h1>
 <div class="post-data">Por Kevin Ribeiro • {data}</div>
 </div>
@@ -432,7 +628,8 @@ def salvar_post(titulo, texto, img, cat, data, post_id):
     with open(Path("posts") / fname, 'w', encoding='utf-8') as f:
         f.write(html)
     log(f"  💾 Post salvo: {fname}")
-    return {'titulo': titulo, 'url': f"posts/{fname}", 'imagem': img, 'categoria': cat, 'data': data}
+    return {'titulo': titulo, 'url': f"posts/{fname}", 'imagem': img, 'categoria': cat, 'subcategoria': subcategoria, 'data': data}
+
 
 def atualizar_home(posts):
     cards = ""
@@ -443,10 +640,14 @@ def atualizar_home(posts):
             log(f"  ⚠️ Post {p['titulo'][:40]} não tem arquivo HTML, pulando")
             continue
         
+        # Adiciona subcategoria se existir
+        subcat_html = f'<span class="subcategoria">{p.get("subcategoria", "").replace("-"," ").title()}</span>' if p.get('subcategoria') else ''
+        
         cards += f"""<article class="post-card">
 <img src="{p['imagem']}" alt="{p['titulo']}">
 <div class="post-info">
 <span class="categoria categoria-{p['categoria']}">{p['categoria'].replace('-',' ').title()}</span>
+{subcat_html}
 <h2><a href="{p['url']}">{p['titulo']}</a></h2>
 <p class="meta">Por Kevin Ribeiro • {p['data']}</p>
 </div>
@@ -466,6 +667,8 @@ def atualizar_home(posts):
 <a href="categoria-videogames.html">Videogames</a>
 <a href="categoria-politica-nacional.html">Política Nacional</a>
 <a href="categoria-politica-internacional.html">Política Internacional</a>
+<a href="categoria-rio-de-janeiro.html">Rio de Janeiro</a>
+<a href="categoria-sao-paulo.html">São Paulo</a>
 <a href="sobre.html">Sobre</a>
 </nav>
 </div></header>
@@ -479,16 +682,20 @@ def atualizar_home(posts):
         f.write(html)
     log("  📝 Index atualizado")
 
+
 def gerar_paginas_categorias(posts):
     """Gera páginas para cada categoria com artigos filtrados"""
-    categorias = {}
+    # Garante que todas as categorias do TEMAS tenham páginas (mesmo que vazias)
+    categorias = {tema['categoria']: [] for tema in TEMAS}
+    
+    # Preenche com posts existentes
     for p in posts:
         cat = p['categoria']
-        if cat not in categorias:
-            categorias[cat] = []
-        categorias[cat].append(p)
+        if cat in categorias:
+            categorias[cat].append(p)
     
     for cat, artigos in categorias.items():
+
         cards = ""
         for p in reversed(artigos[-20:]):
             # Verifica se o arquivo HTML do post existe
@@ -496,14 +703,22 @@ def gerar_paginas_categorias(posts):
             if not post_file.exists():
                 continue
             
+            # Adiciona subcategoria se existir
+            subcat_html = f'<span class="subcategoria">{p.get("subcategoria", "").replace("-"," ").title()}</span>' if p.get('subcategoria') else ''
+            
             cards += f"""<article class="post-card">
 <img src="{p['imagem']}" alt="{p['titulo']}">
 <div class="post-info">
 <span class="categoria categoria-{p['categoria']}">{p['categoria'].replace('-',' ').title()}</span>
+{subcat_html}
 <h2><a href="{p['url']}">{p['titulo']}</a></h2>
 <p class="meta">Por Kevin Ribeiro • {p['data']}</p>
 </div>
 </article>"""
+        
+        # Mensagem quando não há artigos
+        if not artigos:
+            cards = '<p class="sem-artigos">Nenhuma notícia nesta categoria ainda.</p>'
         
         html = f"""<!DOCTYPE html>
 <html lang="pt-BR">
@@ -519,6 +734,8 @@ def gerar_paginas_categorias(posts):
 <a href="categoria-videogames.html">Videogames</a>
 <a href="categoria-politica-nacional.html">Política Nacional</a>
 <a href="categoria-politica-internacional.html">Política Internacional</a>
+<a href="categoria-rio-de-janeiro.html">Rio de Janeiro</a>
+<a href="categoria-sao-paulo.html">São Paulo</a>
 <a href="sobre.html">Sobre</a>
 </nav>
 </div></header>
@@ -528,11 +745,13 @@ def gerar_paginas_categorias(posts):
 </main>
 <footer><div class="container"><p>© 2026 Vivimundo</p><a href="https://x.com/Kevin_RSP0" target="_blank">Twitter</a></div></footer>
 </body></html>"""
+
         
         fname = f"categoria-{cat}.html"
         with open(fname, 'w', encoding='utf-8') as f:
             f.write(html)
         log(f"  📚 Categoria '{cat}' atualizada")
+
 
 def publicar():
     try:
@@ -566,7 +785,13 @@ def executar():
         log("⚠️ Sem conteúdo para salvar")
         return
 
-    info = salvar_post(noticia['title'], texto, noticia.get('urlToImage'), tema['categoria'], datetime.now().strftime('%d/%m/%Y às %H:%M'), total_posts + 1)
+    # Classifica subcategoria automaticamente
+    subcategoria = classificar_subcategoria(noticia['title'], tema['categoria'])
+    if subcategoria:
+        log(f"  🏷️ Subcategoria: {subcategoria}")
+    
+    info = salvar_post(noticia['title'], texto, noticia.get('urlToImage'), tema['categoria'], datetime.now().strftime('%d/%m/%Y às %H:%M'), total_posts + 1, subcategoria)
+
     posts.append(info)
     json.dump(posts, open(pfile, 'w'), ensure_ascii=False, indent=2)
     atualizar_home(posts)

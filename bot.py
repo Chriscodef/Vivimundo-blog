@@ -6,7 +6,7 @@ import sys
 import time
 import json
 import requests
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 import subprocess
 import random
@@ -38,8 +38,11 @@ ARTICLES_CACHE = Path(REPO_PATH) / "articles_cache.json"
 def carregar_cache_artigos():
     """Carrega URLs e títulos já processados"""
     if ARTICLES_CACHE.exists():
-        with open(ARTICLES_CACHE, 'r') as f:
-            data = json.load(f)
+        with open(ARTICLES_CACHE, 'r', encoding='utf-8') as f:
+            try:
+                data = json.load(f)
+            except:
+                return set(), set()
             if isinstance(data, dict):
                 return set(data.get('urls', [])), set(data.get('titulos', []))
             # Compatibilidade com formato antigo (apenas URLs)
@@ -48,8 +51,11 @@ def carregar_cache_artigos():
 
 def salvar_cache_artigos(urls, titulos):
     """Salva URLs e títulos processados"""
-    with open(ARTICLES_CACHE, 'w') as f:
-        json.dump({'urls': list(urls), 'titulos': list(titulos)}, f)
+    try:
+        with open(ARTICLES_CACHE, 'w', encoding='utf-8') as f:
+            json.dump({'urls': list(urls), 'titulos': list(titulos)}, f, ensure_ascii=False, indent=2)
+    except Exception as e:
+        log(f"⚠️ Falha ao salvar cache de artigos: {e}")
 
 def normalizar_url(url):
     """Normaliza URL para comparação consistente no cache"""
@@ -98,15 +104,21 @@ def normalizar_titulo(titulo):
 def carregar_estado():
     """Carrega o índice do último tema executado"""
     if STATE_FILE.exists():
-        with open(STATE_FILE, 'r') as f:
-            state = json.load(f)
-            return state.get('tema_idx', 0), state.get('total_posts', 0)
+        try:
+            with open(STATE_FILE, 'r', encoding='utf-8') as f:
+                state = json.load(f)
+                return state.get('tema_idx', 0), state.get('total_posts', 0)
+        except:
+            return 0, 0
     return 0, 0
 
 def salvar_estado(tema_idx, total_posts):
     """Salva o índice do tema para próxima execução"""
-    with open(STATE_FILE, 'w') as f:
-        json.dump({'tema_idx': tema_idx, 'total_posts': total_posts}, f)
+    try:
+        with open(STATE_FILE, 'w', encoding='utf-8') as f:
+            json.dump({'tema_idx': tema_idx, 'total_posts': total_posts}, f, ensure_ascii=False, indent=2)
+    except Exception as e:
+        log(f"⚠️ Falha ao salvar estado: {e}")
 
 TEMAS = [
     {"nome": "Esportes", "categoria": "esportes", "sites": ["https://ge.globo.com/", "https://www.espn.com.br/", "https://www.uol.com.br/esporte/", "https://www.espn.com.br/futebol/", "https://www.grandepremio.com.br/"]},
@@ -131,6 +143,7 @@ def setup_repo():
         subprocess.run(['git', 'config', 'user.email', 'bot@vivimundo.com'], check=True)
         if GITHUB_TOKEN:
             repo_url = f'https://{GITHUB_TOKEN}@github.com/Chriscodef/Vivimundo-blog.git'
+            # tenta remover origem se existir (ignorando erro)
             subprocess.run(['git', 'remote', 'remove', 'origin'], capture_output=True)
             subprocess.run(['git', 'remote', 'add', 'origin', repo_url], check=True, capture_output=True)
         subprocess.run(['git', 'pull', 'origin', 'main', '--rebase'], check=False)
@@ -138,6 +151,7 @@ def setup_repo():
         return True
     except Exception as e:
         log(f"⚠️ {e}")
+        # Continuar mesmo se configurar git falhar (para não travar execução)
         return True
 
 def extrair_imagem_meta(soup, url):
@@ -256,7 +270,6 @@ def buscar_noticia(tema):
                 
                 # Valida título
                 if not eh_titulo_valido(titulo):
-
                     continue
                 
                 # Palavras-chave para excluir
@@ -363,7 +376,7 @@ def buscar_noticia(tema):
                 except requests.exceptions.Timeout:
                     log(f"  ⏱ Timeout em {href[:40]}")
                     continue
-                except Exception as e:
+                except Exception:
                     continue
             
             log(f"  ⚠️ Nada encontrado em {site_url}")
@@ -435,11 +448,11 @@ def extrair_imagem_melhorada(soup, url):
         melhor_tamanho = 0
         
         for img in imgs:
-            src = img.get('src', '')
-            alt = img.get('alt', '')
+            src = img.get('src', '') or img.get('data-src', '')
+            alt = img.get('alt', '') or ''
             
             # Ignora logos, ícones, banners pequenos
-            if any(x in src.lower() or x in alt.lower() for x in ['logo', 'icon', 'badge', 'avatar', 'gif', 'svg', 'button']):
+            if any(x in (src or '').lower() or x in alt.lower() for x in ['logo', 'icon', 'badge', 'avatar', 'gif', 'svg', 'button']):
                 continue
             
             # Prefere imagens com atributos de tamanho
@@ -625,10 +638,14 @@ def salvar_post(titulo, texto, img, cat, data, post_id, subcategoria=None):
 </body></html>"""
     
     Path("posts").mkdir(exist_ok=True)
-    with open(Path("posts") / fname, 'w', encoding='utf-8') as f:
-        f.write(html)
-    log(f"  💾 Post salvo: {fname}")
-    return {'titulo': titulo, 'url': f"posts/{fname}", 'imagem': img, 'categoria': cat, 'subcategoria': subcategoria, 'data': data}
+    try:
+        with open(Path("posts") / fname, 'w', encoding='utf-8') as f:
+            f.write(html)
+        log(f"  💾 Post salvo: {fname}")
+        return {'titulo': titulo, 'url': f"posts/{fname}", 'imagem': img, 'categoria': cat, 'subcategoria': subcategoria, 'data': data}
+    except Exception as e:
+        log(f"  ❌ Falha ao salvar post: {e}")
+        return None
 
 
 def atualizar_home(posts):
@@ -678,9 +695,12 @@ def atualizar_home(posts):
 </main>
 <footer><div class="container"><p>© 2026 Vivimundo</p><a href="https://x.com/Kevin_RSP0" target="_blank">Twitter</a></div></footer>
 </body></html>"""
-    with open("index.html", 'w', encoding='utf-8') as f:
-        f.write(html)
-    log("  📝 Index atualizado")
+    try:
+        with open("index.html", 'w', encoding='utf-8') as f:
+            f.write(html)
+        log("  📝 Index atualizado")
+    except Exception as e:
+        log(f"  ⚠️ Falha ao atualizar index: {e}")
 
 
 def gerar_paginas_categorias(posts):
@@ -748,9 +768,12 @@ def gerar_paginas_categorias(posts):
 
         
         fname = f"categoria-{cat}.html"
-        with open(fname, 'w', encoding='utf-8') as f:
-            f.write(html)
-        log(f"  📚 Categoria '{cat}' atualizada")
+        try:
+            with open(fname, 'w', encoding='utf-8') as f:
+                f.write(html)
+            log(f"  📚 Categoria '{cat}' atualizada")
+        except Exception as e:
+            log(f"  ⚠️ Falha ao escrever categoria {cat}: {e}")
 
 
 def publicar():
@@ -766,8 +789,16 @@ def publicar():
         log(f"  ❌ Commit: {e}")
 
 def executar():
+    """
+    Executa um ciclo: busca notícia, gera texto, salva post e atualiza páginas.
+    Retorna True se gerou um post com sucesso, False caso não tenha encontrado notícia
+    ou não tenha conseguido gerar/salvar o post.
+    """
     pfile = Path("posts.json")
-    posts = json.load(open(pfile)) if pfile.exists() else []
+    try:
+        posts = json.load(open(pfile, encoding='utf-8')) if pfile.exists() else []
+    except Exception:
+        posts = []
     tema_idx, total_posts = carregar_estado()
     tema = TEMAS[tema_idx]
 
@@ -778,12 +809,18 @@ def executar():
     noticia = buscar_noticia(tema)
     if not noticia:
         log("❌ Nenhuma notícia encontrada")
-        return
+        # Avança o tema mesmo se não encontrou? aqui optamos por avançar índice para evitar repetir
+        tema_idx = (tema_idx + 1) % len(TEMAS)
+        salvar_estado(tema_idx, total_posts)
+        return False
     
     texto = gerar_texto(noticia)
     if not texto:
         log("⚠️ Sem conteúdo para salvar")
-        return
+        # marca como processado para não tentar de novo
+        tema_idx = (tema_idx + 1) % len(TEMAS)
+        salvar_estado(tema_idx, total_posts)
+        return False
 
     # Classifica subcategoria automaticamente
     subcategoria = classificar_subcategoria(noticia['title'], tema['categoria'])
@@ -792,8 +829,17 @@ def executar():
     
     info = salvar_post(noticia['title'], texto, noticia.get('urlToImage'), tema['categoria'], datetime.now().strftime('%d/%m/%Y às %H:%M'), total_posts + 1, subcategoria)
 
+    if not info:
+        log("❌ Falha ao salvar post")
+        return False
+
     posts.append(info)
-    json.dump(posts, open(pfile, 'w'), ensure_ascii=False, indent=2)
+    try:
+        with open(pfile, 'w', encoding='utf-8') as f:
+            json.dump(posts, f, ensure_ascii=False, indent=2)
+    except Exception as e:
+        log(f"⚠️ Falha ao salvar posts.json: {e}")
+
     atualizar_home(posts)
     gerar_paginas_categorias(posts)
     publicar()
@@ -802,8 +848,65 @@ def executar():
     tema_idx = (tema_idx + 1) % len(TEMAS)
     salvar_estado(tema_idx, total_posts + 1)
     log("\n✅ CICLO CONCLUÍDO!")
+    return True
+
 
 if __name__ == "__main__":
-    log("🌍 VIVIMUNDO BOT - GitHub Actions")
+    log("🌍 VIVIMUNDO BOT - Execução Contínua")
     setup_repo()
-    executar()
+
+    # Controles via variáveis de ambiente:
+    # MAX_POSTS_PER_RUN: número máximo de posts por execução (0 = sem limite)
+    # MAX_RUNTIME_SECONDS: tempo máximo em segundos para rodar nesta execução (0 = sem limite)
+    # PAUSE_SECONDS: pausa entre ciclos (padrão 5s)
+    try:
+        MAX_POSTS_PER_RUN = int(os.getenv('MAX_POSTS_PER_RUN', '0'))
+    except:
+        MAX_POSTS_PER_RUN = 0
+    try:
+        MAX_RUNTIME_SECONDS = int(os.getenv('MAX_RUNTIME_SECONDS', '0'))
+    except:
+        MAX_RUNTIME_SECONDS = 0
+    try:
+        PAUSE_SECONDS = float(os.getenv('PAUSE_SECONDS', '5'))
+    except:
+        PAUSE_SECONDS = 5.0
+
+    start_time = datetime.utcnow()
+    ciclos = 0
+
+    log(f"  ▶️ MAX_POSTS_PER_RUN={MAX_POSTS_PER_RUN}  MAX_RUNTIME_SECONDS={MAX_RUNTIME_SECONDS}  PAUSE_SECONDS={PAUSE_SECONDS}")
+
+    while True:
+        # Checa limites
+        if MAX_POSTS_PER_RUN > 0 and ciclos >= MAX_POSTS_PER_RUN:
+            log(f"🏁 Alcançado limite de posts por execução: {ciclos}")
+            break
+        if MAX_RUNTIME_SECONDS > 0:
+            elapsed = (datetime.utcnow() - start_time).total_seconds()
+            if elapsed >= MAX_RUNTIME_SECONDS:
+                log(f"🏁 Alcançado limite de tempo por execução: {elapsed:.0f}s")
+                break
+
+        try:
+            log(f"\n🔁 Iniciando ciclo #{ciclos + 1}...\n")
+            sucesso = executar()
+            ciclos += 1 if sucesso else 0
+
+            # Se não encontrou notícia/ não gerou, encerramos para evitar loop inútil
+            if not sucesso:
+                log("🛑 Nenhuma notícia/processo falhou — encerrando para evitar loop vazio.")
+                break
+
+            # Pausa entre ciclos
+            time.sleep(PAUSE_SECONDS)
+
+        except KeyboardInterrupt:
+            log("⏸️ Interrompido manualmente (KeyboardInterrupt). Encerrando.")
+            break
+        except Exception as e:
+            log(f"\n❌ Erro não tratado no loop principal: {e}")
+            log("🛑 Encerrando execução para evitar loop quebrado.")
+            break
+
+    log("\n🏁 Execução finalizada.")

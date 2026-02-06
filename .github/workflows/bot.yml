@@ -1,40 +1,38 @@
 name: Vivimundo Bot
 
-# Executa a cada hora das 6h às 23h (18 execuções/dia)
 on:
-  schedule:
-    - cron: '0 6-23 * * *'  # Das 6h às 23h (18 matérias/dia)
-  workflow_dispatch:  # Permite executar manualmente
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Vivimundo Bot"]
+    types:
+      - completed
 
 permissions:
   contents: write
 
 jobs:
   run-bot:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Faz checkout do repositório
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.PAT_TOKEN }}
           fetch-depth: 0
 
-      # 2. Configura Python
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
           cache: 'pip'
 
-      # 3. Instala dependências
       - name: Install dependencies
         run: |
           pip install --upgrade pip
           pip install -r requirements.txt
 
-      # 4. Configura Git com credenciais
       - name: Configure Git
         env:
           PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
@@ -44,7 +42,6 @@ jobs:
           git config --global credential.helper store
           echo "https://${PAT_TOKEN}@github.com" > ~/.git-credentials
 
-      # 5. Executa o bot
       - name: Run bot
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
@@ -52,7 +49,6 @@ jobs:
           GITHUB_WORKSPACE: ${{ github.workspace }}
         run: python bot.py
 
-      # 6. Faz commit e push das mudanças
       - name: Commit and push
         run: |
           git add .

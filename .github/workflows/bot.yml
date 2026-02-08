@@ -1,10 +1,12 @@
 name: Vivimundo Bot
 
-# Executa a cada hora das 6h às 23h (18 execuções/dia)
+# Executa via push (ciclo contínuo) + schedule (fallback 6h-23h)
 on:
+  push:
+    branches: [main]
   schedule:
-    - cron: '0 6-23 * * *'  # Das 6h às 23h (18 matérias/dia)
-  workflow_dispatch:  # Permite executar manualmente
+    - cron: '0 6-23 * * *'
+  workflow_dispatch:
 
 permissions:
   contents: write

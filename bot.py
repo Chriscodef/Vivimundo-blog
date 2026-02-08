@@ -6,7 +6,7 @@ import sys
 import time
 import json
 import requests
-from datetime import datetime, timedelta
+from datetime import datetime
 from pathlib import Path
 import subprocess
 import random
@@ -38,11 +38,8 @@ ARTICLES_CACHE = Path(REPO_PATH) / "articles_cache.json"
 def carregar_cache_artigos():
     """Carrega URLs e títulos já processados"""
     if ARTICLES_CACHE.exists():
-        with open(ARTICLES_CACHE, 'r', encoding='utf-8') as f:
-            try:
-                data = json.load(f)
-            except:
-                return set(), set()
+        with open(ARTICLES_CACHE, 'r') as f:
+            data = json.load(f)
             if isinstance(data, dict):
                 return set(data.get('urls', [])), set(data.get('titulos', []))
             # Compatibilidade com formato antigo (apenas URLs)
@@ -51,11 +48,8 @@ def carregar_cache_artigos():
 
 def salvar_cache_artigos(urls, titulos):
     """Salva URLs e títulos processados"""
-    try:
-        with open(ARTICLES_CACHE, 'w', encoding='utf-8') as f:
-            json.dump({'urls': list(urls), 'titulos': list(titulos)}, f, ensure_ascii=False, indent=2)
-    except Exception as e:
-        log(f"⚠️ Falha ao salvar cache de artigos: {e}")
+    with open(ARTICLES_CACHE, 'w') as f:
+        json.dump({'urls': list(urls), 'titulos': list(titulos)}, f)
 
 def normalizar_url(url):
     """Normaliza URL para comparação consistente no cache"""
@@ -100,35 +94,134 @@ def normalizar_titulo(titulo):
     titulo = re.sub(r'\s+', ' ', titulo)
     return titulo
 
+def titulo_similar(titulo_novo, titulos_existentes, limiar=0.65):
+    """Verifica se um título é similar a algum já existente usando comparação de palavras.
+    Retorna True se encontrar um título com similaridade >= limiar (0.65 = 65%)."""
+    palavras_novo = set(normalizar_titulo(titulo_novo).split())
+    if len(palavras_novo) < 3:
+        return False
+    
+    for titulo_existente in titulos_existentes:
+        palavras_existente = set(titulo_existente.split())
+        if len(palavras_existente) < 3:
+            continue
+        
+        # Calcula similaridade de Jaccard (interseção / união)
+        intersecao = palavras_novo & palavras_existente
+        uniao = palavras_novo | palavras_existente
+        similaridade = len(intersecao) / len(uniao) if uniao else 0
+        
+        if similaridade >= limiar:
+            log(f"  🔄 Título similar ({similaridade:.0%}): {titulo_novo[:50]}...")
+            return True
+    
+    return False
+
+def eh_imagem_valida(img_url):
+    """Verifica se a URL da imagem é real (não é placeholder, logo, etc)"""
+    if not img_url:
+        return False
+    
+    img_lower = img_url.lower()
+    
+    # Rejeita placeholders conhecidos
+    placeholders_bloqueados = [
+        'via.placeholder.com',
+        'placeholder.com',
+        'placehold.it',
+        'placekitten.com',
+        'picsum.photos',
+        'dummyimage.com',
+        'fakeimg.pl',
+        'lorempixel.com',
+        'loremflickr.com',
+        'placeholderimage',
+        'default-image',
+        'no-image',
+        'noimage',
+        'sem-imagem',
+        'image-not-found',
+        'img-placeholder',
+    ]
+    
+    if any(placeholder in img_lower for placeholder in placeholders_bloqueados):
+        log(f"  🚫 Imagem placeholder rejeitada: {img_url[:60]}...")
+        return False
+    
+    # Rejeita imagens muito pequenas (ícones, badges)
+    extensoes_invalidas = ['.ico', '.svg', '.gif']
+    if any(img_lower.endswith(ext) for ext in extensoes_invalidas):
+        # SVGs e GIFs podem ser válidos se forem grandes, mas geralmente são logos
+        if 'logo' in img_lower or 'icon' in img_lower or 'badge' in img_lower:
+            log(f"  🚫 Imagem logo/ícone rejeitada: {img_url[:60]}...")
+            return False
+    
+    # Rejeita data URIs (base64 inline images geralmente são ícones)
+    if img_lower.startswith('data:'):
+        return False
+    
+    # Rejeita URLs que são claramente logos ou avatares
+    palavras_logo = ['logo', 'favicon', 'avatar', 'profile-pic', 'user-icon', 'brand']
+    if any(palavra in img_lower for palavra in palavras_logo):
+        log(f"  🚫 Imagem logo/avatar rejeitada: {img_url[:60]}...")
+        return False
+    
+    return True
+
 
 def carregar_estado():
     """Carrega o índice do último tema executado"""
     if STATE_FILE.exists():
-        try:
-            with open(STATE_FILE, 'r', encoding='utf-8') as f:
-                state = json.load(f)
-                return state.get('tema_idx', 0), state.get('total_posts', 0)
-        except:
-            return 0, 0
+        with open(STATE_FILE, 'r') as f:
+            state = json.load(f)
+            return state.get('tema_idx', 0), state.get('total_posts', 0)
     return 0, 0
 
 def salvar_estado(tema_idx, total_posts):
     """Salva o índice do tema para próxima execução"""
-    try:
-        with open(STATE_FILE, 'w', encoding='utf-8') as f:
-            json.dump({'tema_idx': tema_idx, 'total_posts': total_posts}, f, ensure_ascii=False, indent=2)
-    except Exception as e:
-        log(f"⚠️ Falha ao salvar estado: {e}")
+    with open(STATE_FILE, 'w') as f:
+        json.dump({'tema_idx': tema_idx, 'total_posts': total_posts}, f)
 
 TEMAS = [
-    {"nome": "Esportes", "categoria": "esportes", "sites": ["https://ge.globo.com/", "https://www.espn.com.br/", "https://www.uol.com.br/esporte/", "https://www.espn.com.br/futebol/", "https://www.grandepremio.com.br/"]},
-    {"nome": "Entretenimento", "categoria": "entretenimento", "sites": ["https://www.omelete.com.br/", "https://www.tecmundo.com.br/cultura", "https://noticiasdocinema.com.br/"]},
-    {"nome": "Tecnologia", "categoria": "tecnologia", "sites": ["https://www.tecmundo.com.br/", "https://olhardigital.com.br/", "https://www.hardware.com.br/", "https://www.tecmundo.com.br/voxel", "https://tecnoblog.net/"]},
-    {"nome": "Videogames", "categoria": "videogames", "sites": ["https://www.gamerant.com/", "https://www.ign.com.br/", "https://www.thegamer.com.br/", "https://br.ign.com/"]},
-    {"nome": "Política Nacional", "categoria": "politica-nacional", "sites": ["https://g1.globo.com/politica/", "https://noticias.uol.com.br/politica/", "https://www.folhapress.com.br/", "https://www.poder360.com.br/"]},
-    {"nome": "Política Internacional", "categoria": "politica-internacional", "sites": ["https://g1.globo.com/mundo/", "https://www.bbc.com/portuguese/internacional", "https://noticias.uol.com.br/internacional/", "https://hojenomundomilitar.com.br/"]},
-    {"nome": "Rio de Janeiro", "categoria": "rio-de-janeiro", "sites": ["https://g1.globo.com/rj/rio-de-janeiro/", "https://odia.ig.com.br/"]},
-    {"nome": "São Paulo", "categoria": "sao-paulo", "sites": ["https://g1.globo.com/sp/sao-paulo/"]}
+    {"nome": "Esportes", "categoria": "esportes", "sites": [
+        "https://ge.globo.com/", "https://www.espn.com.br/", "https://www.uol.com.br/esporte/",
+        "https://www.espn.com.br/futebol/", "https://www.grandepremio.com.br/",
+        "https://www.lance.com.br/", "https://www.gazetaesportiva.com/",
+    ]},
+    {"nome": "Entretenimento", "categoria": "entretenimento", "sites": [
+        "https://www.omelete.com.br/", "https://www.tecmundo.com.br/cultura",
+        "https://noticiasdocinema.com.br/", "https://www.adorocinema.com/",
+        "https://www.papelpop.com/", "https://rollingstone.com.br/",
+    ]},
+    {"nome": "Tecnologia", "categoria": "tecnologia", "sites": [
+        "https://www.tecmundo.com.br/", "https://olhardigital.com.br/",
+        "https://www.hardware.com.br/", "https://tecnoblog.net/",
+        "https://canaltech.com.br/", "https://www.tudocelular.com/",
+    ]},
+    {"nome": "Videogames", "categoria": "videogames", "sites": [
+        "https://www.gamerant.com/", "https://br.ign.com/",
+        "https://www.thegamer.com.br/", "https://www.tecmundo.com.br/voxel",
+        "https://www.theenemy.com.br/",
+    ]},
+    {"nome": "Política Nacional", "categoria": "politica-nacional", "sites": [
+        "https://g1.globo.com/politica/", "https://noticias.uol.com.br/politica/",
+        "https://www.poder360.com.br/", "https://www.cnnbrasil.com.br/politica/",
+        "https://www.cartacapital.com.br/politica/",
+    ]},
+    {"nome": "Política Internacional", "categoria": "politica-internacional", "sites": [
+        "https://g1.globo.com/mundo/", "https://www.bbc.com/portuguese/internacional",
+        "https://noticias.uol.com.br/internacional/", "https://hojenomundomilitar.com.br/",
+        "https://www.cnnbrasil.com.br/internacional/",
+    ]},
+    {"nome": "Rio de Janeiro", "categoria": "rio-de-janeiro", "sites": [
+        "https://g1.globo.com/rj/rio-de-janeiro/", "https://odia.ig.com.br/",
+        "https://diariodorio.com/", "https://www.band.uol.com.br/band-news-fm/rio",
+        "https://extra.globo.com/noticias/rio/",
+    ]},
+    {"nome": "São Paulo", "categoria": "sao-paulo", "sites": [
+        "https://g1.globo.com/sp/sao-paulo/", "https://www.band.uol.com.br/band-news-fm/sp",
+        "https://noticias.r7.com/sao-paulo/", "https://agora.folha.uol.com.br/sao-paulo/",
+    ]},
 ]
 
 
@@ -143,7 +236,6 @@ def setup_repo():
         subprocess.run(['git', 'config', 'user.email', 'bot@vivimundo.com'], check=True)
         if GITHUB_TOKEN:
             repo_url = f'https://{GITHUB_TOKEN}@github.com/Chriscodef/Vivimundo-blog.git'
-            # tenta remover origem se existir (ignorando erro)
             subprocess.run(['git', 'remote', 'remove', 'origin'], capture_output=True)
             subprocess.run(['git', 'remote', 'add', 'origin', repo_url], check=True, capture_output=True)
         subprocess.run(['git', 'pull', 'origin', 'main', '--rebase'], check=False)
@@ -151,7 +243,6 @@ def setup_repo():
         return True
     except Exception as e:
         log(f"⚠️ {e}")
-        # Continuar mesmo se configurar git falhar (para não travar execução)
         return True
 
 def extrair_imagem_meta(soup, url):
@@ -179,14 +270,23 @@ def limpar_titulo(titulo):
     """Limpa títulos com palavras grudadas (ex: 'JacksonVeja' -> 'Jackson Veja')"""
     import re
     
-    # Padrão 1: letra minúscula seguida de maiúscula (ex: "JacksonVeja")
-    titulo = re.sub(r'([a-z])([A-Z])', r'\1 \2', titulo)
+    # Padrão 1: letra minúscula seguida de maiúscula (ex: "jacksonVeja")
+    titulo = re.sub(r'([a-zà-ú])([A-ZÀ-Ú])', r'\1 \2', titulo)
     
-    # Padrão 2: pontuação seguida de letra maiúscula sem espaço (ex: "AÍ!Baldur's")
-    titulo = re.sub(r'([!?:.])([A-Z])', r'\1 \2', titulo)
+    # Padrão 2: pontuação seguida de letra sem espaço (ex: "AÍ!Baldur's", "ok.Veja")
+    titulo = re.sub(r'([!?:.\)\]])([A-ZÀ-Úa-zà-ú])', r'\1 \2', titulo)
     
     # Padrão 3: palavra completamente maiúscula seguida de palavra capitalizada (ex: "HPComo")
-    titulo = re.sub(r'([A-Z]{2,})([A-Z][a-z])', r'\1 \2', titulo)
+    titulo = re.sub(r'([A-ZÀ-Ú]{2,})([A-ZÀ-Ú][a-zà-ú])', r'\1 \2', titulo)
+    
+    # Padrão 4: dígito seguido de letra maiúscula sem espaço (ex: "9Ganha")
+    titulo = re.sub(r'(\d)([A-ZÀ-Ú])', r'\1 \2', titulo)
+    
+    # Padrão 5: letra seguida de dígito colado em contexto estranho (ex: "veja3motivos")
+    titulo = re.sub(r'([a-zà-ú])(\d+)([A-ZÀ-Ú])', r'\1 \2 \3', titulo)
+    
+    # Padrão 6: fecha aspas/parênteses colado em próxima palavra
+    titulo = re.sub(r'(["\'»])([A-ZÀ-Úa-zà-ú])', r'\1 \2', titulo)
     
     # Remove espaços múltiplos
     titulo = re.sub(r'\s+', ' ', titulo)
@@ -195,11 +295,13 @@ def limpar_titulo(titulo):
 
 def eh_titulo_valido(titulo):
     """Valida se o título é real (não é número de telefone, sequência, etc)"""
+    import re
     # Remove espaços extras
     titulo = titulo.strip()
     
     # Muito curto ou longo
-    if len(titulo) < 15 or len(titulo) > 250:
+    if len(titulo) < 20 or len(titulo) > 250:
+        log(f"  🚫 Título rejeitado (tamanho {len(titulo)}): {titulo[:60]}...")
         return False
     
     # Parece número de telefone ou ID
@@ -214,6 +316,7 @@ def eh_titulo_valido(titulo):
     # Palavras válidas mínimas (não é só números e símbolos)
     palavras = [p for p in titulo.split() if len(p) > 2 and not p.isdigit()]
     if len(palavras) < 3:  # Menos de 3 palavras válidas
+        log(f"  🚫 Título rejeitado (poucas palavras): {titulo[:60]}...")
         return False
     
     # Rejeita títulos genéricos de seção (não são notícias reais)
@@ -221,24 +324,70 @@ def eh_titulo_valido(titulo):
     palavras_secao = [
         'advance', 'latest', 'more', 'daily', 'special', 'featured',
         'esportes a motor', 'game rant', 'puzzles and games',
-        'trending', 'popular', 'recommended', 'breaking'
+        'trending', 'popular', 'recommended', 'breaking',
+        'read more', 'see more', 'leia mais', 'veja mais', 'saiba mais',
+        'menu principal', 'navegação', 'buscar', 'pesquisar',
+        'home', 'início', 'voltar', 'anterior', 'próximo',
+        'cookies', 'privacidade', 'termos de uso',
+        'sign in', 'sign up', 'subscribe', 'follow us',
+        'all rights reserved', 'todos os direitos',
+        'notícias recentes', 'mais lidas', 'mais populares',
+        'editor picks', 'top stories', 'highlights',
+        'the gamer', 'ign brasil', 'tecmundo', 'olhar digital',
+        'game reviews', 'movie reviews', 'tv reviews',
+        'about us', 'contact us', 'advertise',
     ]
     for palavra in palavras_secao:
-        if palavra in titulo_lower:
+        if titulo_lower == palavra or titulo_lower.startswith(palavra + ' ') or titulo_lower.endswith(' ' + palavra):
             log(f"  🚫 Título rejeitado (seção genérica): {titulo[:60]}...")
             return False
+        # Rejeita se o título inteiro é basicamente a palavra de seção
+        if palavra in titulo_lower and len(titulo) < len(palavra) + 15:
+            log(f"  🚫 Título rejeitado (seção genérica curta): {titulo[:60]}...")
+            return False
+    
+    # Rejeita títulos que são apenas nomes de categorias/seções do site
+    titulos_exatos_bloqueados = [
+        'esportes', 'entretenimento', 'tecnologia', 'videogames', 'games',
+        'política', 'economia', 'mundo', 'brasil', 'cultura', 'ciência',
+        'saúde', 'educação', 'opinião', 'editorial', 'colunistas',
+        'esportes a motor', 'automobilismo', 'futebol', 'basquete',
+        'game rant advance', 'ign recommends', 'editor choice',
+    ]
+    if titulo_lower in titulos_exatos_bloqueados:
+        log(f"  🚫 Título rejeitado (nome de categoria): {titulo[:60]}...")
+        return False
     
     # Rejeita títulos muito curtos com poucas palavras significativas (provavelmente categorias)
     palavras_significativas = [p for p in titulo.split() if len(p) > 3 and p.isalpha()]
     if len(palavras_significativas) < 4:
         # Verifica se parece uma categoria (sem verbos de ação)
-        verbos_acao = ['ganha', 'lança', 'confirma', 'aprova', 'revela', 'anuncia', 
+        verbos_acao = ['ganha', 'lança', 'confirma', 'aprova', 'revela', 'anuncia',
                        'chega', 'vence', 'perde', 'encontra', 'descobre', 'morre',
-                       'nasce', 'cresce', 'cai', 'sobe', 'muda', 'fica', 'vai', 'vem']
+                       'nasce', 'cresce', 'cai', 'sobe', 'muda', 'fica', 'vai', 'vem',
+                       'diz', 'afirma', 'declara', 'promete', 'nega', 'acusa',
+                       'mostra', 'apresenta', 'estreia', 'lança', 'recebe',
+                       'wins', 'loses', 'announces', 'reveals', 'launches', 'gets',
+                       'shows', 'confirms', 'releases', 'updates', 'adds',
+                       'pode', 'deve', 'será', 'está', 'foi', 'tem', 'faz',
+                       'volta', 'entra', 'sai', 'abre', 'fecha', 'inicia',
+                       'atinge', 'supera', 'bate', 'quebra', 'alcança']
         tem_verbo = any(verbo in titulo_lower for verbo in verbos_acao)
         if not tem_verbo:
             log(f"  🚫 Título rejeitado (sem verbo de ação): {titulo[:60]}...")
             return False
+    
+    # Rejeita títulos que parecem ser menus ou listas de navegação
+    if titulo.count('|') > 1 or titulo.count('›') > 1 or titulo.count('»') > 1:
+        log(f"  🚫 Título rejeitado (parece navegação): {titulo[:60]}...")
+        return False
+    
+    # Rejeita títulos com muitas palavras em inglês em sites BR (provavelmente UI)
+    palavras_en = ['the', 'and', 'for', 'with', 'from', 'this', 'that', 'your', 'our', 'their']
+    contagem_en = sum(1 for p in titulo_lower.split() if p in palavras_en)
+    if contagem_en >= 3 and len(titulo.split()) < 8:
+        log(f"  🚫 Título rejeitado (parece UI em inglês): {titulo[:60]}...")
+        return False
     
     return True
 
@@ -270,6 +419,7 @@ def buscar_noticia(tema):
                 
                 # Valida título
                 if not eh_titulo_valido(titulo):
+
                     continue
                 
                 # Palavras-chave para excluir
@@ -302,12 +452,15 @@ def buscar_noticia(tema):
                     log(f"  🔄 URL já processada: {href[:50]}...")
                     continue
                 
-                # Verifica duplicata por título normalizado
+                # Verifica duplicata por título normalizado (exato)
                 titulo_normalizado = normalizar_titulo(titulo)
                 if titulo_normalizado in titulos_processados:
-                    log(f"  🔄 Título duplicado: {titulo[:50]}...")
+                    log(f"  🔄 Título duplicado (exato): {titulo[:50]}...")
                     continue
-
+                
+                # Verifica duplicata por similaridade (fuzzy matching)
+                if titulo_similar(titulo, titulos_processados):
+                    continue
                 
                 # Bloqueia links para plataformas de compra
                 urls_bloqueadas = ['amazon.com', 'aliexpress.com', 'mercadolivre.com', 'shopee.com', 'ebay.com']
@@ -345,9 +498,9 @@ def buscar_noticia(tema):
                         from urllib.parse import urljoin
                         img_url = urljoin(href, img_url)
                     
-                    # Rejeita notícias sem imagem real
-                    if not img_url:
-                        log(f"  🚫 Notícia sem imagem, pulando: {titulo[:50]}...")
+                    # Rejeita notícias sem imagem real ou com placeholder
+                    if not eh_imagem_valida(img_url):
+                        log(f"  🚫 Notícia sem imagem válida, pulando: {titulo[:50]}...")
                         urls_processadas.add(href_normalizada)
                         titulos_processados.add(titulo_normalizado)
                         salvar_cache_artigos(urls_processadas, titulos_processados)
@@ -376,7 +529,7 @@ def buscar_noticia(tema):
                 except requests.exceptions.Timeout:
                     log(f"  ⏱ Timeout em {href[:40]}")
                     continue
-                except Exception:
+                except Exception as e:
                     continue
             
             log(f"  ⚠️ Nada encontrado em {site_url}")
@@ -448,11 +601,11 @@ def extrair_imagem_melhorada(soup, url):
         melhor_tamanho = 0
         
         for img in imgs:
-            src = img.get('src', '') or img.get('data-src', '')
-            alt = img.get('alt', '') or ''
+            src = img.get('src', '')
+            alt = img.get('alt', '')
             
             # Ignora logos, ícones, banners pequenos
-            if any(x in (src or '').lower() or x in alt.lower() for x in ['logo', 'icon', 'badge', 'avatar', 'gif', 'svg', 'button']):
+            if any(x in src.lower() or x in alt.lower() for x in ['logo', 'icon', 'badge', 'avatar', 'gif', 'svg', 'button']):
                 continue
             
             # Prefere imagens com atributos de tamanho
@@ -516,72 +669,121 @@ Não mencione fontes. Seja objetivo. Use apenas HTML simples (sem markdown)."""
         log(f"  📝 Usando fallback (conteúdo extraído)...")
         return gerar_texto_fallback(noticia)
 
-def classificar_subcategoria(titulo, categoria_principal):
-    """Classifica automaticamente a subcategoria usando regras de palavras-chave"""
-    titulo_lower = titulo.lower()
-    
-    # Mapeamento de subcategorias por categoria principal
-    subcategorias = {
-        'esportes': {
-            'futebol': ['futebol', 'flamengo', 'palmeiras', 'corinthians', 'são paulo', 'santos', 'vasco', 'botafogo', 'fluminense', 'gremio', 'internacional', 'cruzeiro', 'atletico', 'brasileirão', 'copa do brasil', 'libertadores', 'mundial', 'seleção brasileira', 'neymar', 'messi', 'cristiano ronaldo', 'mbappe', 'haaland'],
-            'automobilismo': ['fórmula 1', 'formula 1', 'f1', 'stock car', 'nascar', 'rally', 'motogp', 'verstappen', 'hamilton', 'leclerc', 'pérez', 'alonso', 'sainz', 'norris', 'piastri', 'pilotos', 'gp', 'grande prêmio', 'corrida'],
-            'basquete': ['nba', 'basquete', 'lebron', 'jordan', 'curry', 'durant', 'giannis', 'lakers', 'celtics', 'warriors', 'bulls', 'playoffs', 'finals'],
-            'olimpiadas': ['olimpíadas', 'olimpiadas', 'paris 2024', 'los angeles 2028', 'atletismo', 'natação', 'ginástica', 'judô', 'vôlei', 'handebol']
-        },
-        'entretenimento': {
-            'cinema-series': ['filme', 'cinema', 'série', 'netflix', 'hbo', 'disney+', 'amazon prime', 'star+', 'paramount', 'trailer', 'estreia', 'bilheteria', 'oscar', 'emmy', 'globo de ouro', 'ator', 'atriz', 'diretor', 'cinebiografia'],
-            'musica': ['música', 'banda', 'cantor', 'cantora', 'show', 'turnê', 'álbum', 'single', 'grammy', 'rock', 'pop', 'sertanejo', 'funk', 'rap', 'hip hop', 'anitta', 'taylor swift', 'beyoncé', 'the weeknd', 'drake'],
-            'cultura-pop': ['marvel', 'dc', 'star wars', 'harry potter', 'anime', 'mangá', 'cosplay', 'convenção', 'ccxp', 'comic con', 'super-herói', 'vingadores', 'batman', 'superman', 'homem-aranha'],
-            'teatro': ['teatro', 'peça', 'musical', 'broadway', 'west end', 'drama', 'comédia', 'atuação', 'palco']
-        },
-        'tecnologia': {
-            'hardware': ['hardware', 'processador', 'cpu', 'gpu', 'placa de vídeo', 'memória ram', 'ssd', 'hd', 'notebook', 'desktop', 'pc', 'gamer', 'intel', 'amd', 'nvidia', 'cooler', 'fonte'],
-            'software': ['software', 'windows', 'linux', 'macos', 'android', 'ios', 'aplicativo', 'app', 'programa', 'sistema operacional', 'atualização', 'microsoft', 'google'],
-            'inteligencia-artificial': ['inteligência artificial', 'ia', 'ai', 'chatgpt', 'gpt', 'llm', 'machine learning', 'deep learning', 'neural', 'openai', 'google gemini', 'claude', 'copilot', 'bard'],
-            'ciberseguranca': ['cibersegurança', 'hacker', 'vírus', 'malware', 'ransomware', 'phishing', 'golpe', 'fraude', 'vazamento de dados', 'privacidade', 'senha', 'autenticação']
-        },
-        'videogames': {
-            'noticias': ['jogo', 'novo jogo', 'lançamento', 'trailer', 'gameplay', 'revelado', 'anunciado', 'confirmado', 'adiado', 'cancelado'],
-            'reviews': ['review', 'análise', 'nota', 'avaliação', 'impressões', 'primeiras impressões', 'testamos', 'jogamos'],
-            'esports': ['esports', 'e-sports', 'campeonato', 'torneio', 'competitivo', 'valorant', 'cs2', 'counter-strike', 'lol', 'league of legends', 'dota', 'fortnite', 'free fire', 'rainbow six'],
-            'indies': ['indie', 'jogo independente', 'steam', 'itch.io', 'pixel art', 'roguelike', 'metroidvania', 'desenvolvedor independente']
-        },
-        'politica-nacional': {
-            'congresso': ['câmara', 'senado', 'congresso', 'deputado', 'senador', 'votação', 'projeto de lei', 'pec', 'impeachment', 'cpi', 'comissão'],
-            'governo-federal': ['lula', 'bolsonaro', 'presidente', 'ministro', 'governo', 'planalto', 'pt', 'pl', 'psdb', 'mdb', 'união brasil', 'executivo'],
-            'eleicoes': ['eleição', 'eleições', 'campanha', 'candidato', 'pesquisa', 'ibope', 'datafolha', 'urna eletrônica', 'voto', 'debate', 'horário eleitoral'],
-            'justica': ['stf', 'supremo', 'alexandre de moraes', 'rosa weber', 'barroso', 'fachin', 'ministro do stf', 'pgr', 'polícia federal', 'lava jato', 'prisão', 'condenação']
-        },
-        'politica-internacional': {
-            'eua': ['eua', 'estados unidos', 'biden', 'trump', 'casa branca', 'pentágono', 'congresso americano', 'republicanos', 'democratas', 'eleições americanas'],
-            'europa': ['ue', 'união europeia', 'alemanha', 'frança', 'inglaterra', 'reino unido', 'italia', 'espanha', 'macron', 'scholz', 'sunak', 'meloni', 'brexit', 'nato', 'otan'],
-            'asia': ['china', 'xi jinping', 'taiwan', 'japão', 'índia', 'coreia do norte', 'coreia do sul', 'putin', 'rússia', 'ucrânia', 'guerra', 'tensão', 'brics'],
-            'america-latina': ['argentina', 'chile', 'colômbia', 'venezuela', 'nicarágua', 'cuba', 'mexico', 'milei', 'boric', 'maduro', 'ortega', 'lópez obrador']
-        },
-        'rio-de-janeiro': {
-            'seguranca': ['crime', 'polícia', 'pm', 'bope', 'tráfico', 'milícia', 'violência', 'assalto', 'roubo', 'homicídio', 'favela', 'complexo', 'tiroteio'],
-            'transporte': ['ônibus', 'metrô', 'brt', 'trem', 'supervia', 'linha amarela', 'linha vermelha', 'ponte', 'túnel', 'engarrafamento', 'transito'],
-            'cultura-eventos': ['carnaval', 'réveillon', 'rock in rio', 'show', 'festa', 'praia', 'copacabana', 'ipanema', 'cristo', 'pão de açúcar', 'museu', 'teatro municipal']
-        },
-        'sao-paulo': {
-            'economia-negocios': ['bolsa', 'bovespa', 'empresas', 'startup', 'faria lima', 'paulista', 'itaim', 'vila olímpia', 'economia', 'negócios', 'investimentos'],
-            'transporte': ['metro', 'metrô', 'cptm', 'ônibus', 'marginal', 'paulista', 'congestionamento', 'rodízio', 'bilhete único', 'linha amarela', 'linha verde'],
-            'cultura-lazer': ['parque', 'ibirapuera', 'museu', 'masp', 'pinacoteca', 'teatro', 'show', 'evento', 'exposição', 'bienal', 'parada gay', 'virada cultural']
-        }
+# Mapeamento global de subcategorias por categoria principal
+SUBCATEGORIAS = {
+    'esportes': {
+        'futebol': ['futebol', 'flamengo', 'palmeiras', 'corinthians', 'são paulo', 'santos', 'vasco', 'botafogo', 'fluminense', 'gremio', 'internacional', 'cruzeiro', 'atletico', 'brasileirão', 'copa do brasil', 'libertadores', 'mundial', 'seleção brasileira', 'neymar', 'messi', 'cristiano ronaldo', 'mbappe', 'haaland'],
+        'automobilismo': ['fórmula 1', 'formula 1', 'f1', 'stock car', 'nascar', 'rally', 'motogp', 'verstappen', 'hamilton', 'leclerc', 'pérez', 'alonso', 'sainz', 'norris', 'piastri', 'pilotos', 'gp', 'grande prêmio', 'corrida'],
+        'basquete': ['nba', 'basquete', 'lebron', 'jordan', 'curry', 'durant', 'giannis', 'lakers', 'celtics', 'warriors', 'bulls', 'playoffs', 'finals'],
+        'olimpiadas': ['olimpíadas', 'olimpiadas', 'paris 2024', 'los angeles 2028', 'atletismo', 'natação', 'ginástica', 'judô', 'vôlei', 'handebol']
+    },
+    'entretenimento': {
+        'cinema-series': ['filme', 'cinema', 'série', 'netflix', 'hbo', 'disney+', 'amazon prime', 'star+', 'paramount', 'trailer', 'estreia', 'bilheteria', 'oscar', 'emmy', 'globo de ouro', 'ator', 'atriz', 'diretor', 'cinebiografia'],
+        'musica': ['música', 'banda', 'cantor', 'cantora', 'show', 'turnê', 'álbum', 'single', 'grammy', 'rock', 'pop', 'sertanejo', 'funk', 'rap', 'hip hop', 'anitta', 'taylor swift', 'beyoncé', 'the weeknd', 'drake'],
+        'cultura-pop': ['marvel', 'dc', 'star wars', 'harry potter', 'anime', 'mangá', 'cosplay', 'convenção', 'ccxp', 'comic con', 'super-herói', 'vingadores', 'batman', 'superman', 'homem-aranha'],
+        'teatro': ['teatro', 'peça', 'musical', 'broadway', 'west end', 'drama', 'comédia', 'atuação', 'palco']
+    },
+    'tecnologia': {
+        'hardware': ['hardware', 'processador', 'cpu', 'gpu', 'placa de vídeo', 'memória ram', 'ssd', 'hd', 'notebook', 'desktop', 'pc', 'gamer', 'intel', 'amd', 'nvidia', 'cooler', 'fonte'],
+        'software': ['software', 'windows', 'linux', 'macos', 'android', 'ios', 'aplicativo', 'app', 'programa', 'sistema operacional', 'atualização', 'microsoft', 'google'],
+        'inteligencia-artificial': ['inteligência artificial', 'ia', 'ai', 'chatgpt', 'gpt', 'llm', 'machine learning', 'deep learning', 'neural', 'openai', 'google gemini', 'claude', 'copilot', 'bard'],
+        'ciberseguranca': ['cibersegurança', 'hacker', 'vírus', 'malware', 'ransomware', 'phishing', 'golpe', 'fraude', 'vazamento de dados', 'privacidade', 'senha', 'autenticação']
+    },
+    'videogames': {
+        'noticias': ['jogo', 'novo jogo', 'lançamento', 'trailer', 'gameplay', 'revelado', 'anunciado', 'confirmado', 'adiado', 'cancelado'],
+        'reviews': ['review', 'análise', 'nota', 'avaliação', 'impressões', 'primeiras impressões', 'testamos', 'jogamos'],
+        'esports': ['esports', 'e-sports', 'campeonato', 'torneio', 'competitivo', 'valorant', 'cs2', 'counter-strike', 'lol', 'league of legends', 'dota', 'fortnite', 'free fire', 'rainbow six'],
+        'indies': ['indie', 'jogo independente', 'steam', 'itch.io', 'pixel art', 'roguelike', 'metroidvania', 'desenvolvedor independente']
+    },
+    'politica-nacional': {
+        'congresso': ['câmara', 'senado', 'congresso', 'deputado', 'senador', 'votação', 'projeto de lei', 'pec', 'impeachment', 'cpi', 'comissão'],
+        'governo-federal': ['lula', 'bolsonaro', 'presidente', 'ministro', 'governo', 'planalto', 'pt', 'pl', 'psdb', 'mdb', 'união brasil', 'executivo'],
+        'eleicoes': ['eleição', 'eleições', 'campanha', 'candidato', 'pesquisa', 'ibope', 'datafolha', 'urna eletrônica', 'voto', 'debate', 'horário eleitoral'],
+        'justica': ['stf', 'supremo', 'alexandre de moraes', 'rosa weber', 'barroso', 'fachin', 'ministro do stf', 'pgr', 'polícia federal', 'lava jato', 'prisão', 'condenação']
+    },
+    'politica-internacional': {
+        'eua': ['eua', 'estados unidos', 'biden', 'trump', 'casa branca', 'pentágono', 'congresso americano', 'republicanos', 'democratas', 'eleições americanas'],
+        'europa': ['ue', 'união europeia', 'alemanha', 'frança', 'inglaterra', 'reino unido', 'italia', 'espanha', 'macron', 'scholz', 'sunak', 'meloni', 'brexit', 'nato', 'otan'],
+        'asia': ['china', 'xi jinping', 'taiwan', 'japão', 'índia', 'coreia do norte', 'coreia do sul', 'putin', 'rússia', 'ucrânia', 'guerra', 'tensão', 'brics'],
+        'america-latina': ['argentina', 'chile', 'colômbia', 'venezuela', 'nicarágua', 'cuba', 'mexico', 'milei', 'boric', 'maduro', 'ortega', 'lópez obrador']
+    },
+    'rio-de-janeiro': {
+        'seguranca': ['crime', 'polícia', 'pm', 'bope', 'tráfico', 'milícia', 'violência', 'assalto', 'roubo', 'homicídio', 'favela', 'complexo', 'tiroteio'],
+        'transporte': ['ônibus', 'metrô', 'brt', 'trem', 'supervia', 'linha amarela', 'linha vermelha', 'ponte', 'túnel', 'engarrafamento', 'transito'],
+        'cultura-eventos': ['carnaval', 'réveillon', 'rock in rio', 'show', 'festa', 'praia', 'copacabana', 'ipanema', 'cristo', 'pão de açúcar', 'museu', 'teatro municipal']
+    },
+    'sao-paulo': {
+        'economia-negocios': ['bolsa', 'bovespa', 'empresas', 'startup', 'faria lima', 'paulista', 'itaim', 'vila olímpia', 'economia', 'negócios', 'investimentos'],
+        'transporte': ['metro', 'metrô', 'cptm', 'ônibus', 'marginal', 'paulista', 'congestionamento', 'rodízio', 'bilhete único', 'linha amarela', 'linha verde'],
+        'cultura-lazer': ['parque', 'ibirapuera', 'museu', 'masp', 'pinacoteca', 'teatro', 'show', 'evento', 'exposição', 'bienal', 'parada gay', 'virada cultural']
     }
-    
-    # Verifica se a categoria principal tem subcategorias definidas
-    if categoria_principal not in subcategorias:
+}
+
+def classificar_subcategoria_ia(titulo, categoria_principal):
+    """Classifica subcategoria usando IA (Groq) quando palavras-chave não funcionam"""
+    if categoria_principal not in SUBCATEGORIAS:
         return None
     
-    # Procura por palavras-chave no título
-    cat_subs = subcategorias[categoria_principal]
+    subcats_disponiveis = list(SUBCATEGORIAS[categoria_principal].keys())
+    
+    prompt = f"""Classifique o seguinte título de notícia em UMA das subcategorias listadas.
+
+Título: "{titulo}"
+Categoria principal: {categoria_principal}
+Subcategorias disponíveis: {', '.join(subcats_disponiveis)}
+
+Responda APENAS com o nome exato da subcategoria mais adequada, sem explicação. Se nenhuma se encaixar, responda "nenhuma"."""
+
+    try:
+        resp = requests.post(
+            'https://api.groq.com/openai/v1/chat/completions',
+            headers={'Authorization': f'Bearer {GROQ_API_KEY}', 'Content-Type': 'application/json'},
+            json={
+                'model': 'llama-3.3-70b-versatile',
+                'messages': [{'role': 'user', 'content': prompt}],
+                'temperature': 0.1,
+                'max_tokens': 50
+            },
+            timeout=15
+        )
+        resp.raise_for_status()
+        resultado = resp.json()['choices'][0]['message']['content'].strip().lower()
+        
+        # Valida se a resposta é uma subcategoria válida
+        if resultado in subcats_disponiveis:
+            log(f"  🤖 Subcategoria via IA: {resultado}")
+            return resultado
+        
+        # Tenta match parcial (ex: "cinema e séries" -> "cinema-series")
+        for subcat in subcats_disponiveis:
+            if subcat in resultado or resultado in subcat:
+                log(f"  🤖 Subcategoria via IA (parcial): {subcat}")
+                return subcat
+        
+        log(f"  🤖 IA não classificou subcategoria: {resultado}")
+        return None
+    except Exception as e:
+        log(f"  ⚠️ Classificação IA falhou: {str(e)[:40]}")
+        return None
+
+def classificar_subcategoria(titulo, categoria_principal):
+    """Classifica automaticamente a subcategoria: primeiro por palavras-chave, depois por IA"""
+    titulo_lower = titulo.lower()
+    
+    # Verifica se a categoria principal tem subcategorias definidas
+    if categoria_principal not in SUBCATEGORIAS:
+        return None
+    
+    # PASSO 1: Procura por palavras-chave no título (rápido e sem custo)
+    cat_subs = SUBCATEGORIAS[categoria_principal]
     for subcat, palavras in cat_subs.items():
         if any(palavra in titulo_lower for palavra in palavras):
+            log(f"  🏷️ Subcategoria via keywords: {subcat}")
             return subcat
     
-    # Se não encontrou, retorna None (sem subcategoria)
-    return None
+    # PASSO 2: Fallback para classificação via IA (Groq)
+    log(f"  🔍 Keywords não encontraram subcategoria, tentando IA...")
+    return classificar_subcategoria_ia(titulo, categoria_principal)
 
 def salvar_post(titulo, texto, img, cat, data, post_id, subcategoria=None):
     slug = titulo.lower()[:50].replace(' ', '-').replace('?', '').replace('!', '').replace('/', '-')
@@ -638,19 +840,16 @@ def salvar_post(titulo, texto, img, cat, data, post_id, subcategoria=None):
 </body></html>"""
     
     Path("posts").mkdir(exist_ok=True)
-    try:
-        with open(Path("posts") / fname, 'w', encoding='utf-8') as f:
-            f.write(html)
-        log(f"  💾 Post salvo: {fname}")
-        return {'titulo': titulo, 'url': f"posts/{fname}", 'imagem': img, 'categoria': cat, 'subcategoria': subcategoria, 'data': data}
-    except Exception as e:
-        log(f"  ❌ Falha ao salvar post: {e}")
-        return None
+    with open(Path("posts") / fname, 'w', encoding='utf-8') as f:
+        f.write(html)
+    log(f"  💾 Post salvo: {fname}")
+    return {'titulo': titulo, 'url': f"posts/{fname}", 'imagem': img, 'categoria': cat, 'subcategoria': subcategoria, 'data': data}
 
 
 def atualizar_home(posts):
     cards = ""
-    for p in reversed(posts[-10:]):
+    # Lista todas as matérias (sem limite), em ordem decrescente (mais recentes primeiro)
+    for p in reversed(posts):
         # Verifica se o arquivo HTML do post existe
         post_file = Path(p['url'])
         if not post_file.exists():
@@ -695,12 +894,9 @@ def atualizar_home(posts):
 </main>
 <footer><div class="container"><p>© 2026 Vivimundo</p><a href="https://x.com/Kevin_RSP0" target="_blank">Twitter</a></div></footer>
 </body></html>"""
-    try:
-        with open("index.html", 'w', encoding='utf-8') as f:
-            f.write(html)
-        log("  📝 Index atualizado")
-    except Exception as e:
-        log(f"  ⚠️ Falha ao atualizar index: {e}")
+    with open("index.html", 'w', encoding='utf-8') as f:
+        f.write(html)
+    log("  📝 Index atualizado")
 
 
 def gerar_paginas_categorias(posts):
@@ -717,7 +913,8 @@ def gerar_paginas_categorias(posts):
     for cat, artigos in categorias.items():
 
         cards = ""
-        for p in reversed(artigos[-20:]):
+        # Lista todas as matérias da categoria (sem limite), mais recentes primeiro
+        for p in reversed(artigos):
             # Verifica se o arquivo HTML do post existe
             post_file = Path(p['url'])
             if not post_file.exists():
@@ -768,12 +965,9 @@ def gerar_paginas_categorias(posts):
 
         
         fname = f"categoria-{cat}.html"
-        try:
-            with open(fname, 'w', encoding='utf-8') as f:
-                f.write(html)
-            log(f"  📚 Categoria '{cat}' atualizada")
-        except Exception as e:
-            log(f"  ⚠️ Falha ao escrever categoria {cat}: {e}")
+        with open(fname, 'w', encoding='utf-8') as f:
+            f.write(html)
+        log(f"  📚 Categoria '{cat}' atualizada")
 
 
 def publicar():
@@ -789,16 +983,8 @@ def publicar():
         log(f"  ❌ Commit: {e}")
 
 def executar():
-    """
-    Executa um ciclo: busca notícia, gera texto, salva post e atualiza páginas.
-    Retorna True se gerou um post com sucesso, False caso não tenha encontrado notícia
-    ou não tenha conseguido gerar/salvar o post.
-    """
     pfile = Path("posts.json")
-    try:
-        posts = json.load(open(pfile, encoding='utf-8')) if pfile.exists() else []
-    except Exception:
-        posts = []
+    posts = json.load(open(pfile)) if pfile.exists() else []
     tema_idx, total_posts = carregar_estado()
     tema = TEMAS[tema_idx]
 
@@ -809,18 +995,12 @@ def executar():
     noticia = buscar_noticia(tema)
     if not noticia:
         log("❌ Nenhuma notícia encontrada")
-        # Avança o tema mesmo se não encontrou? aqui optamos por avançar índice para evitar repetir
-        tema_idx = (tema_idx + 1) % len(TEMAS)
-        salvar_estado(tema_idx, total_posts)
-        return False
+        return
     
     texto = gerar_texto(noticia)
     if not texto:
         log("⚠️ Sem conteúdo para salvar")
-        # marca como processado para não tentar de novo
-        tema_idx = (tema_idx + 1) % len(TEMAS)
-        salvar_estado(tema_idx, total_posts)
-        return False
+        return
 
     # Classifica subcategoria automaticamente
     subcategoria = classificar_subcategoria(noticia['title'], tema['categoria'])
@@ -829,17 +1009,8 @@ def executar():
     
     info = salvar_post(noticia['title'], texto, noticia.get('urlToImage'), tema['categoria'], datetime.now().strftime('%d/%m/%Y às %H:%M'), total_posts + 1, subcategoria)
 
-    if not info:
-        log("❌ Falha ao salvar post")
-        return False
-
     posts.append(info)
-    try:
-        with open(pfile, 'w', encoding='utf-8') as f:
-            json.dump(posts, f, ensure_ascii=False, indent=2)
-    except Exception as e:
-        log(f"⚠️ Falha ao salvar posts.json: {e}")
-
+    json.dump(posts, open(pfile, 'w'), ensure_ascii=False, indent=2)
     atualizar_home(posts)
     gerar_paginas_categorias(posts)
     publicar()
@@ -847,66 +1018,16 @@ def executar():
     # Salva estado para próxima execução
     tema_idx = (tema_idx + 1) % len(TEMAS)
     salvar_estado(tema_idx, total_posts + 1)
+    
+    # Evitar disparos excessivos em curto intervalo (proteção contra loop infinito)
+    # A cada 5 posts, espera 5 minutos antes do próximo ciclo
+    if (total_posts + 1) % 5 == 0:
+        log(f"  ⏳ Pausa de proteção: aguardando 5 minutos antes do próximo ciclo...")
+        time.sleep(300)
+    
     log("\n✅ CICLO CONCLUÍDO!")
-    return True
-
 
 if __name__ == "__main__":
-    log("🌍 VIVIMUNDO BOT - Execução Contínua")
+    log("🌍 VIVIMUNDO BOT - GitHub Actions")
     setup_repo()
-
-    # Controles via variáveis de ambiente:
-    # MAX_POSTS_PER_RUN: número máximo de posts por execução (0 = sem limite)
-    # MAX_RUNTIME_SECONDS: tempo máximo em segundos para rodar nesta execução (0 = sem limite)
-    # PAUSE_SECONDS: pausa entre ciclos (padrão 5s)
-    try:
-        MAX_POSTS_PER_RUN = int(os.getenv('MAX_POSTS_PER_RUN', '0'))
-    except:
-        MAX_POSTS_PER_RUN = 0
-    try:
-        MAX_RUNTIME_SECONDS = int(os.getenv('MAX_RUNTIME_SECONDS', '0'))
-    except:
-        MAX_RUNTIME_SECONDS = 0
-    try:
-        PAUSE_SECONDS = float(os.getenv('PAUSE_SECONDS', '5'))
-    except:
-        PAUSE_SECONDS = 5.0
-
-    start_time = datetime.utcnow()
-    ciclos = 0
-
-    log(f"  ▶️ MAX_POSTS_PER_RUN={MAX_POSTS_PER_RUN}  MAX_RUNTIME_SECONDS={MAX_RUNTIME_SECONDS}  PAUSE_SECONDS={PAUSE_SECONDS}")
-
-    while True:
-        # Checa limites
-        if MAX_POSTS_PER_RUN > 0 and ciclos >= MAX_POSTS_PER_RUN:
-            log(f"🏁 Alcançado limite de posts por execução: {ciclos}")
-            break
-        if MAX_RUNTIME_SECONDS > 0:
-            elapsed = (datetime.utcnow() - start_time).total_seconds()
-            if elapsed >= MAX_RUNTIME_SECONDS:
-                log(f"🏁 Alcançado limite de tempo por execução: {elapsed:.0f}s")
-                break
-
-        try:
-            log(f"\n🔁 Iniciando ciclo #{ciclos + 1}...\n")
-            sucesso = executar()
-            ciclos += 1 if sucesso else 0
-
-            # Se não encontrou notícia/ não gerou, encerramos para evitar loop inútil
-            if not sucesso:
-                log("🛑 Nenhuma notícia/processo falhou — encerrando para evitar loop vazio.")
-                break
-
-            # Pausa entre ciclos
-            time.sleep(PAUSE_SECONDS)
-
-        except KeyboardInterrupt:
-            log("⏸️ Interrompido manualmente (KeyboardInterrupt). Encerrando.")
-            break
-        except Exception as e:
-            log(f"\n❌ Erro não tratado no loop principal: {e}")
-            log("🛑 Encerrando execução para evitar loop quebrado.")
-            break
-
-    log("\n🏁 Execução finalizada.")
+    executar()

@@ -5,9 +5,7 @@ Relatório gerado automaticamente pelo editor.
 - Modo: APLICANDO correções
 - Limites: max_edits=25, max_deletes=10
 
-- ✏️ EDIT: **Segurança Golpe do ' Tribunal de Justiça' usa CPF vazado para roubar PIX Há 11 m** (posts/post-0019-segurança-golpe-do-'-tribunal-de-justiça'-usa-cpf-.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Estreia do Prime Video Série de God of War escala Atreus live-action** (posts/post-0018-estreia-do-prime-video-série-de-god-of-war-escala-.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Quartas de final do Carioca: veja datas, horários e onde assistir** (posts/post-0017-quartas-de-final-do-carioca:-veja-datas,-horários-.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Quartas de final do Carioca: veja datas, horários e onde assistir** (posts/post-0017-quartas-de-final-do-carioca:-veja-datas,-horários-.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Foliona se machuca ao escalar semáforo para fugir de multidão: ' Terror'** (posts/post-0016-foliona-se-machuca-ao-escalar-semáforo-para-fugir-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Dr. Rubão perde recurso, e Itaguaí fica perto de ter novas eleições** (posts/post-0015-dr.-rubão-perde-recurso,-e-itaguaí-fica-perto-de-t.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Brasil é um dos países que mais acham Trump bom para o mundo** (posts/post-0014-brasil-é-um-dos-países-que-mais-acham-trump-bom-pa.html) | ações=['fallback_regra_sem_groq']
@@ -19,4 +17,4 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Esportes a Motor** (posts/post-0007-esportes-a-motor.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Presidente do Irã confirma negociações com os EUA e diz que conversas devem ser ** (posts/post-0006-presidente-do-irã-confirma-negociações-com-os-eua-.html) | ações=['fallback_regra_sem_groq']
 
-- Resumo: edits=13 deletes=0
+- Resumo: edits=11 deletes=0

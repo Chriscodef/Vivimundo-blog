@@ -1,63 +1,63 @@
-name: Vivimundo Bot
+name: Vivimundo Editor
 
-# Executa via push (ciclo contínuo) + schedule (fallback 6h-23h)
 on:
   push:
     branches: [main]
   schedule:
-    - cron: '0 6-23 * * *'
+    # GitHub Actions permite granularidade mínima de 5 minutos
+    - cron: '*/5 * * * *' # roda o mais frequente possível (a cada 5 min)
   workflow_dispatch:
 
 permissions:
   contents: write
 
-jobs:
-  run-bot:
-    # Evita loop: commits do editor incluem [skip bot]
-    if: github.event_name != 'push' || !contains(github.event.head_commit.message, '[skip bot]')
-    runs-on: ubuntu-latest
+concurrency:
+  group: vivimundo-editor
+  cancel-in-progress: true
 
+jobs:
+  run-editor:
+    # Evita loop: commits do editor incluem [skip editor]
+    if: github.event_name != 'push' || !contains(github.event.head_commit.message, '[skip editor]')
+    runs-on: ubuntu-latest
     steps:
-      # 1. Faz checkout do repositório
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.PAT_TOKEN }}
           fetch-depth: 0
 
-      # 2. Configura Python
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
           cache: 'pip'
 
-      # 3. Instala dependências
       - name: Install dependencies
         run: |
           pip install --upgrade pip
           pip install -r requirements.txt
 
-      # 4. Configura Git com credenciais
       - name: Configure Git
         env:
           PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
-          git config user.name "Vivimundo Bot"
-          git config user.email "bot@vivimundo.com"
+          git config user.name "Vivimundo Editor"
+          git config user.email "editor@vivimundo.com"
           git config --global credential.helper store
           echo "https://${PAT_TOKEN}@github.com" > ~/.git-credentials
 
-      # 5. Executa o bot
-      - name: Run bot
+      - name: Run editor
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_WORKSPACE: ${{ github.workspace }}
-        run: python bot.py
+          EDITOR_MAX_EDITS_PER_RUN: '25'
+          EDITOR_MAX_DELETES_PER_RUN: '10'
+          # Aplica correções automaticamente (edita/deleta) e também gera relatório
+          EDITOR_APPLY_FIXES: '1'
+        run: python editor_bot.py
 
-      # 6. Faz commit e push das mudanças
       - name: Commit and push
         run: |
           git add .
-          git diff --quiet && git diff --staged --quiet || (git commit -m "🤖 Nova matéria - $(date +'%d/%m/%Y %H:%M')" && git push origin main)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "📝 Editor: relatório automático [skip editor] [skip bot]" && git push origin main)
+

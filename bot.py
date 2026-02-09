@@ -480,15 +480,24 @@ def buscar_noticia(tema):
                         tag.decompose()
                     
                     # Busca conteúdo em parágrafos
+                    # OBS: usar separator=" " evita palavras grudadas quando há tags inline (<a>, <strong>, etc.)
                     paragrafos = art_soup.find_all('p')
-                    texto = ' '.join(p.get_text(strip=True) for p in paragrafos if len(p.get_text(strip=True)) > 30)
+                    texto = ' '.join(
+                        p.get_text(" ", strip=True)
+                        for p in paragrafos
+                        if len(p.get_text(" ", strip=True)) > 30
+                    )
                     
                     # Se não encontrou em <p>, tenta em divs com classes de artigo
                     if len(texto) < 400:
                         article = art_soup.find(['article', 'div', 'main'], class_=lambda x: x and any(palavra in str(x).lower() for palavra in ['article', 'post', 'content', 'corpo', 'noticia', 'body', 'text']))
                         if article:
                             paragrafos = article.find_all('p')
-                            texto = ' '.join(p.get_text(strip=True) for p in paragrafos if len(p.get_text(strip=True)) > 30)
+                            texto = ' '.join(
+                                p.get_text(" ", strip=True)
+                                for p in paragrafos
+                                if len(p.get_text(" ", strip=True)) > 30
+                            )
                     
                     # Busca imagem com função melhorada
                     img_url = extrair_imagem_melhorada(art_soup, href)
@@ -629,6 +638,12 @@ def gerar_texto_fallback(noticia):
     """Gera texto com fallback quando Groq falha"""
     titulo = noticia['title']
     conteudo = noticia.get('content', '')[:2000]
+
+    # Se o conteúdo extraído não parece PT-BR, melhor abortar do que publicar texto ruim.
+    # (Isso evita posts "só scraped" em inglês ou com lixo.)
+    if not parece_portugues(conteudo):
+        log("  🚫 Fallback abortado: conteúdo extraído não parece PT-BR")
+        return None
     
     # Estrutura básica de matéria
     paragrafos = conteudo.split('\n\n')
@@ -644,25 +659,236 @@ def gerar_texto_fallback(noticia):
     
     return texto[:3000]  # Limita a 3000 caracteres
 
+
+def parece_portugues(texto: str) -> bool:
+    """Heurística simples para detectar se o texto parece PT-BR.
+    Não é um detector perfeito; é só para bloquear casos óbvios de inglês/UI."""
+    if not texto:
+        return False
+
+    t = texto.lower()
+    # remove tags
+    import re
+    t = re.sub(r'<[^>]+>', ' ', t)
+    t = re.sub(r'\s+', ' ', t).strip()
+    if len(t) < 200:
+        return False
+
+    tokens = re.findall(r"[a-zà-ú]+", t)
+    if len(tokens) < 40:
+        return False
+
+    pt_stop = {
+        'que', 'de', 'do', 'da', 'em', 'para', 'com', 'não', 'uma', 'um', 'os', 'as',
+        'por', 'mais', 'como', 'sobre', 'após', 'antes', 'entre', 'também', 'já',
+        'foi', 'será', 'são', 'era', 'está', 'estão', 'disse', 'diz', 'ainda',
+        'ao', 'aos', 'à', 'às', 'no', 'na', 'nos', 'nas', 'se', 'sua', 'seu'
+    }
+    en_stop = {
+        'the', 'and', 'for', 'with', 'from', 'this', 'that', 'your', 'our', 'their',
+        'you', 'they', 'we', 'was', 'were', 'are', 'is', 'in', 'on', 'of', 'to'
+    }
+
+    pt_hits = sum(1 for tok in tokens if tok in pt_stop)
+    en_hits = sum(1 for tok in tokens if tok in en_stop)
+
+    # presença de acentos ajuda
+    acentos = sum(1 for ch in t if ch in 'áàâãéêíóôõúç')
+
+    # decisões simples
+    if en_hits > pt_hits * 2 and en_hits > 20:
+        return False
+    if pt_hits >= 8:
+        return True
+    if acentos >= 8:
+        return True
+    return False
+
+
+def corrigir_espacamento(texto: str) -> str:
+    """Correções leves de espaçamento/pontuação para reduzir 'palavras grudadas'."""
+    import re
+    if not texto:
+        return texto
+    # espaços após pontuação
+    texto = re.sub(r'([,;:.!?])(\S)', r'\1 \2', texto)
+    # minúscula+Maiúscula coladas
+    texto = re.sub(r'([a-zà-ú])([A-ZÀ-Ú])', r'\1 \2', texto)
+    # dígito+letra colados
+    texto = re.sub(r'(\d)([A-Za-zÀ-Úà-ú])', r'\1 \2', texto)
+    # remove espaços múltiplos
+    texto = re.sub(r'\s+', ' ', texto)
+    return texto.strip()
+
+
+def remover_mencoes_de_fonte(texto: str) -> tuple[str, bool]:
+    """Remove/neutraliza menções a veículos/fontes.
+    Retorna (texto_limpo, houve_remocao)."""
+    import re
+    if not texto:
+        return texto, False
+
+    original = texto
+    t = texto
+
+    # remove padrões do tipo "Fonte: ..." em qualquer lugar
+    t = re.sub(r'(?im)^\s*fonte\s*:\s*.*$', '', t)
+    t = re.sub(r'(?im)^\s*source\s*:\s*.*$', '', t)
+
+    # neutraliza menções explícitas a portais comuns
+    veiculos = [
+        'g1', 'uol', 'folha', 'folhapress', 'poder360', 'cnn brasil', 'bbc',
+        'ge.globo', 'globo', 'oglobo', 'estadão', 'estadao', 'r7', 'ig',
+        'omelete', 'tecmundo', 'olhar digital', 'tecnoblog', 'canaltech',
+        'ign', 'game rant', 'thegamer', 'the enemy'
+    ]
+    for v in veiculos:
+        # remove "segundo <veículo>", "de acordo com <veículo>", "conforme <veículo>"
+        t = re.sub(rf'(?i)(segundo|de acordo com|conforme|reportou|informou)\s+{re.escape(v)}\b', r'\1 informações disponíveis', t)
+        t = re.sub(rf'(?i)\b{re.escape(v)}\b', v)  # mantém a palavra se estiver no meio, mas reduz chance de apagar sentido
+
+    # remove sobras de linhas vazias
+    t = re.sub(r'\n{3,}', '\n\n', t).strip()
+
+    return t, (t != original)
+
+
+def remover_primeiro_paragrafo_se_repetir_titulo(texto: str, titulo: str) -> tuple[str, bool]:
+    """Se o 1º parágrafo for basicamente o título (ou começar repetindo), remove."""
+    import re
+    if not texto or not titulo:
+        return texto, False
+
+    # quebra por parágrafos (linhas em branco)
+    partes = [p.strip() for p in re.split(r'\n\s*\n', texto) if p.strip()]
+    if len(partes) < 2:
+        return texto, False
+
+    t_norm = normalizar_titulo(titulo)
+    p0_norm = normalizar_titulo(partes[0])
+
+    # se o primeiro parágrafo contém o título (ou grande parte dele)
+    if t_norm and (t_norm in p0_norm or p0_norm.startswith(t_norm[: max(20, len(t_norm) // 2)])):
+        partes = partes[1:]
+        return '\n\n'.join(partes).strip(), True
+
+    # Jaccard simples com palavras
+    palavras_t = set(t_norm.split())
+    palavras_p0 = set(p0_norm.split())
+    if palavras_t and palavras_p0:
+        sim = len(palavras_t & palavras_p0) / len(palavras_t | palavras_p0)
+        if sim >= 0.70:
+            partes = partes[1:]
+            return '\n\n'.join(partes).strip(), True
+
+    return texto, False
+
+
+def avaliar_qualidade_materia(titulo: str, texto: str) -> list[str]:
+    """Retorna uma lista de flags com problemas detectados."""
+    flags = []
+    if not texto or len(texto) < 800:
+        flags.append('curto')
+    if not parece_portugues(texto):
+        flags.append('nao_ptbr')
+
+    # sinais de fonte
+    tl = texto.lower()
+    if 'fonte:' in tl or 'source:' in tl or 'segundo ' in tl or 'de acordo com ' in tl or 'conforme ' in tl:
+        flags.append('menciona_fonte')
+
+    # markdown (o prompt pede HTML simples)
+    if any(x in texto for x in ['**', '__', '```']):
+        flags.append('markdown')
+
+    # título repetido no começo
+    t_norm = normalizar_titulo(titulo) if titulo else ''
+    inicio = normalizar_titulo(texto[:400])
+    if t_norm and t_norm in inicio:
+        flags.append('repete_titulo')
+
+    return flags
+
 def gerar_texto(noticia):
     prompt = f"""Escreva uma matéria jornalística completa em português brasileiro (mínimo 450 palavras, parágrafos, tom profissional) sobre:
 
 Título: {noticia['title']}
 Conteúdo: {noticia.get('content', '')[:3000]}
 
-Não mencione fontes. Seja objetivo. Use apenas HTML simples (sem markdown)."""
+Regras obrigatórias:
+- NÃO mencione nem cite veículos, jornais, sites, autores ou links.
+- NÃO repita o título como primeiro parágrafo.
+- Escreva somente em português brasileiro.
+- Use apenas HTML simples (sem markdown)."""
+
+    prompt_strito = f"""Reescreva e melhore a matéria abaixo em português brasileiro.
+
+Título: {noticia['title']}
+Conteúdo base: {noticia.get('content', '')[:3000]}
+
+Regras obrigatórias (não quebre):
+1) Texto 100% PT-BR (sem frases em inglês).
+2) NÃO mencionar fontes/veículos (G1, UOL, Folha, BBC, etc.) nem expressões tipo "segundo o jornal".
+3) NÃO repetir o título no primeiro parágrafo.
+4) Corrigir palavras coladas e erros de espaçamento/pontuação.
+5) Produzir parágrafos e usar somente HTML simples (<p>, <strong>, <em>) sem markdown.
+"""
     try:
-        resp = requests.post(
-            'https://api.groq.com/openai/v1/chat/completions',
-            headers={'Authorization': f'Bearer {GROQ_API_KEY}', 'Content-Type': 'application/json'},
-            json={'model': 'llama-3.3-70b-versatile', 'messages': [{'role': 'user', 'content': prompt}], 'temperature': 0.7, 'max_tokens': 2000},
-            timeout=60
-        )
-        resp.raise_for_status()
-        texto = resp.json()['choices'][0]['message']['content'].strip()
-        # Limpa markdown do texto gerado
+        def chamar_groq(conteudo_prompt: str, temperature: float, timeout: int):
+            r = requests.post(
+                'https://api.groq.com/openai/v1/chat/completions',
+                headers={'Authorization': f'Bearer {GROQ_API_KEY}', 'Content-Type': 'application/json'},
+                json={
+                    'model': 'llama-3.3-70b-versatile',
+                    'messages': [{'role': 'user', 'content': conteudo_prompt}],
+                    'temperature': temperature,
+                    'max_tokens': 2000
+                },
+                timeout=timeout
+            )
+            r.raise_for_status()
+            return r.json()['choices'][0]['message']['content'].strip()
+
+        # 1) Primeira tentativa (mais "criativa")
+        texto = chamar_groq(prompt, temperature=0.7, timeout=60)
         texto = limpar_markdown(texto)
-        log(f"  ✅ Matéria gerada ({len(texto.split())} palavras)")
+        texto = corrigir_espacamento(texto)
+
+        # limpeza pós-processamento
+        texto, removeu_fonte = remover_mencoes_de_fonte(texto)
+        texto, removeu_titulo = remover_primeiro_paragrafo_se_repetir_titulo(texto, noticia.get('title', ''))
+
+        flags = avaliar_qualidade_materia(noticia.get('title', ''), texto)
+        if removeu_fonte:
+            flags.append('pos_removeu_fonte')
+        if removeu_titulo:
+            flags.append('pos_removeu_titulo')
+
+        # 2) Se a qualidade estiver ruim, tenta um segundo prompt mais rígido
+        if any(f in flags for f in ['nao_ptbr', 'menciona_fonte', 'repete_titulo', 'curto']):
+            log(f"  ⚠️ Qualidade detectada ({', '.join(flags)}). Tentando reescrita mais rígida...")
+            texto2 = chamar_groq(prompt_strito, temperature=0.2, timeout=70)
+            texto2 = limpar_markdown(texto2)
+            texto2 = corrigir_espacamento(texto2)
+            texto2, _ = remover_mencoes_de_fonte(texto2)
+            texto2, _ = remover_primeiro_paragrafo_se_repetir_titulo(texto2, noticia.get('title', ''))
+            flags2 = avaliar_qualidade_materia(noticia.get('title', ''), texto2)
+            log(f"  🧪 Flags após reescrita rígida: {', '.join(flags2) if flags2 else 'ok'}")
+
+            # escolhe o melhor texto (menos flags) e sempre rejeita se não for PT-BR
+            if 'nao_ptbr' in flags2:
+                log("  🚫 Matéria rejeitada: texto final ainda não parece PT-BR")
+                return None
+            if len(flags2) <= len(flags):
+                texto = texto2
+                flags = flags2
+
+        # última validação: PT-BR obrigatório
+        if not parece_portugues(texto):
+            log("  🚫 Matéria rejeitada: não parece PT-BR")
+            return None
+
+        log(f"  ✅ Matéria gerada ({len(texto.split())} palavras) | flags: {', '.join(flags) if flags else 'ok'}")
         return texto
     except Exception as e:
         log(f"  ⚠️ Groq falhou: {str(e)[:60]}")

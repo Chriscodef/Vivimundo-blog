@@ -5,8 +5,8 @@ Relatório gerado automaticamente pelo editor.
 - Modo: APLICANDO correções
 - Limites: max_edits=25, max_deletes=10
 
-- ✏️ EDIT: **Polícia apreende Mercedes de piloto preso acusado de abuso** (posts/post-0056-polícia-apreende-mercedes-de-piloto-preso-acusado-.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Produtoi Phone 18 Pro e Galaxy S27 terão melhoria importante na câmera, apontam ** (posts/post-0043-produtoi-phone-18-pro-e-galaxy-s27-terão-melhoria-.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Polícia apreende Mercedes de piloto preso acusado de abuso** (posts/post-0056-polícia-apreende-mercedes-de-piloto-preso-acusado-.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Produtoi Phone 18 Pro e Galaxy S27 terão melhoria importante na câmera, apontam ** (posts/post-0043-produtoi-phone-18-pro-e-galaxy-s27-terão-melhoria-.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Flávio Bolsonaro não vai reagir à aproximação de partidos do Centrão com o presi** (posts/post-0037-flávio-bolsonaro-não-vai-reagir-à-aproximação-de-p.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Software Imagens mostram novos ícones e temas do Whats App para assinantes; conf** (posts/post-0035-software-imagens-mostram-novos-ícones-e-temas-do-w.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Brasil registra 1,6 milhão de casos de trabalho infantil, mas menos de 1% foi al** (posts/post-0029-brasil-registra-1,6-milhão-de-casos-de-trabalho-in.html) | ações=['fallback_regra_sem_groq']

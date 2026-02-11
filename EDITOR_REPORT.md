@@ -5,7 +5,11 @@ Relatório gerado automaticamente pelo editor.
 - Modo: APLICANDO correções
 - Limites: max_edits=25, max_deletes=10
 
-- ✏️ EDIT: **Mulher morre em confronto entre facções rivais em Paciência** (posts/post-0079-mulher-morre-em-confronto-entre-facções-rivais-em-.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Discord passará a exigir identificação de idade por meio de reconhecimento facia** (posts/post-0084-discord-passará-a-exigir-identificação-de-idade-po.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Voxel High On Life 2 chega com localização em português brasileiro: ‘Nós ouvimos** (posts/post-0083-voxel-high-on-life-2-chega-com-localização-em-port.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Terminou! Como foi o finale de Febre de Primavera? Veja spoilers** (posts/post-0082-terminou-como-foi-o-finale-de-febre-de-primavera.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Ex-técnico do Real Madrid detona Ronaldo Fenômeno: " Líder negativo"** (posts/post-0081-ex-técnico-do-real-madrid-detona-ronaldo-fenômeno:.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Suzane Richthofen: bens de tio morto incluem coleção de Barbies raras** (posts/post-0080-suzane-richthofen:-bens-de-tio-morto-incluem-coleç.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Tarcísio viaja a Brasília para se reunir com Alexandre de Moraes, Toffoli, Zanin** (posts/post-0077-tarcísio-viaja-a-brasília-para-se-reunir-com-alexa.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Elenco original de volta! A Múmia 4 ganha data de estreia nos cinemas. Confira!** (posts/post-0074-elenco-original-de-volta-a-múmia-4-ganha-data-de-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **MP apura se dá para ampliar operação do metrô e CPTM aos fins de semana** (posts/post-0072-mp-apura-se-dá-para-ampliar-operação-do-metrô-e-cp.html) | ações=['fallback_regra_sem_groq']
@@ -24,4 +28,4 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Esportes a Motor** (posts/post-0007-esportes-a-motor.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Presidente do Irã confirma negociações com os EUA e diz que conversas devem ser ** (posts/post-0006-presidente-do-irã-confirma-negociações-com-os-eua-.html) | ações=['fallback_regra_sem_groq']
 
-- Resumo: edits=18 deletes=0
+- Resumo: edits=22 deletes=0

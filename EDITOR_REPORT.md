@@ -5,17 +5,15 @@ Relatório gerado automaticamente pelo editor.
 - Modo: APLICANDO correções
 - Limites: max_edits=25, max_deletes=10
 
-- ✏️ EDIT: **Carnaval 2026: veja o que abre e o que fecha durante o feriadão no Rio** (posts/post-0143-carnaval-2026:-veja-o-que-abre-e-o-que-fecha-duran.html) | ações=['reescrito_groq']
-- ✏️ EDIT: **Redes Sociais Moltbook: a farsa da " rede social para IAs" que enganou a interne** (posts/post-0139-redes-sociais-moltbook:-a-farsa-da-"-rede-social-p.html) | ações=['reescrito_groq']
-- ✏️ EDIT: **Quaest, 2º turno: Lula continua à frente, e menor diferença é contra Flávio Bols** (posts/post-0133-quaest,-2º-turno:-lula-continua-à-frente,-e-menor-.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **RJ inaugura instituto dedicado ao tratamento de câncer; estado tem 100 novos cas** (posts/post-0127-rj-inaugura-instituto-dedicado-ao-tratamento-de-câ.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Quaest, 2º turno: Lula continua à frente, e menor diferença é contra Flávio Bols** (posts/post-0133-quaest,-2º-turno:-lula-continua-à-frente,-e-menor-.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **RJ inaugura instituto dedicado ao tratamento de câncer; estado tem 100 novos cas** (posts/post-0127-rj-inaugura-instituto-dedicado-ao-tratamento-de-câ.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Latam demite piloto suspeito de manter rede de abuso sexual infantil** (posts/post-0120-latam-demite-piloto-suspeito-de-manter-rede-de-abu.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Polícia Civil encontra cemitério clandestino em Bangu** (posts/post-0111-polícia-civil-encontra-cemitério-clandestino-em-ba.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Homem que jogou mais de R$ 400 mil pela janela vira alvo de investigação da PF e** (posts/post-0109-homem-que-jogou-mais-de-r$-400-mil-pela-janela-vir.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Segurança Mais de 40 sites falsos da Apple roubam senhas de brasileiros vítimas ** (posts/post-0107-segurança-mais-de-40-sites-falsos-da-apple-roubam-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Esposa ficou horrorizada ao descobrir supostos crimes** (posts/post-0104-esposa-ficou-horrorizada-ao-descobrir-supostos-cri.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Veja curiosidades da história dos blocos e imagens clássicas da folia** (posts/post-0103-veja-curiosidades-da-história-dos-blocos-e-imagens.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Cada dia mais perto: 2ª temporada do live-action de One Piece revela trailer ofi** (posts/post-0100-cada-dia-mais-perto:-2ª-temporada-do-live-action-d.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Cada dia mais perto: 2ª temporada do live-action de One Piece revela trailer ofi** (posts/post-0100-cada-dia-mais-perto:-2ª-temporada-do-live-action-d.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Minha Série The White Lotus Temporada 4: Conheça o elenco e tudo sobre a série H** (posts/post-0099-minha-série-the-white-lotus-temporada-4:-conheça-o.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Piloto suspeito de abuso sexual infantil admitiu conhecer vítimas** (posts/post-0096-piloto-suspeito-de-abuso-sexual-infantil-admitiu-c.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Receita Federal dos EUA divulgou dados fiscais confidenciais de milhares de imig** (posts/post-0094-receita-federal-dos-eua-divulgou-dados-fiscais-con.html) | ações=['fallback_regra_sem_groq']
@@ -39,4 +37,4 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Esportes a Motor** (posts/post-0007-esportes-a-motor.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Presidente do Irã confirma negociações com os EUA e diz que conversas devem ser ** (posts/post-0006-presidente-do-irã-confirma-negociações-com-os-eua-.html) | ações=['fallback_regra_sem_groq']
 
-- Resumo: edits=33 deletes=0
+- Resumo: edits=31 deletes=0

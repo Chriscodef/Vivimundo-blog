@@ -5,11 +5,8 @@ Relatório gerado automaticamente pelo editor.
 - Modo: APLICANDO correções
 - Limites: max_edits=25, max_deletes=10
 
-- ✏️ EDIT: **Mulher morre em confronto entre facções rivais em Paciência** (posts/post-0079-mulher-morre-em-confronto-entre-facções-rivais-em-.html) | ações=['fallback_regra_sem_groq']
-- 🟧 QUARENTENA: **Sentença sobre extradição de Carla Zambelli deve sair em alguns dias, diz advoga** (posts/post-0078-sentença-sobre-extradição-de-carla-zambelli-deve-s.html) -> `posts/_quarantine/post-0078-sentença-sobre-extradição-de-carla-zambelli-deve-s.html` | motivos=['quarentena_sem_groq']
+- ✏️ EDIT: **Mulher morre em confronto entre facções rivais em Paciência** (posts/post-0079-mulher-morre-em-confronto-entre-facções-rivais-em-.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Tarcísio viaja a Brasília para se reunir com Alexandre de Moraes, Toffoli, Zanin** (posts/post-0077-tarcísio-viaja-a-brasília-para-se-reunir-com-alexa.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Menos de um mês após lançamento, Riot Games anuncia demissão de dezenas de funci** (posts/post-0076-menos-de-um-mês-após-lançamento,-riot-games-anunci.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Voxel Tudo que sabemos antes do lançamento de Forest 3 Há 10 minutos** (posts/post-0075-voxel-tudo-que-sabemos-antes-do-lançamento-de-fore.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Elenco original de volta! A Múmia 4 ganha data de estreia nos cinemas. Confira!** (posts/post-0074-elenco-original-de-volta-a-múmia-4-ganha-data-de-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **MP apura se dá para ampliar operação do metrô e CPTM aos fins de semana** (posts/post-0072-mp-apura-se-dá-para-ampliar-operação-do-metrô-e-cp.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Trump teria ligado para chefe de polícia em 2006 para falar sobre comportamento ** (posts/post-0070-trump-teria-ligado-para-chefe-de-polícia-em-2006-p.html) | ações=['fallback_regra_sem_groq']
@@ -27,4 +24,4 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Esportes a Motor** (posts/post-0007-esportes-a-motor.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Presidente do Irã confirma negociações com os EUA e diz que conversas devem ser ** (posts/post-0006-presidente-do-irã-confirma-negociações-com-os-eua-.html) | ações=['fallback_regra_sem_groq']
 
-- Resumo: edits=20 deletes=1
+- Resumo: edits=18 deletes=0

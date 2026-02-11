@@ -5,28 +5,23 @@ Relatório gerado automaticamente pelo editor.
 - Modo: APLICANDO correções
 - Limites: max_edits=25, max_deletes=10
 
-- ✏️ EDIT: **Fecomércio RJ entrega Ordem do Mérito Comercial Estácio de Sá a lideranças do co** (posts/post-0167-fecomércio-rj-entrega-ordem-do-mérito-comercial-es.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Iza diz que ser rainha da Imperatriz ' é uma responsabilidade muito maior' que u** (posts/post-0175-iza-diz-que-ser-rainha-da-imperatriz-'-é-uma-respo.html) | ações=['fallback_regra_sem_groq']
+- 🟧 QUARENTENA: **Atiradora que realizou ataque no Canadá matou a própria mãe e irmão, diz polícia** (posts/post-0174-atiradora-que-realizou-ataque-no-canadá-matou-a-pr.html) -> `posts/_quarantine/post-0174-atiradora-que-realizou-ataque-no-canadá-matou-a-pr.html` | motivos=['quarentena_sem_groq']
+- ✏️ EDIT: **Flávio Bolsonaro compara Lula a carro velho ao comentar nova Quaest; líder do PT** (posts/post-0173-flávio-bolsonaro-compara-lula-a-carro-velho-ao-com.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Mal começou e já vai parar: 3ª temporada de Jujutsu Kaisen terá hiato bem no com** (posts/post-0172-mal-começou-e-já-vai-parar:-3ª-temporada-de-jujuts.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Minha Série O Morro dos Ventos Uivantes e mais! Confira lançamentos do cinema de** (posts/post-0171-minha-série-o-morro-dos-ventos-uivantes-e-mais-co.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Filmes Cinco Tipos de Medo | Longa com Bella Campos e Xamã ganha trailer e data2** (posts/post-0170-filmes-cinco-tipos-de-medo-|-longa-com-bella-campo.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Lindsey Vonn faz 3ª cirurgia, e foto de pinos na perna chama atenção** (posts/post-0169-lindsey-vonn-faz-3ª-cirurgia,-e-foto-de-pinos-na-p.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Aneel considera insatisfatória atuação da Enel em apagão de dezembro que deixou ** (posts/post-0168-aneel-considera-insatisfatória-atuação-da-enel-em-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **EUA reabrem aeroporto após confusão entre controladores aéreos e militares que t** (posts/post-0166-eua-reabrem-aeroporto-após-confusão-entre-controla.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Entidades de juízes defendem ' penduricalhos' e pedem para participar de ação no** (posts/post-0165-entidades-de-juízes-defendem-'-penduricalhos'-e-pe.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **" Já chega!": um dos atores mais queridos da saga Harry Potter está farto de ser** (posts/post-0164-"-já-chega":-um-dos-atores-mais-queridos-da-saga-.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Segurança Criminosos usam ' Whats App dos anos 1990' para invadir 7 mil servidor** (posts/post-0163-segurança-criminosos-usam-'-whats-app-dos-anos-199.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **BBB 26 Sol Vega expulsa e Sarah Andrade eliminada, ouça o Recapitulando** (posts/post-0162-bbb-26-sol-vega-expulsa-e-sarah-andrade-eliminada,.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Snowboard halfpipe: brasileiros caem e ficam fora da final** (posts/post-0161-snowboard-halfpipe:-brasileiros-caem-e-ficam-fora-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Reitoria da USP oficializa demissão de professor de direito acusado de assédio s** (posts/post-0160-reitoria-da-usp-oficializa-demissão-de-professor-d.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **O Dia em Volta Redonda** (posts/post-0159-o-dia-em-volta-redonda.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Rebelião policial na Argentina tem queima de pneus e cobrança por melhores salár** (posts/post-0158-rebelião-policial-na-argentina-tem-queima-de-pneus.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Marco Buzzi, ministro acusado de importunação sexual, ganhou R$ 750 mil brutos e** (posts/post-0157-marco-buzzi,-ministro-acusado-de-importunação-sexu.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Rebelião policial na Argentina tem queima de pneus e cobrança por melhores salár** (posts/post-0158-rebelião-policial-na-argentina-tem-queima-de-pneus.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Nova atualização de No Man' s Sky traz algo que pode mudar o jogo para sempre** (posts/post-0156-nova-atualização-de-no-man'-s-sky-traz-algo-que-po.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Voxel Overwatch revive com nova atualização e atinge pico histórico de jogadores** (posts/post-0155-voxel-overwatch-revive-com-nova-atualização-e-atin.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Santos anuncia a contratação do atacante Moisés** (posts/post-0153-santos-anuncia-a-contratação-do-atacante-moisés.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Donos de academia onde mulher morreu, na Zona Leste de SP, prestam depoimento à ** (posts/post-0152-donos-de-academia-onde-mulher-morreu,-na-zona-lest.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Shakira será a atração do ' Todo Mundo no Rio', na Praia de Copacabana** (posts/post-0151-shakira-será-a-atração-do-'-todo-mundo-no-rio',-na.html) | ações=['fallback_regra_sem_groq']
-- 🟧 QUARENTENA: **EUA avaliam ataque ao Irã e preparam envio de novo porta-aviões ao Oriente Médio** (posts/post-0150-eua-avaliam-ataque-ao-irã-e-preparam-envio-de-novo.html) -> `posts/_quarantine/post-0150-eua-avaliam-ataque-ao-irã-e-preparam-envio-de-novo.html` | motivos=['quarentena_sem_groq']
-- ✏️ EDIT: **É #FAKE que Tarcísio de Freitas e ' governadores bolsonaristas' assinaram carta ** (posts/post-0149-é-#fake-que-tarcísio-de-freitas-e-'-governadores-b.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Showrunner de O Cavaleiro dos Sete Reinos admite erro na adaptação que irritou f** (posts/post-0148-showrunner-de-o-cavaleiro-dos-sete-reinos-admite-e.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **The BRIEF Microsoft inaugura dois novos data centers para IA e nuvem no Brasil H** (posts/post-0147-the-brief-microsoft-inaugura-dois-novos-data-cente.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Luto Morre James Van Der Beek, astro de Dawson' s Creek, aos 48 anos** (posts/post-0146-luto-morre-james-van-der-beek,-astro-de-dawson'-s-.html) | ações=['fallback_regra_sem_groq']
-- 🟧 QUARENTENA: **Corinthians anuncia a contratação do volante Allan, ex-Flamengo** (posts/post-0145-corinthians-anuncia-a-contratação-do-volante-allan.html) -> `posts/_quarantine/post-0145-corinthians-anuncia-a-contratação-do-volante-allan.html` | motivos=['quarentena_sem_groq']
 - ✏️ EDIT: **Blocos Pagu e Tarado Ni Você conseguem patrocínio e confirmam desfiles** (posts/post-0144-blocos-pagu-e-tarado-ni-você-conseguem-patrocínio-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Polícia Civil encontra cemitério clandestino em Bangu** (posts/post-0111-polícia-civil-encontra-cemitério-clandestino-em-ba.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Homem que jogou mais de R$ 400 mil pela janela vira alvo de investigação da PF e** (posts/post-0109-homem-que-jogou-mais-de-r$-400-mil-pela-janela-vir.html) | ações=['fallback_regra_sem_groq']
@@ -56,4 +51,4 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Esportes a Motor** (posts/post-0007-esportes-a-motor.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Presidente do Irã confirma negociações com os EUA e diz que conversas devem ser ** (posts/post-0006-presidente-do-irã-confirma-negociações-com-os-eua-.html) | ações=['fallback_regra_sem_groq']
 
-- Resumo: edits=48 deletes=2
+- Resumo: edits=44 deletes=1

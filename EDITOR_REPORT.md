@@ -5,8 +5,8 @@ Relatório gerado automaticamente pelo editor.
 - Modo: APLICANDO correções
 - Limites: max_edits=25, max_deletes=10
 
-- ✏️ EDIT: **Receita Federal dos EUA divulgou dados fiscais confidenciais de milhares de imig** (posts/post-0094-receita-federal-dos-eua-divulgou-dados-fiscais-con.html) | ações=['removeu_fonte', 'fallback_regra_sem_groq']
-- ✏️ EDIT: **Caso Master: dinheiro jogado pela janela de banheiro durante operação em SC soma** (posts/post-0093-caso-master:-dinheiro-jogado-pela-janela-de-banhei.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Receita Federal dos EUA divulgou dados fiscais confidenciais de milhares de imig** (posts/post-0094-receita-federal-dos-eua-divulgou-dados-fiscais-con.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Caso Master: dinheiro jogado pela janela de banheiro durante operação em SC soma** (posts/post-0093-caso-master:-dinheiro-jogado-pela-janela-de-banhei.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Segurança Operação da PF mira criminosos que divulgavam abuso de mulheres na int** (posts/post-0091-segurança-operação-da-pf-mira-criminosos-que-divul.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Show gratuito em Copacabana Shakira será show do Todo Mundo no Rio 2026** (posts/post-0090-show-gratuito-em-copacabana-shakira-será-show-do-t.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Tarcísio viaja a Brasília para se reunir com Alexandre de Moraes, Toffoli, Zanin** (posts/post-0077-tarcísio-viaja-a-brasília-para-se-reunir-com-alexa.html) | ações=['fallback_regra_sem_groq']

@@ -5,18 +5,10 @@ Relatório gerado automaticamente pelo editor.
 - Modo: APLICANDO correções
 - Limites: max_edits=25, max_deletes=10
 
-- ✏️ EDIT: **Iza diz que ser rainha da Imperatriz ' é uma responsabilidade muito maior' que u** (posts/post-0175-iza-diz-que-ser-rainha-da-imperatriz-'-é-uma-respo.html) | ações=['fallback_regra_sem_groq']
-- 🟧 QUARENTENA: **Atiradora que realizou ataque no Canadá matou a própria mãe e irmão, diz polícia** (posts/post-0174-atiradora-que-realizou-ataque-no-canadá-matou-a-pr.html) -> `posts/_quarantine/post-0174-atiradora-que-realizou-ataque-no-canadá-matou-a-pr.html` | motivos=['quarentena_sem_groq']
-- ✏️ EDIT: **Flávio Bolsonaro compara Lula a carro velho ao comentar nova Quaest; líder do PT** (posts/post-0173-flávio-bolsonaro-compara-lula-a-carro-velho-ao-com.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Mal começou e já vai parar: 3ª temporada de Jujutsu Kaisen terá hiato bem no com** (posts/post-0172-mal-começou-e-já-vai-parar:-3ª-temporada-de-jujuts.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Minha Série O Morro dos Ventos Uivantes e mais! Confira lançamentos do cinema de** (posts/post-0171-minha-série-o-morro-dos-ventos-uivantes-e-mais-co.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Filmes Cinco Tipos de Medo | Longa com Bella Campos e Xamã ganha trailer e data2** (posts/post-0170-filmes-cinco-tipos-de-medo-|-longa-com-bella-campo.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Lindsey Vonn faz 3ª cirurgia, e foto de pinos na perna chama atenção** (posts/post-0169-lindsey-vonn-faz-3ª-cirurgia,-e-foto-de-pinos-na-p.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Aneel considera insatisfatória atuação da Enel em apagão de dezembro que deixou ** (posts/post-0168-aneel-considera-insatisfatória-atuação-da-enel-em-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **EUA reabrem aeroporto após confusão entre controladores aéreos e militares que t** (posts/post-0166-eua-reabrem-aeroporto-após-confusão-entre-controla.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Reitoria da USP oficializa demissão de professor de direito acusado de assédio s** (posts/post-0160-reitoria-da-usp-oficializa-demissão-de-professor-d.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Reitoria da USP oficializa demissão de professor de direito acusado de assédio s** (posts/post-0160-reitoria-da-usp-oficializa-demissão-de-professor-d.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **O Dia em Volta Redonda** (posts/post-0159-o-dia-em-volta-redonda.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Rebelião policial na Argentina tem queima de pneus e cobrança por melhores salár** (posts/post-0158-rebelião-policial-na-argentina-tem-queima-de-pneus.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Nova atualização de No Man' s Sky traz algo que pode mudar o jogo para sempre** (posts/post-0156-nova-atualização-de-no-man'-s-sky-traz-algo-que-po.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Voxel Overwatch revive com nova atualização e atinge pico histórico de jogadores** (posts/post-0155-voxel-overwatch-revive-com-nova-atualização-e-atin.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Donos de academia onde mulher morreu, na Zona Leste de SP, prestam depoimento à ** (posts/post-0152-donos-de-academia-onde-mulher-morreu,-na-zona-lest.html) | ações=['fallback_regra_sem_groq']
@@ -51,4 +43,4 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Esportes a Motor** (posts/post-0007-esportes-a-motor.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Presidente do Irã confirma negociações com os EUA e diz que conversas devem ser ** (posts/post-0006-presidente-do-irã-confirma-negociações-com-os-eua-.html) | ações=['fallback_regra_sem_groq']
 
-- Resumo: edits=44 deletes=1
+- Resumo: edits=37 deletes=0

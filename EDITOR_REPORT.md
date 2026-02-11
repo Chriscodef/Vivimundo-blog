@@ -5,11 +5,10 @@ Relatório gerado automaticamente pelo editor.
 - Modo: APLICANDO correções
 - Limites: max_edits=25, max_deletes=10
 
-- ✏️ EDIT: **Voxel High On Life 2 chega com localização em português brasileiro: ‘Nós ouvimos** (posts/post-0083-voxel-high-on-life-2-chega-com-localização-em-port.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Tarcísio viaja a Brasília para se reunir com Alexandre de Moraes, Toffoli, Zanin** (posts/post-0077-tarcísio-viaja-a-brasília-para-se-reunir-com-alexa.html) | ações=['reescrito_groq']
-- ✏️ EDIT: **Elenco original de volta! A Múmia 4 ganha data de estreia nos cinemas. Confira!** (posts/post-0074-elenco-original-de-volta-a-múmia-4-ganha-data-de-.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **MP apura se dá para ampliar operação do metrô e CPTM aos fins de semana** (posts/post-0072-mp-apura-se-dá-para-ampliar-operação-do-metrô-e-cp.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Trump teria ligado para chefe de polícia em 2006 para falar sobre comportamento ** (posts/post-0070-trump-teria-ligado-para-chefe-de-polícia-em-2006-p.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Elenco original de volta! A Múmia 4 ganha data de estreia nos cinemas. Confira!** (posts/post-0074-elenco-original-de-volta-a-múmia-4-ganha-data-de-.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **MP apura se dá para ampliar operação do metrô e CPTM aos fins de semana** (posts/post-0072-mp-apura-se-dá-para-ampliar-operação-do-metrô-e-cp.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Trump teria ligado para chefe de polícia em 2006 para falar sobre comportamento ** (posts/post-0070-trump-teria-ligado-para-chefe-de-polícia-em-2006-p.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **" Namorem logo!": não são só fãs que ficam frustrados com romance entre Fern e S** (posts/post-0068-"-namorem-logo":-não-são-só-fãs-que-ficam-frustra.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **VÍDEO: PM mata homem que invadiu instituição que atende crianças e adolescentes ** (posts/post-0064-vídeo:-pm-mata-homem-que-invadiu-instituição-que-a.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Polícia apreende Mercedes de piloto preso acusado de abuso** (posts/post-0056-polícia-apreende-mercedes-de-piloto-preso-acusado-.html) | ações=['fallback_regra_sem_groq']
@@ -24,4 +23,4 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Esportes a Motor** (posts/post-0007-esportes-a-motor.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Presidente do Irã confirma negociações com os EUA e diz que conversas devem ser ** (posts/post-0006-presidente-do-irã-confirma-negociações-com-os-eua-.html) | ações=['fallback_regra_sem_groq']
 
-- Resumo: edits=18 deletes=0
+- Resumo: edits=17 deletes=0

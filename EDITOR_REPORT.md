@@ -5,8 +5,13 @@ Relatório gerado automaticamente pelo editor.
 - Modo: APLICANDO correções
 - Limites: max_edits=25, max_deletes=10
 
-- ✏️ EDIT: **VÍDEO: PM mata homem que invadiu instituição que atende crianças e adolescentes ** (posts/post-0064-vídeo:-pm-mata-homem-que-invadiu-instituição-que-a.html) | ações=['reescrito_groq']
-- ✏️ EDIT: **Polícia apreende Mercedes de piloto preso acusado de abuso** (posts/post-0056-polícia-apreende-mercedes-de-piloto-preso-acusado-.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Integrantes do Judiciário veem risco de desfile parar na Justiça Eleitoral, e Pl** (posts/post-0069-integrantes-do-judiciário-veem-risco-de-desfile-pa.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **" Namorem logo!": não são só fãs que ficam frustrados com romance entre Fern e S** (posts/post-0068-"-namorem-logo":-não-são-só-fãs-que-ficam-frustra.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **The BRIEFJ Mail permite que qualquer um acesse os “Epstein Files” em interface e** (posts/post-0067-the-briefj-mail-permite-que-qualquer-um-acesse-os-.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Ingressos à vendagamescom latam 2026 terá David Wise, compositor de Donkey Kong** (posts/post-0066-ingressos-à-vendagamescom-latam-2026-terá-david-wi.html) | ações=['fallback_regra_sem_groq']
+- 🟧 QUARENTENA: **Vini Jr. e Mbappé oferecem jantar a elenco do Real Madrid a uma semana de jogo p** (posts/post-0065-vini-jr.-e-mbappé-oferecem-jantar-a-elenco-do-real.html) -> `posts/_quarantine/post-0065-vini-jr.-e-mbappé-oferecem-jantar-a-elenco-do-real.html` | motivos=['quarentena_sem_groq']
+- ✏️ EDIT: **VÍDEO: PM mata homem que invadiu instituição que atende crianças e adolescentes ** (posts/post-0064-vídeo:-pm-mata-homem-que-invadiu-instituição-que-a.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Polícia apreende Mercedes de piloto preso acusado de abuso** (posts/post-0056-polícia-apreende-mercedes-de-piloto-preso-acusado-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Produtoi Phone 18 Pro e Galaxy S27 terão melhoria importante na câmera, apontam ** (posts/post-0043-produtoi-phone-18-pro-e-galaxy-s27-terão-melhoria-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Flávio Bolsonaro não vai reagir à aproximação de partidos do Centrão com o presi** (posts/post-0037-flávio-bolsonaro-não-vai-reagir-à-aproximação-de-p.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Software Imagens mostram novos ícones e temas do Whats App para assinantes; conf** (posts/post-0035-software-imagens-mostram-novos-ícones-e-temas-do-w.html) | ações=['fallback_regra_sem_groq']
@@ -18,4 +23,4 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Esportes a Motor** (posts/post-0007-esportes-a-motor.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Presidente do Irã confirma negociações com os EUA e diz que conversas devem ser ** (posts/post-0006-presidente-do-irã-confirma-negociações-com-os-eua-.html) | ações=['fallback_regra_sem_groq']
 
-- Resumo: edits=12 deletes=0
+- Resumo: edits=16 deletes=1

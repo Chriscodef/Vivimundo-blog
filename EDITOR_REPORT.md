@@ -5,12 +5,8 @@ Relatório gerado automaticamente pelo editor.
 - Modo: APLICANDO correções
 - Limites: max_edits=25, max_deletes=10
 
-- ✏️ EDIT: **VÍDEO: PM mata homem que invadiu instituição que atende crianças e adolescentes ** (posts/post-0064-vídeo:-pm-mata-homem-que-invadiu-instituição-que-a.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Aluno de 12 anos passa em matemática na Uerj: ' Pontinhos sobrando'** (posts/post-0063-aluno-de-12-anos-passa-em-matemática-na-uerj:-'-po.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **' Pegamos mesas e bloqueamos as portas': estudante relata ataque em escola no Ca** (posts/post-0062-'-pegamos-mesas-e-bloqueamos-as-portas':-estudante.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Denúncias e processos por assédio moral no trabalho crescem mais de 20% em 2025;** (posts/post-0061-denúncias-e-processos-por-assédio-moral-no-trabalh.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Mario Tennis Fever joga seguro e não inova, mas ainda diverte | Review** (posts/post-0060-mario-tennis-fever-joga-seguro-e-não-inova,-mas-ai.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Polícia apreende Mercedes de piloto preso acusado de abuso** (posts/post-0056-polícia-apreende-mercedes-de-piloto-preso-acusado-.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **VÍDEO: PM mata homem que invadiu instituição que atende crianças e adolescentes ** (posts/post-0064-vídeo:-pm-mata-homem-que-invadiu-instituição-que-a.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Polícia apreende Mercedes de piloto preso acusado de abuso** (posts/post-0056-polícia-apreende-mercedes-de-piloto-preso-acusado-.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Produtoi Phone 18 Pro e Galaxy S27 terão melhoria importante na câmera, apontam ** (posts/post-0043-produtoi-phone-18-pro-e-galaxy-s27-terão-melhoria-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Flávio Bolsonaro não vai reagir à aproximação de partidos do Centrão com o presi** (posts/post-0037-flávio-bolsonaro-não-vai-reagir-à-aproximação-de-p.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Software Imagens mostram novos ícones e temas do Whats App para assinantes; conf** (posts/post-0035-software-imagens-mostram-novos-ícones-e-temas-do-w.html) | ações=['fallback_regra_sem_groq']
@@ -22,4 +18,4 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Esportes a Motor** (posts/post-0007-esportes-a-motor.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Presidente do Irã confirma negociações com os EUA e diz que conversas devem ser ** (posts/post-0006-presidente-do-irã-confirma-negociações-com-os-eua-.html) | ações=['fallback_regra_sem_groq']
 
-- Resumo: edits=16 deletes=0
+- Resumo: edits=12 deletes=0

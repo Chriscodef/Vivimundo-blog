@@ -5,9 +5,15 @@ Relatório gerado automaticamente pelo editor.
 - Modo: APLICANDO correções
 - Limites: max_edits=25, max_deletes=10
 
-- ✏️ EDIT: **Aneel considera insatisfatória atuação da Enel em apagão de dezembro que deixou ** (posts/post-0168-aneel-considera-insatisfatória-atuação-da-enel-em-.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Grande Rio registra chuva forte em vários pontos** (posts/post-0183-grande-rio-registra-chuva-forte-em-vários-pontos.html) | ações=['fallback_regra_sem_groq']
+- 🟧 QUARENTENA: **VÍDEO: Passageiros ouvem explosão, motor de avião perde peça e piloto faz pouso ** (posts/post-0182-vídeo:-passageiros-ouvem-explosão,-motor-de-avião-.html) -> `posts/_quarantine/post-0182-vídeo:-passageiros-ouvem-explosão,-motor-de-avião-.html` | motivos=['quarentena_sem_groq']
+- ✏️ EDIT: **Lula negociar vice não é ato contra Geraldo Alckmin, diz Renan Filho** (posts/post-0181-lula-negociar-vice-não-é-ato-contra-geraldo-alckmi.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Há 25 anos, Diablo II definiu o gênero; agora, a Blizzard faz o impensável e rev** (posts/post-0180-há-25-anos,-diablo-ii-definiu-o-gênero;-agora,-a-b.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **K-drama da Netflix Confira cena inédita de A Arte de Sarah** (posts/post-0178-k-drama-da-netflix-confira-cena-inédita-de-a-arte-.html) | ações=['fallback_regra_sem_groq']
+- 🟧 QUARENTENA: **Arboleda é liberado pelo São Paulo para resolver problemas particulares no Equad** (posts/post-0177-arboleda-é-liberado-pelo-são-paulo-para-resolver-p.html) -> `posts/_quarantine/post-0177-arboleda-é-liberado-pelo-são-paulo-para-resolver-p.html` | motivos=['quarentena_sem_groq']
+- ✏️ EDIT: **Morte em piscina em SP: Polícia indicia três donos de academia por homicídio com** (posts/post-0176-morte-em-piscina-em-sp:-polícia-indicia-três-donos.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Aneel considera insatisfatória atuação da Enel em apagão de dezembro que deixou ** (posts/post-0168-aneel-considera-insatisfatória-atuação-da-enel-em-.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **EUA reabrem aeroporto após confusão entre controladores aéreos e militares que t** (posts/post-0166-eua-reabrem-aeroporto-após-confusão-entre-controla.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Reitoria da USP oficializa demissão de professor de direito acusado de assédio s** (posts/post-0160-reitoria-da-usp-oficializa-demissão-de-professor-d.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **O Dia em Volta Redonda** (posts/post-0159-o-dia-em-volta-redonda.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Nova atualização de No Man' s Sky traz algo que pode mudar o jogo para sempre** (posts/post-0156-nova-atualização-de-no-man'-s-sky-traz-algo-que-po.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Voxel Overwatch revive com nova atualização e atinge pico histórico de jogadores** (posts/post-0155-voxel-overwatch-revive-com-nova-atualização-e-atin.html) | ações=['fallback_regra_sem_groq']
@@ -43,4 +49,4 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Esportes a Motor** (posts/post-0007-esportes-a-motor.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Presidente do Irã confirma negociações com os EUA e diz que conversas devem ser ** (posts/post-0006-presidente-do-irã-confirma-negociações-com-os-eua-.html) | ações=['fallback_regra_sem_groq']
 
-- Resumo: edits=37 deletes=0
+- Resumo: edits=41 deletes=2

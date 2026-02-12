@@ -8,9 +8,6 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Capivara é flagrada se refrescando no mar do Arpoador; VÍDEO** (posts/post-0319-capivara-é-flagrada-se-refrescando-no-mar-do-arpoa.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **É #FATO: Vídeo mostra cratera gigante se abrindo no meio da rua em obra do metrô** (posts/post-0318-é-#fato:-vídeo-mostra-cratera-gigante-se-abrindo-n.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **47% dos brasileiros dizem que sentiram impacto na renda após a isenção do IR par** (posts/post-0317-47%-dos-brasileiros-dizem-que-sentiram-impacto-na-.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Em celebração ao ano novo chinês, Game Science lança trailer de Black Myth: Zhon** (posts/post-0316-em-celebração-ao-ano-novo-chinês,-game-science-lan.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Software' Mundo em perigo': ex-pesquisador da Anthropic se demite e alerta sobre** (posts/post-0315-software'-mundo-em-perigo':-ex-pesquisador-da-anth.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Filmes Toy Story 5 une brinquedos e tecnologia em novo pôster2 min de leitura Ga** (posts/post-0314-filmes-toy-story-5-une-brinquedos-e-tecnologia-em-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Áudio do VAR é divulgado em lance de Kenji: " Quebrou a perna do cara"** (posts/post-0313-áudio-do-var-é-divulgado-em-lance-de-kenji:-"-queb.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Operação mira organização chinesa ligada ao PCC acusada de lavagem** (posts/post-0312-operação-mira-organização-chinesa-ligada-ao-pcc-ac.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Vídeo mostra desespero do pai ao sair do carro após filha ser baleada em tentati** (posts/post-0311-vídeo-mostra-desespero-do-pai-ao-sair-do-carro-apó.html) | ações=['fallback_regra_sem_groq']
@@ -78,4 +75,4 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Esportes a Motor** (posts/post-0007-esportes-a-motor.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Presidente do Irã confirma negociações com os EUA e diz que conversas devem ser ** (posts/post-0006-presidente-do-irã-confirma-negociações-com-os-eua-.html) | ações=['fallback_regra_sem_groq']
 
-- Resumo: edits=72 deletes=0
+- Resumo: edits=69 deletes=0

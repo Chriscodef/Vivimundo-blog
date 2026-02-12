@@ -5,22 +5,15 @@ Relatório gerado automaticamente pelo editor.
 - Modo: APLICANDO correções
 - Limites: max_edits=25, max_deletes=10
 
-- ✏️ EDIT: **Grande Rio registra chuva forte em vários pontos** (posts/post-0183-grande-rio-registra-chuva-forte-em-vários-pontos.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Há 25 anos, Diablo II definiu o gênero; agora, a Blizzard faz o impensável e rev** (posts/post-0180-há-25-anos,-diablo-ii-definiu-o-gênero;-agora,-a-b.html) | ações=['reescrito_groq']
-- ✏️ EDIT: **Morte em piscina em SP: Polícia indicia três donos de academia por homicídio com** (posts/post-0176-morte-em-piscina-em-sp:-polícia-indicia-três-donos.html) | ações=['reescrito_groq']
-- ✏️ EDIT: **EUA reabrem aeroporto após confusão entre controladores aéreos e militares que t** (posts/post-0166-eua-reabrem-aeroporto-após-confusão-entre-controla.html) | ações=['reescrito_groq']
-- ✏️ EDIT: **O Dia em Volta Redonda** (posts/post-0159-o-dia-em-volta-redonda.html) | ações=['reescrito_groq']
-- ✏️ EDIT: **Nova atualização de No Man' s Sky traz algo que pode mudar o jogo para sempre** (posts/post-0156-nova-atualização-de-no-man'-s-sky-traz-algo-que-po.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Voxel Overwatch revive com nova atualização e atinge pico histórico de jogadores** (posts/post-0155-voxel-overwatch-revive-com-nova-atualização-e-atin.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Donos de academia onde mulher morreu, na Zona Leste de SP, prestam depoimento à ** (posts/post-0152-donos-de-academia-onde-mulher-morreu,-na-zona-lest.html) | ações=['reescrito_groq']
-- ✏️ EDIT: **Showrunner de O Cavaleiro dos Sete Reinos admite erro na adaptação que irritou f** (posts/post-0148-showrunner-de-o-cavaleiro-dos-sete-reinos-admite-e.html) | ações=['reescrito_groq']
-- ✏️ EDIT: **The BRIEF Microsoft inaugura dois novos data centers para IA e nuvem no Brasil H** (posts/post-0147-the-brief-microsoft-inaugura-dois-novos-data-cente.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Blocos Pagu e Tarado Ni Você conseguem patrocínio e confirmam desfiles** (posts/post-0144-blocos-pagu-e-tarado-ni-você-conseguem-patrocínio-.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Polícia Civil encontra cemitério clandestino em Bangu** (posts/post-0111-polícia-civil-encontra-cemitério-clandestino-em-ba.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Homem que jogou mais de R$ 400 mil pela janela vira alvo de investigação da PF e** (posts/post-0109-homem-que-jogou-mais-de-r$-400-mil-pela-janela-vir.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Segurança Mais de 40 sites falsos da Apple roubam senhas de brasileiros vítimas ** (posts/post-0107-segurança-mais-de-40-sites-falsos-da-apple-roubam-.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **The BRIEF Microsoft inaugura dois novos data centers para IA e nuvem no Brasil H** (posts/post-0147-the-brief-microsoft-inaugura-dois-novos-data-cente.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Blocos Pagu e Tarado Ni Você conseguem patrocínio e confirmam desfiles** (posts/post-0144-blocos-pagu-e-tarado-ni-você-conseguem-patrocínio-.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Polícia Civil encontra cemitério clandestino em Bangu** (posts/post-0111-polícia-civil-encontra-cemitério-clandestino-em-ba.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Homem que jogou mais de R$ 400 mil pela janela vira alvo de investigação da PF e** (posts/post-0109-homem-que-jogou-mais-de-r$-400-mil-pela-janela-vir.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Segurança Mais de 40 sites falsos da Apple roubam senhas de brasileiros vítimas ** (posts/post-0107-segurança-mais-de-40-sites-falsos-da-apple-roubam-.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Esposa ficou horrorizada ao descobrir supostos crimes** (posts/post-0104-esposa-ficou-horrorizada-ao-descobrir-supostos-cri.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Veja curiosidades da história dos blocos e imagens clássicas da folia** (posts/post-0103-veja-curiosidades-da-história-dos-blocos-e-imagens.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Minha Série The White Lotus Temporada 4: Conheça o elenco e tudo sobre a série H** (posts/post-0099-minha-série-the-white-lotus-temporada-4:-conheça-o.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Piloto suspeito de abuso sexual infantil admitiu conhecer vítimas** (posts/post-0096-piloto-suspeito-de-abuso-sexual-infantil-admitiu-c.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Receita Federal dos EUA divulgou dados fiscais confidenciais de milhares de imig** (posts/post-0094-receita-federal-dos-eua-divulgou-dados-fiscais-con.html) | ações=['fallback_regra_sem_groq']
@@ -44,4 +37,4 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Esportes a Motor** (posts/post-0007-esportes-a-motor.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Presidente do Irã confirma negociações com os EUA e diz que conversas devem ser ** (posts/post-0006-presidente-do-irã-confirma-negociações-com-os-eua-.html) | ações=['fallback_regra_sem_groq']
 
-- Resumo: edits=38 deletes=0
+- Resumo: edits=31 deletes=0

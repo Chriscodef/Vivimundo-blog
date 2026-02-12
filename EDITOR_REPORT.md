@@ -5,18 +5,17 @@ Relatório gerado automaticamente pelo editor.
 - Modo: APLICANDO correções
 - Limites: max_edits=25, max_deletes=10
 
-- 🟧 QUARENTENA: **Conheça o Clube de quem mais entende de tecnologia!** (posts/post-0267-conheça-o-clube-de-quem-mais-entende-de-tecnologia.html) -> `posts/_quarantine/post-0267-conheça-o-clube-de-quem-mais-entende-de-tecnologia.html` | motivos=['quarentena_sem_groq']
-- ✏️ EDIT: **Séries e TVBBB 26 | " Pipoca ou veterano, é tudo a mesma coisa", diz Sarah após ** (posts/post-0266-séries-e-tvbbb-26-|-"-pipoca-ou-veterano,-é-tudo-a.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Análise: Vasco não pode usar finalizações como desculpa por derrota** (posts/post-0265-análise:-vasco-não-pode-usar-finalizações-como-des.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Minha Série Guerreiras Mágicas do K-POP: o que explica o fenômeno Netflix Há 27 ** (posts/post-0275-minha-série-guerreiras-mágicas-do-k-pop:-o-que-exp.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Filmes Homem-Aranha: Um Novo Dia | Novas imagens podem ter confirmado teia orgân** (posts/post-0274-filmes-homem-aranha:-um-novo-dia-|-novas-imagens-p.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Técnico do Mirassol explode contra arbitragem e precisa ser contido** (posts/post-0273-técnico-do-mirassol-explode-contra-arbitragem-e-pr.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Confira a ordem dos desfiles das escolas de samba de SP no carnaval** (posts/post-0272-confira-a-ordem-dos-desfiles-das-escolas-de-samba-.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Homem é preso por arremessar extintor de incêndio em motorista de BRT no Rio** (posts/post-0271-homem-é-preso-por-arremessar-extintor-de-incêndio-.html) | ações=['fallback_regra_sem_groq']
+- 🟧 QUARENTENA: **Centenas se reúnem em cerimônia de homenagem às vítimas de ataque em escola no C** (posts/post-0270-centenas-se-reúnem-em-cerimônia-de-homenagem-às-ví.html) -> `posts/_quarantine/post-0270-centenas-se-reúnem-em-cerimônia-de-homenagem-às-ví.html` | motivos=['quarentena_sem_groq']
+- ✏️ EDIT: **Toffoli e caso Master: investigadores falam em ‘reset’ da República** (posts/post-0269-toffoli-e-caso-master:-investigadores-falam-em-‘re.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **MSI Ge Force RTX 5060 Inspire 2 X é boa para jogar em FHD e mostra evoluções: Re** (posts/post-0268-msi-ge-force-rtx-5060-inspire-2-x-é-boa-para-jogar.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Sambódromo: tire dúvidas sobre desvios, veja o mapa e saiba como chegar** (posts/post-0264-sambódromo:-tire-dúvidas-sobre-desvios,-veja-o-map.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Brasileiro detido pelo ICE durante entrevista de visto chega ao Brasil após depo** (posts/post-0263-brasileiro-detido-pelo-ice-durante-entrevista-de-v.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Câmara dos EUA aprova projeto que exige prova de cidadania nas eleições de meio ** (posts/post-0262-câmara-dos-eua-aprova-projeto-que-exige-prova-de-c.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Caso Master cria " guerra de todos contra todos", diz especialista** (posts/post-0261-caso-master-cria-"-guerra-de-todos-contra-todos",-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Xbox Game Pass recebe jogos de peso na semana! Confira os lançamentos (07)** (posts/post-0260-xbox-game-pass-recebe-jogos-de-peso-na-semana-con.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Internet5 G, 6 G e 7 G: entenda o que é e como são diferentes Há 31 minutos** (posts/post-0259-internet5-g,-6-g-e-7-g:-entenda-o-que-é-e-como-são.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Filmes Você Só Precisa Matar abraça repetitividade da história com animação vibr** (posts/post-0258-filmes-você-só-precisa-matar-abraça-repetitividade.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Diniz responde a vaias e cita ineficiência do ataque** (posts/post-0257-diniz-responde-a-vaias-e-cita-ineficiência-do-ataq.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Sidney Magal, mostra gratuita de cinema e carnaval: o que fazer em SP** (posts/post-0256-sidney-magal,-mostra-gratuita-de-cinema-e-carnaval.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Adolescente faz quatro jovens reféns em unidade do Degase na Ilha do Governador;** (posts/post-0255-adolescente-faz-quatro-jovens-reféns-em-unidade-do.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Por que a Rússia tentou ' bloquear completamente' Whats App no país** (posts/post-0254-por-que-a-rússia-tentou-'-bloquear-completamente'-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **" Opala velho" e apoio a Tarcísio: saiba o que Flávio falou a empresários** (posts/post-0253-"-opala-velho"-e-apoio-a-tarcísio:-saiba-o-que-flá.html) | ações=['fallback_regra_sem_groq']
@@ -32,7 +31,7 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **PMs são absolvidos por morte de adolescente de 13 anos na Cidade de Deus** (posts/post-0215-pms-são-absolvidos-por-morte-de-adolescente-de-13-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **7 pontos sobre a nova pesquisa Quaest, que projeta disputa entre Lula e Flávio B** (posts/post-0213-7-pontos-sobre-a-nova-pesquisa-quaest,-que-projeta.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Riot demite desenvolvedores após lançamento de 2 XK0, jogo de luta do Lo LHá 1 d** (posts/post-0212-riot-demite-desenvolvedores-após-lançamento-de-2-x.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **The BRIEF Open AI demite executiva contrária ao lançamento do " Modo adulto" do ** (posts/post-0211-the-brief-open-ai-demite-executiva-contrária-ao-la.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **The BRIEF Open AI demite executiva contrária ao lançamento do " Modo adulto" do ** (posts/post-0211-the-brief-open-ai-demite-executiva-contrária-ao-la.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Menina de 13 anos que sofreu estupro coletivo só foi liberada depois que um dos ** (posts/post-0207-menina-de-13-anos-que-sofreu-estupro-coletivo-só-f.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Apenas 18% de aprovação** (posts/post-0202-apenas-18%-de-aprovação.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Atuações do São Paulo: veja quem foi bem e quem foi mal** (posts/post-0201-atuações-do-são-paulo:-veja-quem-foi-bem-e-quem-fo.html) | ações=['fallback_regra_sem_groq']
@@ -46,7 +45,7 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Donos de academia onde mulher morreu, na Zona Leste de SP, prestam depoimento à ** (posts/post-0152-donos-de-academia-onde-mulher-morreu,-na-zona-lest.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **The BRIEF Microsoft inaugura dois novos data centers para IA e nuvem no Brasil H** (posts/post-0147-the-brief-microsoft-inaugura-dois-novos-data-cente.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Segurança Mais de 40 sites falsos da Apple roubam senhas de brasileiros vítimas ** (posts/post-0107-segurança-mais-de-40-sites-falsos-da-apple-roubam-.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Esposa ficou horrorizada ao descobrir supostos crimes** (posts/post-0104-esposa-ficou-horrorizada-ao-descobrir-supostos-cri.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Esposa ficou horrorizada ao descobrir supostos crimes** (posts/post-0104-esposa-ficou-horrorizada-ao-descobrir-supostos-cri.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Minha Série The White Lotus Temporada 4: Conheça o elenco e tudo sobre a série H** (posts/post-0099-minha-série-the-white-lotus-temporada-4:-conheça-o.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Piloto suspeito de abuso sexual infantil admitiu conhecer vítimas** (posts/post-0096-piloto-suspeito-de-abuso-sexual-infantil-admitiu-c.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Receita Federal dos EUA divulgou dados fiscais confidenciais de milhares de imig** (posts/post-0094-receita-federal-dos-eua-divulgou-dados-fiscais-con.html) | ações=['fallback_regra_sem_groq']
@@ -69,4 +68,4 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Esportes a Motor** (posts/post-0007-esportes-a-motor.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Presidente do Irã confirma negociações com os EUA e diz que conversas devem ser ** (posts/post-0006-presidente-do-irã-confirma-negociações-com-os-eua-.html) | ações=['fallback_regra_sem_groq']
 
-- Resumo: edits=62 deletes=1
+- Resumo: edits=61 deletes=1

@@ -5,16 +5,24 @@ Relatório gerado automaticamente pelo editor.
 - Modo: APLICANDO correções
 - Limites: max_edits=25, max_deletes=10
 
-- ✏️ EDIT: **Site de sadomasoquismo e treino de tiro: a confissão da babá brasileira que part** (posts/post-0302-site-de-sadomasoquismo-e-treino-de-tiro:-a-confiss.html) | ações=['reescrito_groq']
-- ✏️ EDIT: **Com queda de jogadores constante e lançamento pouco chamativo, desenvolvedora de** (posts/post-0292-com-queda-de-jogadores-constante-e-lançamento-pouc.html) | ações=['reescrito_groq']
-- ✏️ EDIT: **Mangás e Animes Animes 2026 | Os principais lançamentos e onde assisti-los1 min ** (posts/post-0290-mangás-e-animes-animes-2026-|-os-principais-lançam.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Vídeo mostra desespero do pai ao sair do carro após filha ser baleada em tentati** (posts/post-0311-vídeo-mostra-desespero-do-pai-ao-sair-do-carro-apó.html) | ações=['fallback_regra_sem_groq']
+- 🟧 QUARENTENA: **Soldado dos EUA é declarado morto após cair de navio de guerra durante operação ** (posts/post-0310-soldado-dos-eua-é-declarado-morto-após-cair-de-nav.html) -> `posts/_quarantine/post-0310-soldado-dos-eua-é-declarado-morto-após-cair-de-nav.html` | motivos=['quarentena_sem_groq']
+- ✏️ EDIT: **Investigadores avaliam que entregar dados de celulares a Toffoli pode compromete** (posts/post-0309-investigadores-avaliam-que-entregar-dados-de-celul.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **“Poucas coisas são tão brasileiras quanto o carnaval”: porta-voz da Riot Games c** (posts/post-0308-“poucas-coisas-são-tão-brasileiras-quanto-o-carnav.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Minha Série Segunda temporada de Cross tem quantos episódios? Veja calendário e ** (posts/post-0307-minha-série-segunda-temporada-de-cross-tem-quantos.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Homem-Aranha Noir Spider Noir: Série com Nicolas Cage ganha trailer(s) e data de** (posts/post-0306-homem-aranha-noir-spider-noir:-série-com-nicolas-c.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Arthur Elias convoca seleção feminina para amistosos; veja lista** (posts/post-0305-arthur-elias-convoca-seleção-feminina-para-amistos.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **De ajudante de pedreiro a líder do Spotify: DJ Japa NK domina ranking** (posts/post-0304-de-ajudante-de-pedreiro-a-líder-do-spotify:-dj-jap.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Site de sadomasoquismo e treino de tiro: a confissão da babá brasileira que part** (posts/post-0302-site-de-sadomasoquismo-e-treino-de-tiro:-a-confiss.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Com queda de jogadores constante e lançamento pouco chamativo, desenvolvedora de** (posts/post-0292-com-queda-de-jogadores-constante-e-lançamento-pouc.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Mangás e Animes Animes 2026 | Os principais lançamentos e onde assisti-los1 min ** (posts/post-0290-mangás-e-animes-animes-2026-|-os-principais-lançam.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Suspeitos são mortos em tentativa de assalto a PM de folga na Avenida Brasil, na** (posts/post-0287-suspeitos-são-mortos-em-tentativa-de-assalto-a-pm-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Trump vai retirar agentes do ICE de Minnesota, diz ' czar da fronteira' dos EUA** (posts/post-0286-trump-vai-retirar-agentes-do-ice-de-minnesota,-diz.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Entenda a relação entre o Banco Master e a empresa da família Toffoli** (posts/post-0285-entenda-a-relação-entre-o-banco-master-e-a-empresa.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Extremamente divertido: este filme da Netflix atingiu 104 milhões de visualizaçõ** (posts/post-0284-extremamente-divertido:-este-filme-da-netflix-atin.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Toffoli e caso Master: investigadores falam em ‘reset’ da República** (posts/post-0269-toffoli-e-caso-master:-investigadores-falam-em-‘re.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Sambódromo: tire dúvidas sobre desvios, veja o mapa e saiba como chegar** (posts/post-0264-sambódromo:-tire-dúvidas-sobre-desvios,-veja-o-map.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Caso Master cria " guerra de todos contra todos", diz especialista** (posts/post-0261-caso-master-cria-"-guerra-de-todos-contra-todos",-.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Caso Master cria " guerra de todos contra todos", diz especialista** (posts/post-0261-caso-master-cria-"-guerra-de-todos-contra-todos",-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Xbox Game Pass recebe jogos de peso na semana! Confira os lançamentos (07)** (posts/post-0260-xbox-game-pass-recebe-jogos-de-peso-na-semana-con.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Adolescente faz quatro jovens reféns em unidade do Degase na Ilha do Governador;** (posts/post-0255-adolescente-faz-quatro-jovens-reféns-em-unidade-do.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Por que a Rússia tentou ' bloquear completamente' Whats App no país** (posts/post-0254-por-que-a-rússia-tentou-'-bloquear-completamente'-.html) | ações=['fallback_regra_sem_groq']
@@ -23,7 +31,7 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Dono do Tesla fez harmonização na Gretchen** (posts/post-0248-dono-do-tesla-fez-harmonização-na-gretchen.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Anistia Internacional Brasil aponta indignação com absolvição de PMs que mataram** (posts/post-0247-anistia-internacional-brasil-aponta-indignação-com.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Vídeo mostra colisão; motociclista foi arremessado** (posts/post-0240-vídeo-mostra-colisão;-motociclista-foi-arremessado.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Testamento: como fazer e por que ele pode evitar disputas familiares, como a Ric** (posts/post-0239-testamento:-como-fazer-e-por-que-ele-pode-evitar-d.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Testamento: como fazer e por que ele pode evitar disputas familiares, como a Ric** (posts/post-0239-testamento:-como-fazer-e-por-que-ele-pode-evitar-d.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Técnico turco diz que Arda Güler está sofrendo bullying no Real Madrid** (posts/post-0233-técnico-turco-diz-que-arda-güler-está-sofrendo-bul.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **PF cita lei sobre indícios de crimes cometidos por magistrados ao entregar ao ST** (posts/post-0221-pf-cita-lei-sobre-indícios-de-crimes-cometidos-por.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Terror em Silent Hill: Regresso para o Inferno** (posts/post-0218-terror-em-silent-hill:-regresso-para-o-inferno.html) | ações=['fallback_regra_sem_groq']
@@ -67,4 +75,4 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Esportes a Motor** (posts/post-0007-esportes-a-motor.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Presidente do Irã confirma negociações com os EUA e diz que conversas devem ser ** (posts/post-0006-presidente-do-irã-confirma-negociações-com-os-eua-.html) | ações=['fallback_regra_sem_groq']
 
-- Resumo: edits=61 deletes=0
+- Resumo: edits=68 deletes=1

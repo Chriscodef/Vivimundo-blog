@@ -5,10 +5,10 @@ Relatório gerado automaticamente pelo editor.
 - Modo: APLICANDO correções
 - Limites: max_edits=25, max_deletes=10
 
-- ✏️ EDIT: **Capivara é flagrada se refrescando no mar do Arpoador; VÍDEO** (posts/post-0319-capivara-é-flagrada-se-refrescando-no-mar-do-arpoa.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **É #FATO: Vídeo mostra cratera gigante se abrindo no meio da rua em obra do metrô** (posts/post-0318-é-#fato:-vídeo-mostra-cratera-gigante-se-abrindo-n.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Capivara é flagrada se refrescando no mar do Arpoador; VÍDEO** (posts/post-0319-capivara-é-flagrada-se-refrescando-no-mar-do-arpoa.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **É #FATO: Vídeo mostra cratera gigante se abrindo no meio da rua em obra do metrô** (posts/post-0318-é-#fato:-vídeo-mostra-cratera-gigante-se-abrindo-n.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **47% dos brasileiros dizem que sentiram impacto na renda após a isenção do IR par** (posts/post-0317-47%-dos-brasileiros-dizem-que-sentiram-impacto-na-.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Áudio do VAR é divulgado em lance de Kenji: " Quebrou a perna do cara"** (posts/post-0313-áudio-do-var-é-divulgado-em-lance-de-kenji:-"-queb.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Áudio do VAR é divulgado em lance de Kenji: " Quebrou a perna do cara"** (posts/post-0313-áudio-do-var-é-divulgado-em-lance-de-kenji:-"-queb.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Operação mira organização chinesa ligada ao PCC acusada de lavagem** (posts/post-0312-operação-mira-organização-chinesa-ligada-ao-pcc-ac.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Vídeo mostra desespero do pai ao sair do carro após filha ser baleada em tentati** (posts/post-0311-vídeo-mostra-desespero-do-pai-ao-sair-do-carro-apó.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Investigadores avaliam que entregar dados de celulares a Toffoli pode compromete** (posts/post-0309-investigadores-avaliam-que-entregar-dados-de-celul.html) | ações=['fallback_regra_sem_groq']

@@ -5,22 +5,13 @@ Relatório gerado automaticamente pelo editor.
 - Modo: APLICANDO correções
 - Limites: max_edits=25, max_deletes=10
 
-- ✏️ EDIT: **Rio entra no nível 2 de calor; índice pode chegar a 40°C** (posts/post-0303-rio-entra-no-nível-2-de-calor;-índice-pode-chegar-.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Site de sadomasoquismo e treino de tiro: a confissão da babá brasileira que part** (posts/post-0302-site-de-sadomasoquismo-e-treino-de-tiro:-a-confiss.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Correios deixaram de pagar R$ 3,7 bilhões a fornecedores, empregados e em tribut** (posts/post-0301-correios-deixaram-de-pagar-r$-3,7-bilhões-a-fornec.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Há 3 anos ele desapareceu dos radares: Pokémon Go finalmente traz de volta a len** (posts/post-0300-há-3-anos-ele-desapareceu-dos-radares:-pokémon-go-.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **The BRIEFMPF, ANPD e SENACON pedem mudanças imediatas no Grok; confira Há 4 minu** (posts/post-0299-the-briefmpf,-anpd-e-senacon-pedem-mudanças-imedia.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Séries e TV Georgie & Mandy tem reunião do elenco de Young Sheldon; saiba mais1 ** (posts/post-0298-séries-e-tv-georgie-&-mandy-tem-reunião-do-elenco-.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Guia do Brasileirão Feminino 2026: torneio aumenta número de clubes e premiação;** (posts/post-0297-guia-do-brasileirão-feminino-2026:-torneio-aumenta.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Site de sadomasoquismo e treino de tiro: a confissão da babá brasileira que part** (posts/post-0302-site-de-sadomasoquismo-e-treino-de-tiro:-a-confiss.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Correios deixaram de pagar R$ 3,7 bilhões a fornecedores, empregados e em tribut** (posts/post-0301-correios-deixaram-de-pagar-r$-3,7-bilhões-a-fornec.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Número máximo de foliões que cabem no Ibirapuera é de 290 mil, diz estudo** (posts/post-0296-número-máximo-de-foliões-que-cabem-no-ibirapuera-é.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Fabíola Andrade deseja longo reinado na Mocidade: ' O carinho que recebo da comu** (posts/post-0295-fabíola-andrade-deseja-longo-reinado-na-mocidade:-.html) | ações=['fallback_regra_sem_groq']
-- 🟧 QUARENTENA: **Maioria dos norte-americanos é contra operações do ICE, diz pesquisa** (posts/post-0294-maioria-dos-norte-americanos-é-contra-operações-do.html) -> `posts/_quarantine/post-0294-maioria-dos-norte-americanos-é-contra-operações-do.html` | motivos=['quarentena_sem_groq']
 - ✏️ EDIT: **Relatora vota para rejeitar ação do partido Novo contra Lula, PT e escola de sam** (posts/post-0293-relatora-vota-para-rejeitar-ação-do-partido-novo-c.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Com queda de jogadores constante e lançamento pouco chamativo, desenvolvedora de** (posts/post-0292-com-queda-de-jogadores-constante-e-lançamento-pouc.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Minha Série Predador Terras Selvagens já está disponível no Disney+Há 40 minutos** (posts/post-0291-minha-série-predador-terras-selvagens-já-está-disp.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Mangás e Animes Animes 2026 | Os principais lançamentos e onde assisti-los1 min ** (posts/post-0290-mangás-e-animes-animes-2026-|-os-principais-lançam.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Americana compete com a costela quebrada, chora de dor e leva bronze no esqui cr** (posts/post-0289-americana-compete-com-a-costela-quebrada,-chora-de.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Márcia Sensitiva estreia no carnaval pela Rosas de Ouro e prepara ritual** (posts/post-0288-márcia-sensitiva-estreia-no-carnaval-pela-rosas-de.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Suspeitos são mortos em tentativa de assalto a PM de folga na Avenida Brasil, na** (posts/post-0287-suspeitos-são-mortos-em-tentativa-de-assalto-a-pm-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Trump vai retirar agentes do ICE de Minnesota, diz ' czar da fronteira' dos EUA** (posts/post-0286-trump-vai-retirar-agentes-do-ice-de-minnesota,-diz.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Entenda a relação entre o Banco Master e a empresa da família Toffoli** (posts/post-0285-entenda-a-relação-entre-o-banco-master-e-a-empresa.html) | ações=['fallback_regra_sem_groq']
@@ -80,4 +71,4 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Esportes a Motor** (posts/post-0007-esportes-a-motor.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Presidente do Irã confirma negociações com os EUA e diz que conversas devem ser ** (posts/post-0006-presidente-do-irã-confirma-negociações-com-os-eua-.html) | ações=['fallback_regra_sem_groq']
 
-- Resumo: edits=73 deletes=1
+- Resumo: edits=65 deletes=0

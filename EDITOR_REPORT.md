@@ -6,10 +6,9 @@ Relatório gerado automaticamente pelo editor.
 - Limites: max_edits=25, max_deletes=10
 
 - ✏️ EDIT: **Site de sadomasoquismo e treino de tiro: a confissão da babá brasileira que part** (posts/post-0302-site-de-sadomasoquismo-e-treino-de-tiro:-a-confiss.html) | ações=['reescrito_groq']
-- ✏️ EDIT: **Correios deixaram de pagar R$ 3,7 bilhões a fornecedores, empregados e em tribut** (posts/post-0301-correios-deixaram-de-pagar-r$-3,7-bilhões-a-fornec.html) | ações=['reescrito_groq']
-- ✏️ EDIT: **Número máximo de foliões que cabem no Ibirapuera é de 290 mil, diz estudo** (posts/post-0296-número-máximo-de-foliões-que-cabem-no-ibirapuera-é.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Fabíola Andrade deseja longo reinado na Mocidade: ' O carinho que recebo da comu** (posts/post-0295-fabíola-andrade-deseja-longo-reinado-na-mocidade:-.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Relatora vota para rejeitar ação do partido Novo contra Lula, PT e escola de sam** (posts/post-0293-relatora-vota-para-rejeitar-ação-do-partido-novo-c.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Número máximo de foliões que cabem no Ibirapuera é de 290 mil, diz estudo** (posts/post-0296-número-máximo-de-foliões-que-cabem-no-ibirapuera-é.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Fabíola Andrade deseja longo reinado na Mocidade: ' O carinho que recebo da comu** (posts/post-0295-fabíola-andrade-deseja-longo-reinado-na-mocidade:-.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Relatora vota para rejeitar ação do partido Novo contra Lula, PT e escola de sam** (posts/post-0293-relatora-vota-para-rejeitar-ação-do-partido-novo-c.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Com queda de jogadores constante e lançamento pouco chamativo, desenvolvedora de** (posts/post-0292-com-queda-de-jogadores-constante-e-lançamento-pouc.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Mangás e Animes Animes 2026 | Os principais lançamentos e onde assisti-los1 min ** (posts/post-0290-mangás-e-animes-animes-2026-|-os-principais-lançam.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Suspeitos são mortos em tentativa de assalto a PM de folga na Avenida Brasil, na** (posts/post-0287-suspeitos-são-mortos-em-tentativa-de-assalto-a-pm-.html) | ações=['fallback_regra_sem_groq']
@@ -71,4 +70,4 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Esportes a Motor** (posts/post-0007-esportes-a-motor.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Presidente do Irã confirma negociações com os EUA e diz que conversas devem ser ** (posts/post-0006-presidente-do-irã-confirma-negociações-com-os-eua-.html) | ações=['fallback_regra_sem_groq']
 
-- Resumo: edits=65 deletes=0
+- Resumo: edits=64 deletes=0

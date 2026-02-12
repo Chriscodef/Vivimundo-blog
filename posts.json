@@ -1488,5 +1488,13 @@
     "categoria": "entretenimento",
     "subcategoria": null,
     "data": "12/02/2026 às 07:30"
+  },
+  {
+    "titulo": "Segurança Falha crítica no Notepad do Windows expõe PCs a invasão remota Há 11 horas",
+    "url": "posts/post-0203-segurança-falha-crítica-no-notepad-do-windows-expõ.html",
+    "imagem": "https://tm.ibxk.com.br/2026/02/11/vulnerabilidade_notepad_microsoft_9abd2e67ad.png?ims=1600x900/filters:format(jpg)",
+    "categoria": "tecnologia",
+    "subcategoria": "hardware",
+    "data": "12/02/2026 às 07:31"
   }
 ]

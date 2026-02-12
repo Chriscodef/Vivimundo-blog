@@ -5,8 +5,14 @@ Relatório gerado automaticamente pelo editor.
 - Modo: APLICANDO correções
 - Limites: max_edits=25, max_deletes=10
 
-- ✏️ EDIT: **Confira a ordem dos desfiles das escolas de samba de SP no carnaval** (posts/post-0272-confira-a-ordem-dos-desfiles-das-escolas-de-samba-.html) | ações=['reescrito_groq']
-- ✏️ EDIT: **Homem é preso por arremessar extintor de incêndio em motorista de BRT no Rio** (posts/post-0271-homem-é-preso-por-arremessar-extintor-de-incêndio-.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Software Melou? Apple pode adiar Siri mais ' inteligente' mais uma vez Há 48 min** (posts/post-0283-software-melou-apple-pode-adiar-siri-mais-'-intel.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Lista O Morro dos Ventos Uivantes: 5 diferenças entre filme e livro** (posts/post-0282-lista-o-morro-dos-ventos-uivantes:-5-diferenças-en.html) | ações=['fallback_regra_sem_groq']
+- 🟧 QUARENTENA: **Análise: Cruzeiro pontua acima do merecido e acentua alerta** (posts/post-0281-análise:-cruzeiro-pontua-acima-do-merecido-e-acent.html) -> `posts/_quarantine/post-0281-análise:-cruzeiro-pontua-acima-do-merecido-e-acent.html` | motivos=['quarentena_sem_groq']
+- ✏️ EDIT: **Prefeitura libera casa de shows ao lado de hospital de cuidados paliativos** (posts/post-0280-prefeitura-libera-casa-de-shows-ao-lado-de-hospita.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Veja o que pode e o que não pode levar para a Sapucaí** (posts/post-0279-veja-o-que-pode-e-o-que-não-pode-levar-para-a-sapu.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Ex-namorada de atleta norueguês que revelou traição ao vivo diz que será ' difíc** (posts/post-0278-ex-namorada-de-atleta-norueguês-que-revelou-traiçã.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Toffoli admite ser sócio de empresa que vendeu resort e nega amizade ou pagament** (posts/post-0277-toffoli-admite-ser-sócio-de-empresa-que-vendeu-res.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Tradutor revela a verdade de um dos maiores mistérios do mangá de Jujutsu Kaisen** (posts/post-0276-tradutor-revela-a-verdade-de-um-dos-maiores-mistér.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Toffoli e caso Master: investigadores falam em ‘reset’ da República** (posts/post-0269-toffoli-e-caso-master:-investigadores-falam-em-‘re.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Sambódromo: tire dúvidas sobre desvios, veja o mapa e saiba como chegar** (posts/post-0264-sambódromo:-tire-dúvidas-sobre-desvios,-veja-o-map.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Caso Master cria " guerra de todos contra todos", diz especialista** (posts/post-0261-caso-master-cria-"-guerra-de-todos-contra-todos",-.html) | ações=['fallback_regra_sem_groq']
@@ -22,15 +28,15 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Técnico turco diz que Arda Güler está sofrendo bullying no Real Madrid** (posts/post-0233-técnico-turco-diz-que-arda-güler-está-sofrendo-bul.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **PF cita lei sobre indícios de crimes cometidos por magistrados ao entregar ao ST** (posts/post-0221-pf-cita-lei-sobre-indícios-de-crimes-cometidos-por.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Terror em Silent Hill: Regresso para o Inferno** (posts/post-0218-terror-em-silent-hill:-regresso-para-o-inferno.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Juba e Everton Ribeiro se destacam no Bahia; veja as notas** (posts/post-0217-juba-e-everton-ribeiro-se-destacam-no-bahia;-veja-.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Juba e Everton Ribeiro se destacam no Bahia; veja as notas** (posts/post-0217-juba-e-everton-ribeiro-se-destacam-no-bahia;-veja-.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **PMs são absolvidos por morte de adolescente de 13 anos na Cidade de Deus** (posts/post-0215-pms-são-absolvidos-por-morte-de-adolescente-de-13-.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **7 pontos sobre a nova pesquisa Quaest, que projeta disputa entre Lula e Flávio B** (posts/post-0213-7-pontos-sobre-a-nova-pesquisa-quaest,-que-projeta.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **7 pontos sobre a nova pesquisa Quaest, que projeta disputa entre Lula e Flávio B** (posts/post-0213-7-pontos-sobre-a-nova-pesquisa-quaest,-que-projeta.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Riot demite desenvolvedores após lançamento de 2 XK0, jogo de luta do Lo LHá 1 d** (posts/post-0212-riot-demite-desenvolvedores-após-lançamento-de-2-x.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **The BRIEF Open AI demite executiva contrária ao lançamento do " Modo adulto" do ** (posts/post-0211-the-brief-open-ai-demite-executiva-contrária-ao-la.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **The BRIEF Open AI demite executiva contrária ao lançamento do " Modo adulto" do ** (posts/post-0211-the-brief-open-ai-demite-executiva-contrária-ao-la.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Menina de 13 anos que sofreu estupro coletivo só foi liberada depois que um dos ** (posts/post-0207-menina-de-13-anos-que-sofreu-estupro-coletivo-só-f.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Apenas 18% de aprovação** (posts/post-0202-apenas-18%-de-aprovação.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Atuações do São Paulo: veja quem foi bem e quem foi mal** (posts/post-0201-atuações-do-são-paulo:-veja-quem-foi-bem-e-quem-fo.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Reclamações por barulho atingem recorde em SP, enquanto gestão Nunes tenta flexi** (posts/post-0200-reclamações-por-barulho-atingem-recorde-em-sp,-enq.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Reclamações por barulho atingem recorde em SP, enquanto gestão Nunes tenta flexi** (posts/post-0200-reclamações-por-barulho-atingem-recorde-em-sp,-enq.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Reforma tributária: com extinção do PIS, Cofins e IPI, R$ 40 bilhões em benefíci** (posts/post-0197-reforma-tributária:-com-extinção-do-pis,-cofins-e-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Lei Felca proíbe Loot Boxes no Brasil; Overwatch 2 é o primeiro afetado Há 17 ho** (posts/post-0196-lei-felca-proíbe-loot-boxes-no-brasil;-overwatch-2.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Musa da Colorado do Brás desiste do carnaval após complicações por uso de caneta** (posts/post-0192-musa-da-colorado-do-brás-desiste-do-carnaval-após-.html) | ações=['fallback_regra_sem_groq']
@@ -59,8 +65,8 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Dr. Rubão perde recurso, e Itaguaí fica perto de ter novas eleições** (posts/post-0015-dr.-rubão-perde-recurso,-e-itaguaí-fica-perto-de-t.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Brasil é um dos países que mais acham Trump bom para o mundo** (posts/post-0014-brasil-é-um-dos-países-que-mais-acham-trump-bom-pa.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Novidades de Wolverine? Play Station anuncia State of Play para esta quinta-feir** (posts/post-0004-novidades-de-wolverine-play-station-anuncia-state.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Michael Jackson Veja o trailer grandioso de Michael, cinebiografia do rei do pop** (posts/post-0002-michael-jacksonveja-o-trailer-grandioso-de-michael.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Michael Jackson Veja o trailer grandioso de Michael, cinebiografia do rei do pop** (posts/post-0002-michael-jacksonveja-o-trailer-grandioso-de-michael.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Esportes a Motor** (posts/post-0007-esportes-a-motor.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Presidente do Irã confirma negociações com os EUA e diz que conversas devem ser ** (posts/post-0006-presidente-do-irã-confirma-negociações-com-os-eua-.html) | ações=['fallback_regra_sem_groq']
 
-- Resumo: edits=57 deletes=0
+- Resumo: edits=62 deletes=1

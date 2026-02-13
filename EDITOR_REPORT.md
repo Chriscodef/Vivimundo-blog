@@ -5,8 +5,23 @@ Relatório gerado automaticamente pelo editor.
 - Modo: APLICANDO correções
 - Limites: max_edits=25, max_deletes=10
 
-- ✏️ EDIT: **Fantasia a R$ 50? Na Saara tem; veja desafio** (posts/post-0423-fantasia-a-r$-50-na-saara-tem;-veja-desafio.html) | ações=['reescrito_groq']
-- ✏️ EDIT: **Trump sobre Venezuela: ' Relação que temos agora é nota 10'** (posts/post-0422-trump-sobre-venezuela:-'-relação-que-temos-agora-é.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Em Santa Teresa, Carmelitas abre o carnaval de rua no Rio; veja fotos** (posts/post-0439-em-santa-teresa,-carmelitas-abre-o-carnaval-de-rua.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **VÍDEO mostra momento em que dois navios da Marinha dos EUA colidem em águas próx** (posts/post-0438-vídeo-mostra-momento-em-que-dois-navios-da-marinha.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Novo relator do Master, Mendonça é ' antítese' de Moraes e sofreu pressão por vo** (posts/post-0437-novo-relator-do-master,-mendonça-é-'-antítese'-de-.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Hideo Kojima e Vince Zampella discutiram " uma versão FPS de Metal Gear" após Me** (posts/post-0436-hideo-kojima-e-vince-zampella-discutiram-"-uma-ver.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Segurança Extensão maliciosa do Chrome rouba 2 FA do Meta Business Manager Há 44** (posts/post-0435-segurança-extensão-maliciosa-do-chrome-rouba-2-fa-.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Play Station 5 Tudo sobre God of War Sons of Sparta** (posts/post-0434-play-station-5-tudo-sobre-god-of-war-sons-of-spart.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Federação diz confiar nos árbitros após polêmica na patinação; entenda** (posts/post-0433-federação-diz-confiar-nos-árbitros-após-polêmica-n.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Homem é preso depois de empurrar ex-companheira de viaduto em SP** (posts/post-0432-homem-é-preso-depois-de-empurrar-ex-companheira-de.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Caso Marielle: MPF denuncia delegados e policial por obstrução de justiça e asso** (posts/post-0431-caso-marielle:-mpf-denuncia-delegados-e-policial-p.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **' Meu marido desviou mais de R$ 4 milhões para gastar com sexo e antiquidades po** (posts/post-0430-'-meu-marido-desviou-mais-de-r$-4-milhões-para-gas.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Master: publicação de trechos de reunião favoráveis a Toffoli gera desconforto n** (posts/post-0429-master:-publicação-de-trechos-de-reunião-favorávei.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Tem co-op ou não? Descrição de God of War Sons of Sparta na PS Store deixa jogad** (posts/post-0428-tem-co-op-ou-não-descrição-de-god-of-war-sons-of-.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Minha Série Sem alarde, Paramount+ mata plano mais barato no Brasil Há 32 minuto** (posts/post-0427-minha-série-sem-alarde,-paramount+-mata-plano-mais.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Se o Amor Desaparecesse Hoje Curtiu? Assista esses k-dramas!** (posts/post-0426-se-o-amor-desaparecesse-hoje-curtiu-assista-esses.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Amaral diz que perdeu dinheiro no futebol, dá dicas a Edilson no BBB e vira infl** (posts/post-0425-amaral-diz-que-perdeu-dinheiro-no-futebol,-dá-dica.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Justiça de SP nega pedido de prisão dos donos de academia onde aluna morreu** (posts/post-0424-justiça-de-sp-nega-pedido-de-prisão-dos-donos-de-a.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Fantasia a R$ 50? Na Saara tem; veja desafio** (posts/post-0423-fantasia-a-r$-50-na-saara-tem;-veja-desafio.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **CPI do Crime Organizado deve votar convocação do ministro Dias Toffoli, do STF** (posts/post-0421-cpi-do-crime-organizado-deve-votar-convocação-do-m.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Empresário suspeito de jogar esposa do 10º andar de prédio vira réu em SP** (posts/post-0416-empresário-suspeito-de-jogar-esposa-do-10º-andar-d.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Há 20 anos, Glast Heim era o pesadelo de todo jogador de Ragnarok; agora é hora ** (posts/post-0412-há-20-anos,-glast-heim-era-o-pesadelo-de-todo-joga.html) | ações=['fallback_regra_sem_groq']
@@ -22,7 +37,7 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Parentes de criança baleada na cabeça em Nova Iguaçu fazem protesto pedindo just** (posts/post-0351-parentes-de-criança-baleada-na-cabeça-em-nova-igua.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Deco reclama do VAR e critica jogadores do Barcelona após goleada sofrida** (posts/post-0345-deco-reclama-do-var-e-critica-jogadores-do-barcelo.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Com brasileiro, RB Leipzig lança camisa que brilha no escuro** (posts/post-0337-com-brasileiro,-rb-leipzig-lança-camisa-que-brilha.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **State of Play Remake da trilogia original de God of War é revelado, assista!** (posts/post-0322-state-of-play-remake-da-trilogia-original-de-god-o.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **State of Play Remake da trilogia original de God of War é revelado, assista!** (posts/post-0322-state-of-play-remake-da-trilogia-original-de-god-o.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Áudio do VAR é divulgado em lance de Kenji: " Quebrou a perna do cara"** (posts/post-0313-áudio-do-var-é-divulgado-em-lance-de-kenji:-"-queb.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Operação mira organização chinesa ligada ao PCC acusada de lavagem** (posts/post-0312-operação-mira-organização-chinesa-ligada-ao-pcc-ac.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Investigadores avaliam que entregar dados de celulares a Toffoli pode compromete** (posts/post-0309-investigadores-avaliam-que-entregar-dados-de-celul.html) | ações=['fallback_regra_sem_groq']
@@ -50,7 +65,7 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Riot demite desenvolvedores após lançamento de 2 XK0, jogo de luta do Lo LHá 1 d** (posts/post-0212-riot-demite-desenvolvedores-após-lançamento-de-2-x.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Menina de 13 anos que sofreu estupro coletivo só foi liberada depois que um dos ** (posts/post-0207-menina-de-13-anos-que-sofreu-estupro-coletivo-só-f.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Apenas 18% de aprovação** (posts/post-0202-apenas-18%-de-aprovação.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Atuações do São Paulo: veja quem foi bem e quem foi mal** (posts/post-0201-atuações-do-são-paulo:-veja-quem-foi-bem-e-quem-fo.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Atuações do São Paulo: veja quem foi bem e quem foi mal** (posts/post-0201-atuações-do-são-paulo:-veja-quem-foi-bem-e-quem-fo.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Reclamações por barulho atingem recorde em SP, enquanto gestão Nunes tenta flexi** (posts/post-0200-reclamações-por-barulho-atingem-recorde-em-sp,-enq.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Reforma tributária: com extinção do PIS, Cofins e IPI, R$ 40 bilhões em benefíci** (posts/post-0197-reforma-tributária:-com-extinção-do-pis,-cofins-e-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Lei Felca proíbe Loot Boxes no Brasil; Overwatch 2 é o primeiro afetado Há 17 ho** (posts/post-0196-lei-felca-proíbe-loot-boxes-no-brasil;-overwatch-2.html) | ações=['fallback_regra_sem_groq']
@@ -61,7 +76,7 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Donos de academia onde mulher morreu, na Zona Leste de SP, prestam depoimento à ** (posts/post-0152-donos-de-academia-onde-mulher-morreu,-na-zona-lest.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **The BRIEF Microsoft inaugura dois novos data centers para IA e nuvem no Brasil H** (posts/post-0147-the-brief-microsoft-inaugura-dois-novos-data-cente.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Segurança Mais de 40 sites falsos da Apple roubam senhas de brasileiros vítimas ** (posts/post-0107-segurança-mais-de-40-sites-falsos-da-apple-roubam-.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Esposa ficou horrorizada ao descobrir supostos crimes** (posts/post-0104-esposa-ficou-horrorizada-ao-descobrir-supostos-cri.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Esposa ficou horrorizada ao descobrir supostos crimes** (posts/post-0104-esposa-ficou-horrorizada-ao-descobrir-supostos-cri.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Minha Série The White Lotus Temporada 4: Conheça o elenco e tudo sobre a série H** (posts/post-0099-minha-série-the-white-lotus-temporada-4:-conheça-o.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Piloto suspeito de abuso sexual infantil admitiu conhecer vítimas** (posts/post-0096-piloto-suspeito-de-abuso-sexual-infantil-admitiu-c.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Receita Federal dos EUA divulgou dados fiscais confidenciais de milhares de imig** (posts/post-0094-receita-federal-dos-eua-divulgou-dados-fiscais-con.html) | ações=['fallback_regra_sem_groq']
@@ -84,4 +99,4 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Esportes a Motor** (posts/post-0007-esportes-a-motor.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Presidente do Irã confirma negociações com os EUA e diz que conversas devem ser ** (posts/post-0006-presidente-do-irã-confirma-negociações-com-os-eua-.html) | ações=['fallback_regra_sem_groq']
 
-- Resumo: edits=78 deletes=0
+- Resumo: edits=93 deletes=0

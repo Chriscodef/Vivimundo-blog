@@ -5,13 +5,8 @@ Relatório gerado automaticamente pelo editor.
 - Modo: APLICANDO correções
 - Limites: max_edits=25, max_deletes=10
 
-- ✏️ EDIT: **Machado de Assis foi folião? Entenda a relação da vida e da obra do escritor com** (posts/post-0327-machado-de-assis-foi-folião-entenda-a-relação-da-.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Ataque a tiros na Universidade Estadual da Carolina do Sul deixa dois mortos e u** (posts/post-0326-ataque-a-tiros-na-universidade-estadual-da-carolin.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Toffoli demonstrou resistência, mas se convenceu de que deixar relatoria era mel** (posts/post-0325-toffoli-demonstrou-resistência,-mas-se-convenceu-d.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Remake da trilogia de God of War e novo jogo metroidvania de Kratos são anunciad** (posts/post-0324-remake-da-trilogia-de-god-of-war-e-novo-jogo-metro.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Redes Sociais Reddit: o que é, como funciona e como entrar no app? Há 5 horas** (posts/post-0323-redes-sociais-reddit:-o-que-é,-como-funciona-e-com.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **State of Play Remake da trilogia original de God of War é revelado, assista!** (posts/post-0322-state-of-play-remake-da-trilogia-original-de-god-o.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Abel reclama após vitória: " Desde a gritaria contra o São Paulo, o Palmeiras nã** (posts/post-0321-abel-reclama-após-vitória:-"-desde-a-gritaria-cont.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Toffoli demonstrou resistência, mas se convenceu de que deixar relatoria era mel** (posts/post-0325-toffoli-demonstrou-resistência,-mas-se-convenceu-d.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **State of Play Remake da trilogia original de God of War é revelado, assista!** (posts/post-0322-state-of-play-remake-da-trilogia-original-de-god-o.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Megablocos concentram quase 20% dos roubos de celulares; veja quais as ruas com ** (posts/post-0320-megablocos-concentram-quase-20%-dos-roubos-de-celu.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Áudio do VAR é divulgado em lance de Kenji: " Quebrou a perna do cara"** (posts/post-0313-áudio-do-var-é-divulgado-em-lance-de-kenji:-"-queb.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Operação mira organização chinesa ligada ao PCC acusada de lavagem** (posts/post-0312-operação-mira-organização-chinesa-ligada-ao-pcc-ac.html) | ações=['fallback_regra_sem_groq']
@@ -31,7 +26,7 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Dono do Tesla fez harmonização na Gretchen** (posts/post-0248-dono-do-tesla-fez-harmonização-na-gretchen.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Anistia Internacional Brasil aponta indignação com absolvição de PMs que mataram** (posts/post-0247-anistia-internacional-brasil-aponta-indignação-com.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Vídeo mostra colisão; motociclista foi arremessado** (posts/post-0240-vídeo-mostra-colisão;-motociclista-foi-arremessado.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Testamento: como fazer e por que ele pode evitar disputas familiares, como a Ric** (posts/post-0239-testamento:-como-fazer-e-por-que-ele-pode-evitar-d.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Testamento: como fazer e por que ele pode evitar disputas familiares, como a Ric** (posts/post-0239-testamento:-como-fazer-e-por-que-ele-pode-evitar-d.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Técnico turco diz que Arda Güler está sofrendo bullying no Real Madrid** (posts/post-0233-técnico-turco-diz-que-arda-güler-está-sofrendo-bul.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **PF cita lei sobre indícios de crimes cometidos por magistrados ao entregar ao ST** (posts/post-0221-pf-cita-lei-sobre-indícios-de-crimes-cometidos-por.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Terror em Silent Hill: Regresso para o Inferno** (posts/post-0218-terror-em-silent-hill:-regresso-para-o-inferno.html) | ações=['fallback_regra_sem_groq']
@@ -44,7 +39,7 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Atuações do São Paulo: veja quem foi bem e quem foi mal** (posts/post-0201-atuações-do-são-paulo:-veja-quem-foi-bem-e-quem-fo.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Reclamações por barulho atingem recorde em SP, enquanto gestão Nunes tenta flexi** (posts/post-0200-reclamações-por-barulho-atingem-recorde-em-sp,-enq.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Reforma tributária: com extinção do PIS, Cofins e IPI, R$ 40 bilhões em benefíci** (posts/post-0197-reforma-tributária:-com-extinção-do-pis,-cofins-e-.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Lei Felca proíbe Loot Boxes no Brasil; Overwatch 2 é o primeiro afetado Há 17 ho** (posts/post-0196-lei-felca-proíbe-loot-boxes-no-brasil;-overwatch-2.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Lei Felca proíbe Loot Boxes no Brasil; Overwatch 2 é o primeiro afetado Há 17 ho** (posts/post-0196-lei-felca-proíbe-loot-boxes-no-brasil;-overwatch-2.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Musa da Colorado do Brás desiste do carnaval após complicações por uso de caneta** (posts/post-0192-musa-da-colorado-do-brás-desiste-do-carnaval-após-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Justiça bloqueia 48 imóveis e R$ 500 milhões do PCC por esquema de lavagem de di** (posts/post-0184-justiça-bloqueia-48-imóveis-e-r$-500-milhões-do-pc.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Há 25 anos, Diablo II definiu o gênero; agora, a Blizzard faz o impensável e rev** (posts/post-0180-há-25-anos,-diablo-ii-definiu-o-gênero;-agora,-a-b.html) | ações=['fallback_regra_sem_groq']
@@ -69,10 +64,10 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Software Imagens mostram novos ícones e temas do Whats App para assinantes; conf** (posts/post-0035-software-imagens-mostram-novos-ícones-e-temas-do-w.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Brasil registra 1,6 milhão de casos de trabalho infantil, mas menos de 1% foi al** (posts/post-0029-brasil-registra-1,6-milhão-de-casos-de-trabalho-in.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Dr. Rubão perde recurso, e Itaguaí fica perto de ter novas eleições** (posts/post-0015-dr.-rubão-perde-recurso,-e-itaguaí-fica-perto-de-t.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Brasil é um dos países que mais acham Trump bom para o mundo** (posts/post-0014-brasil-é-um-dos-países-que-mais-acham-trump-bom-pa.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Brasil é um dos países que mais acham Trump bom para o mundo** (posts/post-0014-brasil-é-um-dos-países-que-mais-acham-trump-bom-pa.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Novidades de Wolverine? Play Station anuncia State of Play para esta quinta-feir** (posts/post-0004-novidades-de-wolverine-play-station-anuncia-state.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Michael Jackson Veja o trailer grandioso de Michael, cinebiografia do rei do pop** (posts/post-0002-michael-jacksonveja-o-trailer-grandioso-de-michael.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Esportes a Motor** (posts/post-0007-esportes-a-motor.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Presidente do Irã confirma negociações com os EUA e diz que conversas devem ser ** (posts/post-0006-presidente-do-irã-confirma-negociações-com-os-eua-.html) | ações=['fallback_regra_sem_groq']
 
-- Resumo: edits=69 deletes=0
+- Resumo: edits=64 deletes=0

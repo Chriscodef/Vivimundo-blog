@@ -5,9 +5,8 @@ Relatório gerado automaticamente pelo editor.
 - Modo: APLICANDO correções
 - Limites: max_edits=25, max_deletes=10
 
-- ✏️ EDIT: **Marvel Tokon: Fighting Souls recebe data de lançamento e tem mais X-Men anunciad** (posts/post-0396-marvel-tokon:-fighting-souls-recebe-data-de-lançam.html) | ações=['reescrito_groq']
-- ✏️ EDIT: **Redes Sociais Falhas de moderação facilitam crimes contra menores no Discord, di** (posts/post-0395-redes-sociais-falhas-de-moderação-facilitam-crimes.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Korea A Arte de Sarah vai ter mais episódios? Tudo sobre o k-drama da Netflix2 m** (posts/post-0394-korea-a-arte-de-sarah-vai-ter-mais-episódios-tudo.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Redes Sociais Falhas de moderação facilitam crimes contra menores no Discord, di** (posts/post-0395-redes-sociais-falhas-de-moderação-facilitam-crimes.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Korea A Arte de Sarah vai ter mais episódios? Tudo sobre o k-drama da Netflix2 m** (posts/post-0394-korea-a-arte-de-sarah-vai-ter-mais-episódios-tudo.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Quarta temporada de Bridgerton Parte 2 ganha trailer e já tem data; saiba tudo** (posts/post-0387-quarta-temporada-de-bridgerton-parte-2-ganha-trail.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **The BRIEF Apple é advertida nos EUA por suposta censura a conteúdos de direita H** (posts/post-0371-the-brief-apple-é-advertida-nos-eua-por-suposta-ce.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Bafo da Onça celebra 70 anos com novo percurso, nova bateria e participação hist** (posts/post-0367-bafo-da-onça-celebra-70-anos-com-novo-percurso,-no.html) | ações=['fallback_regra_sem_groq']
@@ -16,7 +15,6 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Raphinha não foi titular nas derrotas do Barça na temporada** (posts/post-0353-raphinha-não-foi-titular-nas-derrotas-do-barça-na-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Parentes de criança baleada na cabeça em Nova Iguaçu fazem protesto pedindo just** (posts/post-0351-parentes-de-criança-baleada-na-cabeça-em-nova-igua.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Deco reclama do VAR e critica jogadores do Barcelona após goleada sofrida** (posts/post-0345-deco-reclama-do-var-e-critica-jogadores-do-barcelo.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **State of Play John Wick | Game com Keanu Reeves é anunciado; assista ao trailer** (posts/post-0338-state-of-play-john-wick-|-game-com-keanu-reeves-é-.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Com brasileiro, RB Leipzig lança camisa que brilha no escuro** (posts/post-0337-com-brasileiro,-rb-leipzig-lança-camisa-que-brilha.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **State of Play Remake da trilogia original de God of War é revelado, assista!** (posts/post-0322-state-of-play-remake-da-trilogia-original-de-god-o.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Áudio do VAR é divulgado em lance de Kenji: " Quebrou a perna do cara"** (posts/post-0313-áudio-do-var-é-divulgado-em-lance-de-kenji:-"-queb.html) | ações=['fallback_regra_sem_groq']
@@ -39,7 +37,7 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Testamento: como fazer e por que ele pode evitar disputas familiares, como a Ric** (posts/post-0239-testamento:-como-fazer-e-por-que-ele-pode-evitar-d.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Técnico turco diz que Arda Güler está sofrendo bullying no Real Madrid** (posts/post-0233-técnico-turco-diz-que-arda-güler-está-sofrendo-bul.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **PF cita lei sobre indícios de crimes cometidos por magistrados ao entregar ao ST** (posts/post-0221-pf-cita-lei-sobre-indícios-de-crimes-cometidos-por.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Terror em Silent Hill: Regresso para o Inferno** (posts/post-0218-terror-em-silent-hill:-regresso-para-o-inferno.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Terror em Silent Hill: Regresso para o Inferno** (posts/post-0218-terror-em-silent-hill:-regresso-para-o-inferno.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Juba e Everton Ribeiro se destacam no Bahia; veja as notas** (posts/post-0217-juba-e-everton-ribeiro-se-destacam-no-bahia;-veja-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **PMs são absolvidos por morte de adolescente de 13 anos na Cidade de Deus** (posts/post-0215-pms-são-absolvidos-por-morte-de-adolescente-de-13-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **7 pontos sobre a nova pesquisa Quaest, que projeta disputa entre Lula e Flávio B** (posts/post-0213-7-pontos-sobre-a-nova-pesquisa-quaest,-que-projeta.html) | ações=['fallback_regra_sem_groq']
@@ -57,7 +55,7 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Donos de academia onde mulher morreu, na Zona Leste de SP, prestam depoimento à ** (posts/post-0152-donos-de-academia-onde-mulher-morreu,-na-zona-lest.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **The BRIEF Microsoft inaugura dois novos data centers para IA e nuvem no Brasil H** (posts/post-0147-the-brief-microsoft-inaugura-dois-novos-data-cente.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Segurança Mais de 40 sites falsos da Apple roubam senhas de brasileiros vítimas ** (posts/post-0107-segurança-mais-de-40-sites-falsos-da-apple-roubam-.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Esposa ficou horrorizada ao descobrir supostos crimes** (posts/post-0104-esposa-ficou-horrorizada-ao-descobrir-supostos-cri.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Esposa ficou horrorizada ao descobrir supostos crimes** (posts/post-0104-esposa-ficou-horrorizada-ao-descobrir-supostos-cri.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Minha Série The White Lotus Temporada 4: Conheça o elenco e tudo sobre a série H** (posts/post-0099-minha-série-the-white-lotus-temporada-4:-conheça-o.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Piloto suspeito de abuso sexual infantil admitiu conhecer vítimas** (posts/post-0096-piloto-suspeito-de-abuso-sexual-infantil-admitiu-c.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Receita Federal dos EUA divulgou dados fiscais confidenciais de milhares de imig** (posts/post-0094-receita-federal-dos-eua-divulgou-dados-fiscais-con.html) | ações=['fallback_regra_sem_groq']
@@ -80,4 +78,4 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Esportes a Motor** (posts/post-0007-esportes-a-motor.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Presidente do Irã confirma negociações com os EUA e diz que conversas devem ser ** (posts/post-0006-presidente-do-irã-confirma-negociações-com-os-eua-.html) | ações=['fallback_regra_sem_groq']
 
-- Resumo: edits=74 deletes=0
+- Resumo: edits=72 deletes=0

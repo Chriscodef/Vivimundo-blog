@@ -6,7 +6,7 @@ Relatório gerado automaticamente pelo editor.
 - Limites: max_edits=25, max_deletes=10
 
 - ✏️ EDIT: **Áudio do VAR é divulgado em lance de Kenji: " Quebrou a perna do cara"** (posts/post-0313-áudio-do-var-é-divulgado-em-lance-de-kenji:-"-queb.html) | ações=['reescrito_groq']
-- ✏️ EDIT: **Operação mira organização chinesa ligada ao PCC acusada de lavagem** (posts/post-0312-operação-mira-organização-chinesa-ligada-ao-pcc-ac.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Operação mira organização chinesa ligada ao PCC acusada de lavagem** (posts/post-0312-operação-mira-organização-chinesa-ligada-ao-pcc-ac.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Vídeo mostra desespero do pai ao sair do carro após filha ser baleada em tentati** (posts/post-0311-vídeo-mostra-desespero-do-pai-ao-sair-do-carro-apó.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Investigadores avaliam que entregar dados de celulares a Toffoli pode compromete** (posts/post-0309-investigadores-avaliam-que-entregar-dados-de-celul.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **“Poucas coisas são tão brasileiras quanto o carnaval”: porta-voz da Riot Games c** (posts/post-0308-“poucas-coisas-são-tão-brasileiras-quanto-o-carnav.html) | ações=['fallback_regra_sem_groq']

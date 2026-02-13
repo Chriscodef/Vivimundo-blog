@@ -5,22 +5,9 @@ Relatório gerado automaticamente pelo editor.
 - Modo: APLICANDO correções
 - Limites: max_edits=25, max_deletes=10
 
-- ✏️ EDIT: **Rei Momo recebe as chaves da cidade, e carnaval é declarado aberto no Rio** (posts/post-0415-rei-momo-recebe-as-chaves-da-cidade,-e-carnaval-é-.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **É #FAKE que foto mostre Lady Gaga comendo carne humana em ilha de Epstein; regis** (posts/post-0414-é-#fake-que-foto-mostre-lady-gaga-comendo-carne-hu.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Mendonça deve manter inquérito sobre Master no Supremo Tribunal Federal** (posts/post-0413-mendonça-deve-manter-inquérito-sobre-master-no-sup.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Há 20 anos, Glast Heim era o pesadelo de todo jogador de Ragnarok; agora é hora ** (posts/post-0412-há-20-anos,-glast-heim-era-o-pesadelo-de-todo-joga.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Minha Série10 melhores filmes e séries em alta para ver na Netflix no fim de sem** (posts/post-0411-minha-série10-melhores-filmes-e-séries-em-alta-par.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Séries e TVO Senhor das Moscas | Globoplay vai lançar elogiada minissérie no Bra** (posts/post-0410-séries-e-tvo-senhor-das-moscas-|-globoplay-vai-lan.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Nicole Silveira fica em 13º lugar na primeira descida do skeleton** (posts/post-0409-nicole-silveira-fica-em-13º-lugar-na-primeira-desc.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Liga-SP tira 5 décimos da Rosas de Ouro por não entregar pastas técnicas no praz** (posts/post-0408-liga-sp-tira-5-décimos-da-rosas-de-ouro-por-não-en.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Homem teve carro roubado e usado por criminosos que balearam menina na cabeça no** (posts/post-0407-homem-teve-carro-roubado-e-usado-por-criminosos-qu.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Trump quer reverter algumas tarifas sobre produtos de aço e alumínio, diz jornal** (posts/post-0406-trump-quer-reverter-algumas-tarifas-sobre-produtos.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Dino vota contra aplicação da Lei da Anistia a casos de desaparecimento na ditad** (posts/post-0405-dino-vota-contra-aplicação-da-lei-da-anistia-a-cas.html) | ações=['fallback_regra_sem_groq']
-- 🟧 QUARENTENA: **Beast of Reincarnation, novo jogo da Game Freak, ganha data de lançamento** (posts/post-0404-beast-of-reincarnation,-novo-jogo-da-game-freak,-g.html) -> `posts/_quarantine/post-0404-beast-of-reincarnation,-novo-jogo-da-game-freak,-g.html` | motivos=['quarentena_sem_groq']
-- ✏️ EDIT: **Minha Série Bridgerton parte 2 da 4ª temporada acaba de ganhar trailer! Confira ** (posts/post-0403-minha-série-bridgerton-parte-2-da-4ª-temporada-aca.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Mangás e Animes Alya Sometimes Hides Her Feelings in Russian | 2ª temporada é ad** (posts/post-0402-mangás-e-animes-alya-sometimes-hides-her-feelings-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Jogo de hóquei gera briga generalizada entre seleções** (posts/post-0401-jogo-de-hóquei-gera-briga-generalizada-entre-seleç.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Quem julga o carnaval de São Paulo? Saiba como é a seleção dos jurados** (posts/post-0400-quem-julga-o-carnaval-de-são-paulo-saiba-como-é-a.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Korea A Arte de Sarah vai ter mais episódios? Tudo sobre o k-drama da Netflix2 m** (posts/post-0394-korea-a-arte-de-sarah-vai-ter-mais-episódios-tudo.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Quarta temporada de Bridgerton Parte 2 ganha trailer e já tem data; saiba tudo** (posts/post-0387-quarta-temporada-de-bridgerton-parte-2-ganha-trail.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **The BRIEF Apple é advertida nos EUA por suposta censura a conteúdos de direita H** (posts/post-0371-the-brief-apple-é-advertida-nos-eua-por-suposta-ce.html) | ações=['fallback_regra_sem_groq']
@@ -93,4 +80,4 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Esportes a Motor** (posts/post-0007-esportes-a-motor.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Presidente do Irã confirma negociações com os EUA e diz que conversas devem ser ** (posts/post-0006-presidente-do-irã-confirma-negociações-com-os-eua-.html) | ações=['fallback_regra_sem_groq']
 
-- Resumo: edits=86 deletes=1
+- Resumo: edits=74 deletes=0

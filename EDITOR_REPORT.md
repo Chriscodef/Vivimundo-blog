@@ -5,14 +5,22 @@ Relatório gerado automaticamente pelo editor.
 - Modo: APLICANDO correções
 - Limites: max_edits=25, max_deletes=10
 
-- ✏️ EDIT: **Áudio do VAR é divulgado em lance de Kenji: " Quebrou a perna do cara"** (posts/post-0313-áudio-do-var-é-divulgado-em-lance-de-kenji:-"-queb.html) | ações=['reescrito_groq']
-- ✏️ EDIT: **Operação mira organização chinesa ligada ao PCC acusada de lavagem** (posts/post-0312-operação-mira-organização-chinesa-ligada-ao-pcc-ac.html) | ações=['reescrito_groq']
-- ✏️ EDIT: **Investigadores avaliam que entregar dados de celulares a Toffoli pode compromete** (posts/post-0309-investigadores-avaliam-que-entregar-dados-de-celul.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Machado de Assis foi folião? Entenda a relação da vida e da obra do escritor com** (posts/post-0327-machado-de-assis-foi-folião-entenda-a-relação-da-.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Ataque a tiros na Universidade Estadual da Carolina do Sul deixa dois mortos e u** (posts/post-0326-ataque-a-tiros-na-universidade-estadual-da-carolin.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Toffoli demonstrou resistência, mas se convenceu de que deixar relatoria era mel** (posts/post-0325-toffoli-demonstrou-resistência,-mas-se-convenceu-d.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Remake da trilogia de God of War e novo jogo metroidvania de Kratos são anunciad** (posts/post-0324-remake-da-trilogia-de-god-of-war-e-novo-jogo-metro.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Redes Sociais Reddit: o que é, como funciona e como entrar no app? Há 5 horas** (posts/post-0323-redes-sociais-reddit:-o-que-é,-como-funciona-e-com.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **State of Play Remake da trilogia original de God of War é revelado, assista!** (posts/post-0322-state-of-play-remake-da-trilogia-original-de-god-o.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Abel reclama após vitória: " Desde a gritaria contra o São Paulo, o Palmeiras nã** (posts/post-0321-abel-reclama-após-vitória:-"-desde-a-gritaria-cont.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Megablocos concentram quase 20% dos roubos de celulares; veja quais as ruas com ** (posts/post-0320-megablocos-concentram-quase-20%-dos-roubos-de-celu.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Áudio do VAR é divulgado em lance de Kenji: " Quebrou a perna do cara"** (posts/post-0313-áudio-do-var-é-divulgado-em-lance-de-kenji:-"-queb.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Operação mira organização chinesa ligada ao PCC acusada de lavagem** (posts/post-0312-operação-mira-organização-chinesa-ligada-ao-pcc-ac.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Investigadores avaliam que entregar dados de celulares a Toffoli pode compromete** (posts/post-0309-investigadores-avaliam-que-entregar-dados-de-celul.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **“Poucas coisas são tão brasileiras quanto o carnaval”: porta-voz da Riot Games c** (posts/post-0308-“poucas-coisas-são-tão-brasileiras-quanto-o-carnav.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Site de sadomasoquismo e treino de tiro: a confissão da babá brasileira que part** (posts/post-0302-site-de-sadomasoquismo-e-treino-de-tiro:-a-confiss.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Com queda de jogadores constante e lançamento pouco chamativo, desenvolvedora de** (posts/post-0292-com-queda-de-jogadores-constante-e-lançamento-pouc.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Mangás e Animes Animes 2026 | Os principais lançamentos e onde assisti-los1 min ** (posts/post-0290-mangás-e-animes-animes-2026-|-os-principais-lançam.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Trump vai retirar agentes do ICE de Minnesota, diz ' czar da fronteira' dos EUA** (posts/post-0286-trump-vai-retirar-agentes-do-ice-de-minnesota,-diz.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Trump vai retirar agentes do ICE de Minnesota, diz ' czar da fronteira' dos EUA** (posts/post-0286-trump-vai-retirar-agentes-do-ice-de-minnesota,-diz.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Extremamente divertido: este filme da Netflix atingiu 104 milhões de visualizaçõ** (posts/post-0284-extremamente-divertido:-este-filme-da-netflix-atin.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Toffoli e caso Master: investigadores falam em ‘reset’ da República** (posts/post-0269-toffoli-e-caso-master:-investigadores-falam-em-‘re.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Sambódromo: tire dúvidas sobre desvios, veja o mapa e saiba como chegar** (posts/post-0264-sambódromo:-tire-dúvidas-sobre-desvios,-veja-o-map.html) | ações=['fallback_regra_sem_groq']
@@ -36,7 +44,7 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Atuações do São Paulo: veja quem foi bem e quem foi mal** (posts/post-0201-atuações-do-são-paulo:-veja-quem-foi-bem-e-quem-fo.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Reclamações por barulho atingem recorde em SP, enquanto gestão Nunes tenta flexi** (posts/post-0200-reclamações-por-barulho-atingem-recorde-em-sp,-enq.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Reforma tributária: com extinção do PIS, Cofins e IPI, R$ 40 bilhões em benefíci** (posts/post-0197-reforma-tributária:-com-extinção-do-pis,-cofins-e-.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Lei Felca proíbe Loot Boxes no Brasil; Overwatch 2 é o primeiro afetado Há 17 ho** (posts/post-0196-lei-felca-proíbe-loot-boxes-no-brasil;-overwatch-2.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Lei Felca proíbe Loot Boxes no Brasil; Overwatch 2 é o primeiro afetado Há 17 ho** (posts/post-0196-lei-felca-proíbe-loot-boxes-no-brasil;-overwatch-2.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Musa da Colorado do Brás desiste do carnaval após complicações por uso de caneta** (posts/post-0192-musa-da-colorado-do-brás-desiste-do-carnaval-após-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Justiça bloqueia 48 imóveis e R$ 500 milhões do PCC por esquema de lavagem de di** (posts/post-0184-justiça-bloqueia-48-imóveis-e-r$-500-milhões-do-pc.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Há 25 anos, Diablo II definiu o gênero; agora, a Blizzard faz o impensável e rev** (posts/post-0180-há-25-anos,-diablo-ii-definiu-o-gênero;-agora,-a-b.html) | ações=['fallback_regra_sem_groq']
@@ -54,7 +62,7 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Elenco original de volta! A Múmia 4 ganha data de estreia nos cinemas. Confira!** (posts/post-0074-elenco-original-de-volta-a-múmia-4-ganha-data-de-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Trump teria ligado para chefe de polícia em 2006 para falar sobre comportamento ** (posts/post-0070-trump-teria-ligado-para-chefe-de-polícia-em-2006-p.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **" Namorem logo!": não são só fãs que ficam frustrados com romance entre Fern e S** (posts/post-0068-"-namorem-logo":-não-são-só-fãs-que-ficam-frustra.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **VÍDEO: PM mata homem que invadiu instituição que atende crianças e adolescentes ** (posts/post-0064-vídeo:-pm-mata-homem-que-invadiu-instituição-que-a.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **VÍDEO: PM mata homem que invadiu instituição que atende crianças e adolescentes ** (posts/post-0064-vídeo:-pm-mata-homem-que-invadiu-instituição-que-a.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Polícia apreende Mercedes de piloto preso acusado de abuso** (posts/post-0056-polícia-apreende-mercedes-de-piloto-preso-acusado-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Produtoi Phone 18 Pro e Galaxy S27 terão melhoria importante na câmera, apontam ** (posts/post-0043-produtoi-phone-18-pro-e-galaxy-s27-terão-melhoria-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Flávio Bolsonaro não vai reagir à aproximação de partidos do Centrão com o presi** (posts/post-0037-flávio-bolsonaro-não-vai-reagir-à-aproximação-de-p.html) | ações=['fallback_regra_sem_groq']
@@ -67,4 +75,4 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Esportes a Motor** (posts/post-0007-esportes-a-motor.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Presidente do Irã confirma negociações com os EUA e diz que conversas devem ser ** (posts/post-0006-presidente-do-irã-confirma-negociações-com-os-eua-.html) | ações=['fallback_regra_sem_groq']
 
-- Resumo: edits=61 deletes=0
+- Resumo: edits=69 deletes=0

@@ -6,9 +6,6 @@ Relatório gerado automaticamente pelo editor.
 - Limites: max_edits=25, max_deletes=10
 
 - ✏️ EDIT: **Ciclista é baleado durante assalto em São Gonçalo** (posts/post-0543-ciclista-é-baleado-durante-assalto-em-são-gonçalo.html) | ações=['fallback_regra_sem_groq']
-- 🟧 QUARENTENA: **Quem eram os atletas ucranianos homenageados em capacete ' barrado' na Olimpíada** (posts/post-0542-quem-eram-os-atletas-ucranianos-homenageados-em-ca.html) -> `posts/_quarantine/post-0542-quem-eram-os-atletas-ucranianos-homenageados-em-ca.html` | motivos=['quarentena_sem_groq']
-- ✏️ EDIT: **Justiça manda deputado se retratar por montagem de Bolsonaro com Vorcaro** (posts/post-0541-justiça-manda-deputado-se-retratar-por-montagem-de.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Parece um game perdido de 1993: este novo jogo é o sonho de qualquer fã de Game ** (posts/post-0540-parece-um-game-perdido-de-1993:-este-novo-jogo-é-o.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Esporte Lucas Pinheiro traz 1ª medalha de ouro do Brasil nos Jogos Olímpicos de ** (posts/post-0538-esporte-lucas-pinheiro-traz-1ª-medalha-de-ouro-do-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Cordão da Bola Preta leva foliões para as ruas do Centro do Rio; Paolla Oliveira** (posts/post-0535-cordão-da-bola-preta-leva-foliões-para-as-ruas-do-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Voxel Silent Hill Townfall: Veja trailer com gameplay e tudo sobre o jogo em pri** (posts/post-0531-voxel-silent-hill-townfall:-veja-trailer-com-gamep.html) | ações=['fallback_regra_sem_groq']
@@ -33,12 +30,12 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Governo Trump usou ferramenta de IA para capturar Nicolás Maduro na Venezuela, d** (posts/post-0478-governo-trump-usou-ferramenta-de-ia-para-capturar-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **PF vira alvo de ministros em reunião que selou saída de Toffoli** (posts/post-0477-pf-vira-alvo-de-ministros-em-reunião-que-selou-saí.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Lexa faz estreia no carnaval paulistano como madrinha de bateria da Dragões da R** (posts/post-0472-lexa-faz-estreia-no-carnaval-paulistano-como-madri.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Produtoi Phone Flip segue em desenvolvimento pela Apple, aponta informante Há 9 ** (posts/post-0467-produtoi-phone-flip-segue-em-desenvolvimento-pela-.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Produtoi Phone Flip segue em desenvolvimento pela Apple, aponta informante Há 9 ** (posts/post-0467-produtoi-phone-flip-segue-em-desenvolvimento-pela-.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Presidente da SP Turis diz que SP pode criar novos circuitos de blocos em 2027** (posts/post-0464-presidente-da-sp-turis-diz-que-sp-pode-criar-novos.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Sem diárias nem pedidos de voto: veja as recomendações do Planalto para autorida** (posts/post-0461-sem-diárias-nem-pedidos-de-voto:-veja-as-recomenda.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Ricky Martin, Sarah Jessica Parker... Rio terá 300 mil estrangeiros** (posts/post-0455-ricky-martin,-sarah-jessica-parker...-rio-terá-300.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Juliana Paes sobre novo visual: ' Dá para ser o que a gente quiser no carnaval'** (posts/post-0447-juliana-paes-sobre-novo-visual:-'-dá-para-ser-o-qu.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Em reunião com delegados, Mendonça tem acesso a detalhes das investigações do Ma** (posts/post-0445-em-reunião-com-delegados,-mendonça-tem-acesso-a-de.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Em reunião com delegados, Mendonça tem acesso a detalhes das investigações do Ma** (posts/post-0445-em-reunião-com-delegados,-mendonça-tem-acesso-a-de.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Segurança Navios da Marinha dos EUA colidem durante reabastecimento no Caribe Há** (posts/post-0443-segurança-navios-da-marinha-dos-eua-colidem-durant.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Play Station 5 Tudo sobre God of War Sons of Sparta** (posts/post-0434-play-station-5-tudo-sobre-god-of-war-sons-of-spart.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Federação diz confiar nos árbitros após polêmica na patinação; entenda** (posts/post-0433-federação-diz-confiar-nos-árbitros-após-polêmica-n.html) | ações=['fallback_regra_sem_groq']
@@ -80,9 +77,9 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Anistia Internacional Brasil aponta indignação com absolvição de PMs que mataram** (posts/post-0247-anistia-internacional-brasil-aponta-indignação-com.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Vídeo mostra colisão; motociclista foi arremessado** (posts/post-0240-vídeo-mostra-colisão;-motociclista-foi-arremessado.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Testamento: como fazer e por que ele pode evitar disputas familiares, como a Ric** (posts/post-0239-testamento:-como-fazer-e-por-que-ele-pode-evitar-d.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Técnico turco diz que Arda Güler está sofrendo bullying no Real Madrid** (posts/post-0233-técnico-turco-diz-que-arda-güler-está-sofrendo-bul.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Técnico turco diz que Arda Güler está sofrendo bullying no Real Madrid** (posts/post-0233-técnico-turco-diz-que-arda-güler-está-sofrendo-bul.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **PF cita lei sobre indícios de crimes cometidos por magistrados ao entregar ao ST** (posts/post-0221-pf-cita-lei-sobre-indícios-de-crimes-cometidos-por.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Terror em Silent Hill: Regresso para o Inferno** (posts/post-0218-terror-em-silent-hill:-regresso-para-o-inferno.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Terror em Silent Hill: Regresso para o Inferno** (posts/post-0218-terror-em-silent-hill:-regresso-para-o-inferno.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Juba e Everton Ribeiro se destacam no Bahia; veja as notas** (posts/post-0217-juba-e-everton-ribeiro-se-destacam-no-bahia;-veja-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **PMs são absolvidos por morte de adolescente de 13 anos na Cidade de Deus** (posts/post-0215-pms-são-absolvidos-por-morte-de-adolescente-de-13-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **7 pontos sobre a nova pesquisa Quaest, que projeta disputa entre Lula e Flávio B** (posts/post-0213-7-pontos-sobre-a-nova-pesquisa-quaest,-que-projeta.html) | ações=['fallback_regra_sem_groq']
@@ -123,4 +120,4 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Esportes a Motor** (posts/post-0007-esportes-a-motor.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Presidente do Irã confirma negociações com os EUA e diz que conversas devem ser ** (posts/post-0006-presidente-do-irã-confirma-negociações-com-os-eua-.html) | ações=['fallback_regra_sem_groq']
 
-- Resumo: edits=116 deletes=1
+- Resumo: edits=114 deletes=0

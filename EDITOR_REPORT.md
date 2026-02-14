@@ -5,10 +5,9 @@ Relatório gerado automaticamente pelo editor.
 - Modo: APLICANDO correções
 - Limites: max_edits=25, max_deletes=10
 
-- ✏️ EDIT: **Ciclista é baleado durante assalto em São Gonçalo** (posts/post-0543-ciclista-é-baleado-durante-assalto-em-são-gonçalo.html) | ações=['reescrito_groq']
-- ✏️ EDIT: **Esporte Lucas Pinheiro traz 1ª medalha de ouro do Brasil nos Jogos Olímpicos de ** (posts/post-0538-esporte-lucas-pinheiro-traz-1ª-medalha-de-ouro-do-.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Esporte Lucas Pinheiro traz 1ª medalha de ouro do Brasil nos Jogos Olímpicos de ** (posts/post-0538-esporte-lucas-pinheiro-traz-1ª-medalha-de-ouro-do-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Cordão da Bola Preta leva foliões para as ruas do Centro do Rio; Paolla Oliveira** (posts/post-0535-cordão-da-bola-preta-leva-foliões-para-as-ruas-do-.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Voxel Silent Hill Townfall: Veja trailer com gameplay e tudo sobre o jogo em pri** (posts/post-0531-voxel-silent-hill-townfall:-veja-trailer-com-gamep.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Voxel Silent Hill Townfall: Veja trailer com gameplay e tudo sobre o jogo em pri** (posts/post-0531-voxel-silent-hill-townfall:-veja-trailer-com-gamep.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Filmes Homem-Aranha: Um Novo Dia | Lápide aparece em nova imagem contra o herói2** (posts/post-0530-filmes-homem-aranha:-um-novo-dia-|-lápide-aparece-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Carro fica destruído em acidente com ônibus, que partiu árvore ao meio** (posts/post-0528-carro-fica-destruído-em-acidente-com-ônibus,-que-p.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Policiais civis disfarçados prendem suspeitos em bloco de Santa Teresa** (posts/post-0527-policiais-civis-disfarçados-prendem-suspeitos-em-b.html) | ações=['fallback_regra_sem_groq']
@@ -50,10 +49,10 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Jogo de hóquei gera briga generalizada entre seleções** (posts/post-0401-jogo-de-hóquei-gera-briga-generalizada-entre-seleç.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Korea A Arte de Sarah vai ter mais episódios? Tudo sobre o k-drama da Netflix2 m** (posts/post-0394-korea-a-arte-de-sarah-vai-ter-mais-episódios-tudo.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Quarta temporada de Bridgerton Parte 2 ganha trailer e já tem data; saiba tudo** (posts/post-0387-quarta-temporada-de-bridgerton-parte-2-ganha-trail.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **The BRIEF Apple é advertida nos EUA por suposta censura a conteúdos de direita H** (posts/post-0371-the-brief-apple-é-advertida-nos-eua-por-suposta-ce.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **The BRIEF Apple é advertida nos EUA por suposta censura a conteúdos de direita H** (posts/post-0371-the-brief-apple-é-advertida-nos-eua-por-suposta-ce.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Bafo da Onça celebra 70 anos com novo percurso, nova bateria e participação hist** (posts/post-0367-bafo-da-onça-celebra-70-anos-com-novo-percurso,-no.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Suspeição de Toffoli poderia anular atos do ministro no caso Master; STF optou p** (posts/post-0357-suspeição-de-toffoli-poderia-anular-atos-do-minist.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **State of Play revela gameplay estendido de Control: Resonant com combate e explo** (posts/post-0356-state-of-play-revela-gameplay-estendido-de-control.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **State of Play revela gameplay estendido de Control: Resonant com combate e explo** (posts/post-0356-state-of-play-revela-gameplay-estendido-de-control.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Raphinha não foi titular nas derrotas do Barça na temporada** (posts/post-0353-raphinha-não-foi-titular-nas-derrotas-do-barça-na-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Parentes de criança baleada na cabeça em Nova Iguaçu fazem protesto pedindo just** (posts/post-0351-parentes-de-criança-baleada-na-cabeça-em-nova-igua.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Deco reclama do VAR e critica jogadores do Barcelona após goleada sofrida** (posts/post-0345-deco-reclama-do-var-e-critica-jogadores-do-barcelo.html) | ações=['fallback_regra_sem_groq']
@@ -94,10 +93,10 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Justiça bloqueia 48 imóveis e R$ 500 milhões do PCC por esquema de lavagem de di** (posts/post-0184-justiça-bloqueia-48-imóveis-e-r$-500-milhões-do-pc.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Há 25 anos, Diablo II definiu o gênero; agora, a Blizzard faz o impensável e rev** (posts/post-0180-há-25-anos,-diablo-ii-definiu-o-gênero;-agora,-a-b.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Voxel Overwatch revive com nova atualização e atinge pico histórico de jogadores** (posts/post-0155-voxel-overwatch-revive-com-nova-atualização-e-atin.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Donos de academia onde mulher morreu, na Zona Leste de SP, prestam depoimento à ** (posts/post-0152-donos-de-academia-onde-mulher-morreu,-na-zona-lest.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Donos de academia onde mulher morreu, na Zona Leste de SP, prestam depoimento à ** (posts/post-0152-donos-de-academia-onde-mulher-morreu,-na-zona-lest.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **The BRIEF Microsoft inaugura dois novos data centers para IA e nuvem no Brasil H** (posts/post-0147-the-brief-microsoft-inaugura-dois-novos-data-cente.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Segurança Mais de 40 sites falsos da Apple roubam senhas de brasileiros vítimas ** (posts/post-0107-segurança-mais-de-40-sites-falsos-da-apple-roubam-.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Esposa ficou horrorizada ao descobrir supostos crimes** (posts/post-0104-esposa-ficou-horrorizada-ao-descobrir-supostos-cri.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Esposa ficou horrorizada ao descobrir supostos crimes** (posts/post-0104-esposa-ficou-horrorizada-ao-descobrir-supostos-cri.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Minha Série The White Lotus Temporada 4: Conheça o elenco e tudo sobre a série H** (posts/post-0099-minha-série-the-white-lotus-temporada-4:-conheça-o.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Piloto suspeito de abuso sexual infantil admitiu conhecer vítimas** (posts/post-0096-piloto-suspeito-de-abuso-sexual-infantil-admitiu-c.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Receita Federal dos EUA divulgou dados fiscais confidenciais de milhares de imig** (posts/post-0094-receita-federal-dos-eua-divulgou-dados-fiscais-con.html) | ações=['fallback_regra_sem_groq']
@@ -120,4 +119,4 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Esportes a Motor** (posts/post-0007-esportes-a-motor.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Presidente do Irã confirma negociações com os EUA e diz que conversas devem ser ** (posts/post-0006-presidente-do-irã-confirma-negociações-com-os-eua-.html) | ações=['fallback_regra_sem_groq']
 
-- Resumo: edits=114 deletes=0
+- Resumo: edits=113 deletes=0

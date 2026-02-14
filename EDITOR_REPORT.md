@@ -5,9 +5,9 @@ Relatório gerado automaticamente pelo editor.
 - Modo: APLICANDO correções
 - Limites: max_edits=25, max_deletes=10
 
-- ✏️ EDIT: **Esporte Lucas Pinheiro traz 1ª medalha de ouro do Brasil nos Jogos Olímpicos de ** (posts/post-0538-esporte-lucas-pinheiro-traz-1ª-medalha-de-ouro-do-.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Esporte Lucas Pinheiro traz 1ª medalha de ouro do Brasil nos Jogos Olímpicos de ** (posts/post-0538-esporte-lucas-pinheiro-traz-1ª-medalha-de-ouro-do-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Cordão da Bola Preta leva foliões para as ruas do Centro do Rio; Paolla Oliveira** (posts/post-0535-cordão-da-bola-preta-leva-foliões-para-as-ruas-do-.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Voxel Silent Hill Townfall: Veja trailer com gameplay e tudo sobre o jogo em pri** (posts/post-0531-voxel-silent-hill-townfall:-veja-trailer-com-gamep.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Voxel Silent Hill Townfall: Veja trailer com gameplay e tudo sobre o jogo em pri** (posts/post-0531-voxel-silent-hill-townfall:-veja-trailer-com-gamep.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Filmes Homem-Aranha: Um Novo Dia | Lápide aparece em nova imagem contra o herói2** (posts/post-0530-filmes-homem-aranha:-um-novo-dia-|-lápide-aparece-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Carro fica destruído em acidente com ônibus, que partiu árvore ao meio** (posts/post-0528-carro-fica-destruído-em-acidente-com-ônibus,-que-p.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Policiais civis disfarçados prendem suspeitos em bloco de Santa Teresa** (posts/post-0527-policiais-civis-disfarçados-prendem-suspeitos-em-b.html) | ações=['fallback_regra_sem_groq']

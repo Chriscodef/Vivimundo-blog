@@ -13,8 +13,7 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Cano estoura após chuva, e entrada do camarote da Prefeitura de SP no Anhembi fi** (posts/post-0480-cano-estoura-após-chuva,-e-entrada-do-camarote-da-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Governo Trump usou ferramenta de IA para capturar Nicolás Maduro na Venezuela, d** (posts/post-0478-governo-trump-usou-ferramenta-de-ia-para-capturar-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **PF vira alvo de ministros em reunião que selou saída de Toffoli** (posts/post-0477-pf-vira-alvo-de-ministros-em-reunião-que-selou-saí.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Minha Série Rivalidade Ardente: quando estreiam os últimos episódios? Há 10 hora** (posts/post-0475-minha-série-rivalidade-ardente:-quando-estreiam-os.html) | ações=['reescrito_groq']
-- ✏️ EDIT: **Lexa faz estreia no carnaval paulistano como madrinha de bateria da Dragões da R** (posts/post-0472-lexa-faz-estreia-no-carnaval-paulistano-como-madri.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Lexa faz estreia no carnaval paulistano como madrinha de bateria da Dragões da R** (posts/post-0472-lexa-faz-estreia-no-carnaval-paulistano-como-madri.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Produtoi Phone Flip segue em desenvolvimento pela Apple, aponta informante Há 9 ** (posts/post-0467-produtoi-phone-flip-segue-em-desenvolvimento-pela-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Presidente da SP Turis diz que SP pode criar novos circuitos de blocos em 2027** (posts/post-0464-presidente-da-sp-turis-diz-que-sp-pode-criar-novos.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Sem diárias nem pedidos de voto: veja as recomendações do Planalto para autorida** (posts/post-0461-sem-diárias-nem-pedidos-de-voto:-veja-as-recomenda.html) | ações=['fallback_regra_sem_groq']
@@ -106,4 +105,4 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Esportes a Motor** (posts/post-0007-esportes-a-motor.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Presidente do Irã confirma negociações com os EUA e diz que conversas devem ser ** (posts/post-0006-presidente-do-irã-confirma-negociações-com-os-eua-.html) | ações=['fallback_regra_sem_groq']
 
-- Resumo: edits=100 deletes=0
+- Resumo: edits=99 deletes=0

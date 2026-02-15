@@ -5,22 +5,8 @@ Relatório gerado automaticamente pelo editor.
 - Modo: APLICANDO correções
 - Limites: max_edits=25, max_deletes=10
 
-- ✏️ EDIT: **Software Carnaval 2026: Waze ganha monitoramento ao vivo e nova voz temática Há ** (posts/post-0619-software-carnaval-2026:-waze-ganha-monitoramento-a.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Filmes Michael | Cinebiografia do Rei do Pop ganha novo teaser1 min de leitura J** (posts/post-0618-filmes-michael-|-cinebiografia-do-rei-do-pop-ganha.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Corrida na Austrália tem canguru atropelado e batida assustadora** (posts/post-0617-corrida-na-austrália-tem-canguru-atropelado-e-bati.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Vídeo mostra tombos de mestre-sala e porta-bandeira da Acadêmicos do Tatuapé apó** (posts/post-0616-vídeo-mostra-tombos-de-mestre-sala-e-porta-bandeir.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Lula participa da inauguração do Centro de Emergência 24 horas do Hospital Feder** (posts/post-0615-lula-participa-da-inauguração-do-centro-de-emergên.html) | ações=['fallback_regra_sem_groq']
-- 🟧 QUARENTENA: **Rubio diz que EUA não contestam avaliação europeia sobre envenenamento de Navaln** (posts/post-0614-rubio-diz-que-eua-não-contestam-avaliação-europeia.html) -> `posts/_quarantine/post-0614-rubio-diz-que-eua-não-contestam-avaliação-europeia.html` | motivos=['quarentena_sem_groq']
-- ✏️ EDIT: **Paes atribui evento com Lula no Carnaval à saída do cargo em março** (posts/post-0613-paes-atribui-evento-com-lula-no-carnaval-à-saída-d.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Resident Evil 4 baratinho, Alex Kidd de graça e mais! Veja as indicações de game** (posts/post-0612-resident-evil-4-baratinho,-alex-kidd-de-graça-e-ma.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Minha Série6 filmes e séries com Paul Wesley, de Diários de um Vampiro Há 19 min** (posts/post-0611-minha-série6-filmes-e-séries-com-paul-wesley,-de-d.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Filmes Festival de Berlim divulga esclarecimento sobre declarações políticas4 mi** (posts/post-0610-filmes-festival-de-berlim-divulga-esclarecimento-s.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Acidente na Sail GP deixa velejador com fraturas expostas nas duas pernas** (posts/post-0609-acidente-na-sail-gp-deixa-velejador-com-fraturas-e.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Em desfile da Gaviões da Fiel, ministra Sônia Guajajara critica marco temporal** (posts/post-0608-em-desfile-da-gaviões-da-fiel,-ministra-sônia-guaj.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Blocos arrastam foliões pelas ruas do Rio; Areia leva 100 mil pessoas ao Leblon** (posts/post-0607-blocos-arrastam-foliões-pelas-ruas-do-rio;-areia-l.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Obama responde post de Trump que o retratou como macaco: ' Pessoas perderam a ve** (posts/post-0606-obama-responde-post-de-trump-que-o-retratou-como-m.html) | ações=['reescrito_groq']
-- 🟧 QUARENTENA: **Lula afirma que Covid mostrou “força” do SUS** (posts/post-0605-lula-afirma-que-covid-mostrou-“força”-do-sus.html) -> `posts/_quarantine/post-0605-lula-afirma-que-covid-mostrou-“força”-do-sus.html` | motivos=['quarentena_sem_groq']
-- ✏️ EDIT: **Esqueça a fronteira de Papers, Please: o novo " pesadelo burocrático" é brasilei** (posts/post-0604-esqueça-a-fronteira-de-papers,-please:-o-novo-"-pe.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Granada da 2ª Guerra é descoberta nas Olimpíadas de Inverno** (posts/post-0598-granada-da-2ª-guerra-é-descoberta-nas-olimpíadas-d.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Jogo do Galo: Conheça Project Windless, novo RPG de ação com trailer de gameplay** (posts/post-0580-jogo-do-galo:-conheça-project-windless,-novo-rpg-d.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Poze do Rodo vai de megacolar à Sapucaí e tieta Stevie B** (posts/post-0567-poze-do-rodo-vai-de-megacolar-à-sapucaí-e-tieta-st.html) | ações=['fallback_regra_sem_groq']
@@ -55,12 +41,12 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Juliana Paes sobre novo visual: ' Dá para ser o que a gente quiser no carnaval'** (posts/post-0447-juliana-paes-sobre-novo-visual:-'-dá-para-ser-o-qu.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Em reunião com delegados, Mendonça tem acesso a detalhes das investigações do Ma** (posts/post-0445-em-reunião-com-delegados,-mendonça-tem-acesso-a-de.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Segurança Navios da Marinha dos EUA colidem durante reabastecimento no Caribe Há** (posts/post-0443-segurança-navios-da-marinha-dos-eua-colidem-durant.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Play Station 5 Tudo sobre God of War Sons of Sparta** (posts/post-0434-play-station-5-tudo-sobre-god-of-war-sons-of-spart.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Play Station 5 Tudo sobre God of War Sons of Sparta** (posts/post-0434-play-station-5-tudo-sobre-god-of-war-sons-of-spart.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Federação diz confiar nos árbitros após polêmica na patinação; entenda** (posts/post-0433-federação-diz-confiar-nos-árbitros-após-polêmica-n.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Homem é preso depois de empurrar ex-companheira de viaduto em SP** (posts/post-0432-homem-é-preso-depois-de-empurrar-ex-companheira-de.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Master: publicação de trechos de reunião favoráveis a Toffoli gera desconforto n** (posts/post-0429-master:-publicação-de-trechos-de-reunião-favorávei.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Tem co-op ou não? Descrição de God of War Sons of Sparta na PS Store deixa jogad** (posts/post-0428-tem-co-op-ou-não-descrição-de-god-of-war-sons-of-.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Fantasia a R$ 50? Na Saara tem; veja desafio** (posts/post-0423-fantasia-a-r$-50-na-saara-tem;-veja-desafio.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Fantasia a R$ 50? Na Saara tem; veja desafio** (posts/post-0423-fantasia-a-r$-50-na-saara-tem;-veja-desafio.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **CPI do Crime Organizado deve votar convocação do ministro Dias Toffoli, do STF** (posts/post-0421-cpi-do-crime-organizado-deve-votar-convocação-do-m.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Empresário suspeito de jogar esposa do 10º andar de prédio vira réu em SP** (posts/post-0416-empresário-suspeito-de-jogar-esposa-do-10º-andar-d.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Há 20 anos, Glast Heim era o pesadelo de todo jogador de Ragnarok; agora é hora ** (posts/post-0412-há-20-anos,-glast-heim-era-o-pesadelo-de-todo-joga.html) | ações=['fallback_regra_sem_groq']
@@ -137,4 +123,4 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Esportes a Motor** (posts/post-0007-esportes-a-motor.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Presidente do Irã confirma negociações com os EUA e diz que conversas devem ser ** (posts/post-0006-presidente-do-irã-confirma-negociações-com-os-eua-.html) | ações=['fallback_regra_sem_groq']
 
-- Resumo: edits=129 deletes=2
+- Resumo: edits=117 deletes=0

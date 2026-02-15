@@ -5,7 +5,7 @@ Relatório gerado automaticamente pelo editor.
 - Modo: APLICANDO correções
 - Limites: max_edits=25, max_deletes=10
 
-- ✏️ EDIT: **Filmes Michael | Cinebiografia do Rei do Pop ganha novo teaser1 min de leitura J** (posts/post-0618-filmes-michael-|-cinebiografia-do-rei-do-pop-ganha.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Filmes Michael | Cinebiografia do Rei do Pop ganha novo teaser1 min de leitura J** (posts/post-0618-filmes-michael-|-cinebiografia-do-rei-do-pop-ganha.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Vídeo mostra tombos de mestre-sala e porta-bandeira da Acadêmicos do Tatuapé apó** (posts/post-0616-vídeo-mostra-tombos-de-mestre-sala-e-porta-bandeir.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Granada da 2ª Guerra é descoberta nas Olimpíadas de Inverno** (posts/post-0598-granada-da-2ª-guerra-é-descoberta-nas-olimpíadas-d.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Jogo do Galo: Conheça Project Windless, novo RPG de ação com trailer de gameplay** (posts/post-0580-jogo-do-galo:-conheça-project-windless,-novo-rpg-d.html) | ações=['fallback_regra_sem_groq']
@@ -41,12 +41,12 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Juliana Paes sobre novo visual: ' Dá para ser o que a gente quiser no carnaval'** (posts/post-0447-juliana-paes-sobre-novo-visual:-'-dá-para-ser-o-qu.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Em reunião com delegados, Mendonça tem acesso a detalhes das investigações do Ma** (posts/post-0445-em-reunião-com-delegados,-mendonça-tem-acesso-a-de.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Segurança Navios da Marinha dos EUA colidem durante reabastecimento no Caribe Há** (posts/post-0443-segurança-navios-da-marinha-dos-eua-colidem-durant.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Play Station 5 Tudo sobre God of War Sons of Sparta** (posts/post-0434-play-station-5-tudo-sobre-god-of-war-sons-of-spart.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Play Station 5 Tudo sobre God of War Sons of Sparta** (posts/post-0434-play-station-5-tudo-sobre-god-of-war-sons-of-spart.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Federação diz confiar nos árbitros após polêmica na patinação; entenda** (posts/post-0433-federação-diz-confiar-nos-árbitros-após-polêmica-n.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Homem é preso depois de empurrar ex-companheira de viaduto em SP** (posts/post-0432-homem-é-preso-depois-de-empurrar-ex-companheira-de.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Master: publicação de trechos de reunião favoráveis a Toffoli gera desconforto n** (posts/post-0429-master:-publicação-de-trechos-de-reunião-favorávei.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Tem co-op ou não? Descrição de God of War Sons of Sparta na PS Store deixa jogad** (posts/post-0428-tem-co-op-ou-não-descrição-de-god-of-war-sons-of-.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Fantasia a R$ 50? Na Saara tem; veja desafio** (posts/post-0423-fantasia-a-r$-50-na-saara-tem;-veja-desafio.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Fantasia a R$ 50? Na Saara tem; veja desafio** (posts/post-0423-fantasia-a-r$-50-na-saara-tem;-veja-desafio.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **CPI do Crime Organizado deve votar convocação do ministro Dias Toffoli, do STF** (posts/post-0421-cpi-do-crime-organizado-deve-votar-convocação-do-m.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Empresário suspeito de jogar esposa do 10º andar de prédio vira réu em SP** (posts/post-0416-empresário-suspeito-de-jogar-esposa-do-10º-andar-d.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Há 20 anos, Glast Heim era o pesadelo de todo jogador de Ragnarok; agora é hora ** (posts/post-0412-há-20-anos,-glast-heim-era-o-pesadelo-de-todo-joga.html) | ações=['fallback_regra_sem_groq']

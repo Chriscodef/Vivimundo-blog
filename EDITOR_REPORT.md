@@ -5,7 +5,6 @@ Relatório gerado automaticamente pelo editor.
 - Modo: APLICANDO correções
 - Limites: max_edits=25, max_deletes=10
 
-- ✏️ EDIT: **Atropelado por carro alegórico da União de Maricá passa por cirurgia e está no C** (posts/post-0623-atropelado-por-carro-alegórico-da-união-de-maricá-.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Filmes Michael | Cinebiografia do Rei do Pop ganha novo teaser1 min de leitura J** (posts/post-0618-filmes-michael-|-cinebiografia-do-rei-do-pop-ganha.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Vídeo mostra tombos de mestre-sala e porta-bandeira da Acadêmicos do Tatuapé apó** (posts/post-0616-vídeo-mostra-tombos-de-mestre-sala-e-porta-bandeir.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Granada da 2ª Guerra é descoberta nas Olimpíadas de Inverno** (posts/post-0598-granada-da-2ª-guerra-é-descoberta-nas-olimpíadas-d.html) | ações=['fallback_regra_sem_groq']
@@ -47,9 +46,9 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Homem é preso depois de empurrar ex-companheira de viaduto em SP** (posts/post-0432-homem-é-preso-depois-de-empurrar-ex-companheira-de.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Master: publicação de trechos de reunião favoráveis a Toffoli gera desconforto n** (posts/post-0429-master:-publicação-de-trechos-de-reunião-favorávei.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Tem co-op ou não? Descrição de God of War Sons of Sparta na PS Store deixa jogad** (posts/post-0428-tem-co-op-ou-não-descrição-de-god-of-war-sons-of-.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Fantasia a R$ 50? Na Saara tem; veja desafio** (posts/post-0423-fantasia-a-r$-50-na-saara-tem;-veja-desafio.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Fantasia a R$ 50? Na Saara tem; veja desafio** (posts/post-0423-fantasia-a-r$-50-na-saara-tem;-veja-desafio.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **CPI do Crime Organizado deve votar convocação do ministro Dias Toffoli, do STF** (posts/post-0421-cpi-do-crime-organizado-deve-votar-convocação-do-m.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Empresário suspeito de jogar esposa do 10º andar de prédio vira réu em SP** (posts/post-0416-empresário-suspeito-de-jogar-esposa-do-10º-andar-d.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Empresário suspeito de jogar esposa do 10º andar de prédio vira réu em SP** (posts/post-0416-empresário-suspeito-de-jogar-esposa-do-10º-andar-d.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Há 20 anos, Glast Heim era o pesadelo de todo jogador de Ragnarok; agora é hora ** (posts/post-0412-há-20-anos,-glast-heim-era-o-pesadelo-de-todo-joga.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Trump quer reverter algumas tarifas sobre produtos de aço e alumínio, diz jornal** (posts/post-0406-trump-quer-reverter-algumas-tarifas-sobre-produtos.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Jogo de hóquei gera briga generalizada entre seleções** (posts/post-0401-jogo-de-hóquei-gera-briga-generalizada-entre-seleç.html) | ações=['fallback_regra_sem_groq']
@@ -90,11 +89,11 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Riot demite desenvolvedores após lançamento de 2 XK0, jogo de luta do Lo LHá 1 d** (posts/post-0212-riot-demite-desenvolvedores-após-lançamento-de-2-x.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Menina de 13 anos que sofreu estupro coletivo só foi liberada depois que um dos ** (posts/post-0207-menina-de-13-anos-que-sofreu-estupro-coletivo-só-f.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Apenas 18% de aprovação** (posts/post-0202-apenas-18%-de-aprovação.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Atuações do São Paulo: veja quem foi bem e quem foi mal** (posts/post-0201-atuações-do-são-paulo:-veja-quem-foi-bem-e-quem-fo.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Atuações do São Paulo: veja quem foi bem e quem foi mal** (posts/post-0201-atuações-do-são-paulo:-veja-quem-foi-bem-e-quem-fo.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Reclamações por barulho atingem recorde em SP, enquanto gestão Nunes tenta flexi** (posts/post-0200-reclamações-por-barulho-atingem-recorde-em-sp,-enq.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Reforma tributária: com extinção do PIS, Cofins e IPI, R$ 40 bilhões em benefíci** (posts/post-0197-reforma-tributária:-com-extinção-do-pis,-cofins-e-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Lei Felca proíbe Loot Boxes no Brasil; Overwatch 2 é o primeiro afetado Há 17 ho** (posts/post-0196-lei-felca-proíbe-loot-boxes-no-brasil;-overwatch-2.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Musa da Colorado do Brás desiste do carnaval após complicações por uso de caneta** (posts/post-0192-musa-da-colorado-do-brás-desiste-do-carnaval-após-.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Musa da Colorado do Brás desiste do carnaval após complicações por uso de caneta** (posts/post-0192-musa-da-colorado-do-brás-desiste-do-carnaval-após-.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Justiça bloqueia 48 imóveis e R$ 500 milhões do PCC por esquema de lavagem de di** (posts/post-0184-justiça-bloqueia-48-imóveis-e-r$-500-milhões-do-pc.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Há 25 anos, Diablo II definiu o gênero; agora, a Blizzard faz o impensável e rev** (posts/post-0180-há-25-anos,-diablo-ii-definiu-o-gênero;-agora,-a-b.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Voxel Overwatch revive com nova atualização e atinge pico histórico de jogadores** (posts/post-0155-voxel-overwatch-revive-com-nova-atualização-e-atin.html) | ações=['fallback_regra_sem_groq']
@@ -124,4 +123,4 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Esportes a Motor** (posts/post-0007-esportes-a-motor.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Presidente do Irã confirma negociações com os EUA e diz que conversas devem ser ** (posts/post-0006-presidente-do-irã-confirma-negociações-com-os-eua-.html) | ações=['fallback_regra_sem_groq']
 
-- Resumo: edits=118 deletes=0
+- Resumo: edits=117 deletes=0

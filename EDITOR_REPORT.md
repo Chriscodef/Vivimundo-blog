@@ -5,7 +5,11 @@ Relatório gerado automaticamente pelo editor.
 - Modo: APLICANDO correções
 - Limites: max_edits=25, max_deletes=10
 
-- ✏️ EDIT: **Filmes Michael | Cinebiografia do Rei do Pop ganha novo teaser1 min de leitura J** (posts/post-0618-filmes-michael-|-cinebiografia-do-rei-do-pop-ganha.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Atropelado por carro alegórico da União de Maricá passa por cirurgia e está no C** (posts/post-0623-atropelado-por-carro-alegórico-da-união-de-maricá-.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **As outras riquezas naturais da Venezuela que são ' críticas' para os EUA** (posts/post-0622-as-outras-riquezas-naturais-da-venezuela-que-são-'.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **“Não vou aplaudir pré-julgamento”, diz Edinho sobre Toffoli e caso Master** (posts/post-0621-“não-vou-aplaudir-pré-julgamento”,-diz-edinho-sobr.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Muito mais que PUBG: Krafton revela recorde de mais de R$ 10 bilhões em receita ** (posts/post-0620-muito-mais-que-pubg:-krafton-revela-recorde-de-mai.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Filmes Michael | Cinebiografia do Rei do Pop ganha novo teaser1 min de leitura J** (posts/post-0618-filmes-michael-|-cinebiografia-do-rei-do-pop-ganha.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Vídeo mostra tombos de mestre-sala e porta-bandeira da Acadêmicos do Tatuapé apó** (posts/post-0616-vídeo-mostra-tombos-de-mestre-sala-e-porta-bandeir.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Granada da 2ª Guerra é descoberta nas Olimpíadas de Inverno** (posts/post-0598-granada-da-2ª-guerra-é-descoberta-nas-olimpíadas-d.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Jogo do Galo: Conheça Project Windless, novo RPG de ação com trailer de gameplay** (posts/post-0580-jogo-do-galo:-conheça-project-windless,-novo-rpg-d.html) | ações=['fallback_regra_sem_groq']
@@ -23,7 +27,7 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Minha Série Tabela do Oscar 2026: Organize sua maratona com a Planilha interativ** (posts/post-0523-minha-série-tabela-do-oscar-2026:-organize-sua-mar.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Exército diz que Mário Fernandes cumpre requisitos para visita íntima** (posts/post-0517-exército-diz-que-mário-fernandes-cumpre-requisitos.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Análise: Campanha antecipada de Lula no Carnaval é questão interpretativa** (posts/post-0509-análise:-campanha-antecipada-de-lula-no-carnaval-é.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **PS Plus Extra e Deluxe de fevereiro terá Spider-Man 2 e mais jogos de peso! Veja** (posts/post-0508-ps-plus-extra-e-deluxe-de-fevereiro-terá-spider-ma.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **PS Plus Extra e Deluxe de fevereiro terá Spider-Man 2 e mais jogos de peso! Veja** (posts/post-0508-ps-plus-extra-e-deluxe-de-fevereiro-terá-spider-ma.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Voxel5 jogos grátis para curtir o fim de semana no PC, consoles e mobile (14) Há** (posts/post-0507-voxel5-jogos-grátis-para-curtir-o-fim-de-semana-no.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Veja blocos LGBT+ para curtir carnaval em SP** (posts/post-0504-veja-blocos-lgbt+-para-curtir-carnaval-em-sp.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Cunhado de Beira-Mar e ' braço' do traficante no Nordeste é preso no Polígono da** (posts/post-0495-cunhado-de-beira-mar-e-'-braço'-do-traficante-no-n.html) | ações=['fallback_regra_sem_groq']
@@ -46,7 +50,7 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Homem é preso depois de empurrar ex-companheira de viaduto em SP** (posts/post-0432-homem-é-preso-depois-de-empurrar-ex-companheira-de.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Master: publicação de trechos de reunião favoráveis a Toffoli gera desconforto n** (posts/post-0429-master:-publicação-de-trechos-de-reunião-favorávei.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Tem co-op ou não? Descrição de God of War Sons of Sparta na PS Store deixa jogad** (posts/post-0428-tem-co-op-ou-não-descrição-de-god-of-war-sons-of-.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Fantasia a R$ 50? Na Saara tem; veja desafio** (posts/post-0423-fantasia-a-r$-50-na-saara-tem;-veja-desafio.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Fantasia a R$ 50? Na Saara tem; veja desafio** (posts/post-0423-fantasia-a-r$-50-na-saara-tem;-veja-desafio.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **CPI do Crime Organizado deve votar convocação do ministro Dias Toffoli, do STF** (posts/post-0421-cpi-do-crime-organizado-deve-votar-convocação-do-m.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Empresário suspeito de jogar esposa do 10º andar de prédio vira réu em SP** (posts/post-0416-empresário-suspeito-de-jogar-esposa-do-10º-andar-d.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Há 20 anos, Glast Heim era o pesadelo de todo jogador de Ragnarok; agora é hora ** (posts/post-0412-há-20-anos,-glast-heim-era-o-pesadelo-de-todo-joga.html) | ações=['fallback_regra_sem_groq']
@@ -73,7 +77,7 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Trump vai retirar agentes do ICE de Minnesota, diz ' czar da fronteira' dos EUA** (posts/post-0286-trump-vai-retirar-agentes-do-ice-de-minnesota,-diz.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Extremamente divertido: este filme da Netflix atingiu 104 milhões de visualizaçõ** (posts/post-0284-extremamente-divertido:-este-filme-da-netflix-atin.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Sambódromo: tire dúvidas sobre desvios, veja o mapa e saiba como chegar** (posts/post-0264-sambódromo:-tire-dúvidas-sobre-desvios,-veja-o-map.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Caso Master cria " guerra de todos contra todos", diz especialista** (posts/post-0261-caso-master-cria-"-guerra-de-todos-contra-todos",-.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Caso Master cria " guerra de todos contra todos", diz especialista** (posts/post-0261-caso-master-cria-"-guerra-de-todos-contra-todos",-.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Xbox Game Pass recebe jogos de peso na semana! Confira os lançamentos (07)** (posts/post-0260-xbox-game-pass-recebe-jogos-de-peso-na-semana-con.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Por que a Rússia tentou ' bloquear completamente' Whats App no país** (posts/post-0254-por-que-a-rússia-tentou-'-bloquear-completamente'-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Le Bron fica inelegível para prêmios individuais da NBA** (posts/post-0249-le-bron-fica-inelegível-para-prêmios-individuais-d.html) | ações=['fallback_regra_sem_groq']
@@ -89,7 +93,7 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Riot demite desenvolvedores após lançamento de 2 XK0, jogo de luta do Lo LHá 1 d** (posts/post-0212-riot-demite-desenvolvedores-após-lançamento-de-2-x.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Menina de 13 anos que sofreu estupro coletivo só foi liberada depois que um dos ** (posts/post-0207-menina-de-13-anos-que-sofreu-estupro-coletivo-só-f.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Apenas 18% de aprovação** (posts/post-0202-apenas-18%-de-aprovação.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Atuações do São Paulo: veja quem foi bem e quem foi mal** (posts/post-0201-atuações-do-são-paulo:-veja-quem-foi-bem-e-quem-fo.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Atuações do São Paulo: veja quem foi bem e quem foi mal** (posts/post-0201-atuações-do-são-paulo:-veja-quem-foi-bem-e-quem-fo.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Reclamações por barulho atingem recorde em SP, enquanto gestão Nunes tenta flexi** (posts/post-0200-reclamações-por-barulho-atingem-recorde-em-sp,-enq.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Reforma tributária: com extinção do PIS, Cofins e IPI, R$ 40 bilhões em benefíci** (posts/post-0197-reforma-tributária:-com-extinção-do-pis,-cofins-e-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Lei Felca proíbe Loot Boxes no Brasil; Overwatch 2 é o primeiro afetado Há 17 ho** (posts/post-0196-lei-felca-proíbe-loot-boxes-no-brasil;-overwatch-2.html) | ações=['fallback_regra_sem_groq']
@@ -117,10 +121,10 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Software Imagens mostram novos ícones e temas do Whats App para assinantes; conf** (posts/post-0035-software-imagens-mostram-novos-ícones-e-temas-do-w.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Brasil registra 1,6 milhão de casos de trabalho infantil, mas menos de 1% foi al** (posts/post-0029-brasil-registra-1,6-milhão-de-casos-de-trabalho-in.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Dr. Rubão perde recurso, e Itaguaí fica perto de ter novas eleições** (posts/post-0015-dr.-rubão-perde-recurso,-e-itaguaí-fica-perto-de-t.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Brasil é um dos países que mais acham Trump bom para o mundo** (posts/post-0014-brasil-é-um-dos-países-que-mais-acham-trump-bom-pa.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Brasil é um dos países que mais acham Trump bom para o mundo** (posts/post-0014-brasil-é-um-dos-países-que-mais-acham-trump-bom-pa.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Novidades de Wolverine? Play Station anuncia State of Play para esta quinta-feir** (posts/post-0004-novidades-de-wolverine-play-station-anuncia-state.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Michael Jackson Veja o trailer grandioso de Michael, cinebiografia do rei do pop** (posts/post-0002-michael-jacksonveja-o-trailer-grandioso-de-michael.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Esportes a Motor** (posts/post-0007-esportes-a-motor.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Presidente do Irã confirma negociações com os EUA e diz que conversas devem ser ** (posts/post-0006-presidente-do-irã-confirma-negociações-com-os-eua-.html) | ações=['fallback_regra_sem_groq']
 
-- Resumo: edits=117 deletes=0
+- Resumo: edits=121 deletes=0

@@ -5,7 +5,7 @@ Relatório gerado automaticamente pelo editor.
 - Modo: APLICANDO correções
 - Limites: max_edits=25, max_deletes=10
 
-- ✏️ EDIT: **Filmes Michael | Cinebiografia do Rei do Pop ganha novo teaser1 min de leitura J** (posts/post-0618-filmes-michael-|-cinebiografia-do-rei-do-pop-ganha.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Filmes Michael | Cinebiografia do Rei do Pop ganha novo teaser1 min de leitura J** (posts/post-0618-filmes-michael-|-cinebiografia-do-rei-do-pop-ganha.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Vídeo mostra tombos de mestre-sala e porta-bandeira da Acadêmicos do Tatuapé apó** (posts/post-0616-vídeo-mostra-tombos-de-mestre-sala-e-porta-bandeir.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Granada da 2ª Guerra é descoberta nas Olimpíadas de Inverno** (posts/post-0598-granada-da-2ª-guerra-é-descoberta-nas-olimpíadas-d.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Jogo do Galo: Conheça Project Windless, novo RPG de ação com trailer de gameplay** (posts/post-0580-jogo-do-galo:-conheça-project-windless,-novo-rpg-d.html) | ações=['fallback_regra_sem_groq']
@@ -23,7 +23,7 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Minha Série Tabela do Oscar 2026: Organize sua maratona com a Planilha interativ** (posts/post-0523-minha-série-tabela-do-oscar-2026:-organize-sua-mar.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Exército diz que Mário Fernandes cumpre requisitos para visita íntima** (posts/post-0517-exército-diz-que-mário-fernandes-cumpre-requisitos.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Análise: Campanha antecipada de Lula no Carnaval é questão interpretativa** (posts/post-0509-análise:-campanha-antecipada-de-lula-no-carnaval-é.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **PS Plus Extra e Deluxe de fevereiro terá Spider-Man 2 e mais jogos de peso! Veja** (posts/post-0508-ps-plus-extra-e-deluxe-de-fevereiro-terá-spider-ma.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **PS Plus Extra e Deluxe de fevereiro terá Spider-Man 2 e mais jogos de peso! Veja** (posts/post-0508-ps-plus-extra-e-deluxe-de-fevereiro-terá-spider-ma.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Voxel5 jogos grátis para curtir o fim de semana no PC, consoles e mobile (14) Há** (posts/post-0507-voxel5-jogos-grátis-para-curtir-o-fim-de-semana-no.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Veja blocos LGBT+ para curtir carnaval em SP** (posts/post-0504-veja-blocos-lgbt+-para-curtir-carnaval-em-sp.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Cunhado de Beira-Mar e ' braço' do traficante no Nordeste é preso no Polígono da** (posts/post-0495-cunhado-de-beira-mar-e-'-braço'-do-traficante-no-n.html) | ações=['fallback_regra_sem_groq']
@@ -48,7 +48,7 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Tem co-op ou não? Descrição de God of War Sons of Sparta na PS Store deixa jogad** (posts/post-0428-tem-co-op-ou-não-descrição-de-god-of-war-sons-of-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Fantasia a R$ 50? Na Saara tem; veja desafio** (posts/post-0423-fantasia-a-r$-50-na-saara-tem;-veja-desafio.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **CPI do Crime Organizado deve votar convocação do ministro Dias Toffoli, do STF** (posts/post-0421-cpi-do-crime-organizado-deve-votar-convocação-do-m.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Empresário suspeito de jogar esposa do 10º andar de prédio vira réu em SP** (posts/post-0416-empresário-suspeito-de-jogar-esposa-do-10º-andar-d.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Empresário suspeito de jogar esposa do 10º andar de prédio vira réu em SP** (posts/post-0416-empresário-suspeito-de-jogar-esposa-do-10º-andar-d.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Há 20 anos, Glast Heim era o pesadelo de todo jogador de Ragnarok; agora é hora ** (posts/post-0412-há-20-anos,-glast-heim-era-o-pesadelo-de-todo-joga.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Trump quer reverter algumas tarifas sobre produtos de aço e alumínio, diz jornal** (posts/post-0406-trump-quer-reverter-algumas-tarifas-sobre-produtos.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Jogo de hóquei gera briga generalizada entre seleções** (posts/post-0401-jogo-de-hóquei-gera-briga-generalizada-entre-seleç.html) | ações=['fallback_regra_sem_groq']
@@ -67,7 +67,7 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Operação mira organização chinesa ligada ao PCC acusada de lavagem** (posts/post-0312-operação-mira-organização-chinesa-ligada-ao-pcc-ac.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Investigadores avaliam que entregar dados de celulares a Toffoli pode compromete** (posts/post-0309-investigadores-avaliam-que-entregar-dados-de-celul.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **“Poucas coisas são tão brasileiras quanto o carnaval”: porta-voz da Riot Games c** (posts/post-0308-“poucas-coisas-são-tão-brasileiras-quanto-o-carnav.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Site de sadomasoquismo e treino de tiro: a confissão da babá brasileira que part** (posts/post-0302-site-de-sadomasoquismo-e-treino-de-tiro:-a-confiss.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Site de sadomasoquismo e treino de tiro: a confissão da babá brasileira que part** (posts/post-0302-site-de-sadomasoquismo-e-treino-de-tiro:-a-confiss.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Com queda de jogadores constante e lançamento pouco chamativo, desenvolvedora de** (posts/post-0292-com-queda-de-jogadores-constante-e-lançamento-pouc.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Mangás e Animes Animes 2026 | Os principais lançamentos e onde assisti-los1 min ** (posts/post-0290-mangás-e-animes-animes-2026-|-os-principais-lançam.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Trump vai retirar agentes do ICE de Minnesota, diz ' czar da fronteira' dos EUA** (posts/post-0286-trump-vai-retirar-agentes-do-ice-de-minnesota,-diz.html) | ações=['fallback_regra_sem_groq']
@@ -93,7 +93,6 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Reclamações por barulho atingem recorde em SP, enquanto gestão Nunes tenta flexi** (posts/post-0200-reclamações-por-barulho-atingem-recorde-em-sp,-enq.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Reforma tributária: com extinção do PIS, Cofins e IPI, R$ 40 bilhões em benefíci** (posts/post-0197-reforma-tributária:-com-extinção-do-pis,-cofins-e-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Lei Felca proíbe Loot Boxes no Brasil; Overwatch 2 é o primeiro afetado Há 17 ho** (posts/post-0196-lei-felca-proíbe-loot-boxes-no-brasil;-overwatch-2.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Musa da Colorado do Brás desiste do carnaval após complicações por uso de caneta** (posts/post-0192-musa-da-colorado-do-brás-desiste-do-carnaval-após-.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Justiça bloqueia 48 imóveis e R$ 500 milhões do PCC por esquema de lavagem de di** (posts/post-0184-justiça-bloqueia-48-imóveis-e-r$-500-milhões-do-pc.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Há 25 anos, Diablo II definiu o gênero; agora, a Blizzard faz o impensável e rev** (posts/post-0180-há-25-anos,-diablo-ii-definiu-o-gênero;-agora,-a-b.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Voxel Overwatch revive com nova atualização e atinge pico histórico de jogadores** (posts/post-0155-voxel-overwatch-revive-com-nova-atualização-e-atin.html) | ações=['fallback_regra_sem_groq']
@@ -107,7 +106,7 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Caso Master: dinheiro jogado pela janela de banheiro durante operação em SC soma** (posts/post-0093-caso-master:-dinheiro-jogado-pela-janela-de-banhei.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Segurança Operação da PF mira criminosos que divulgavam abuso de mulheres na int** (posts/post-0091-segurança-operação-da-pf-mira-criminosos-que-divul.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Tarcísio viaja a Brasília para se reunir com Alexandre de Moraes, Toffoli, Zanin** (posts/post-0077-tarcísio-viaja-a-brasília-para-se-reunir-com-alexa.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Elenco original de volta! A Múmia 4 ganha data de estreia nos cinemas. Confira!** (posts/post-0074-elenco-original-de-volta-a-múmia-4-ganha-data-de-.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Elenco original de volta! A Múmia 4 ganha data de estreia nos cinemas. Confira!** (posts/post-0074-elenco-original-de-volta-a-múmia-4-ganha-data-de-.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Trump teria ligado para chefe de polícia em 2006 para falar sobre comportamento ** (posts/post-0070-trump-teria-ligado-para-chefe-de-polícia-em-2006-p.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **" Namorem logo!": não são só fãs que ficam frustrados com romance entre Fern e S** (posts/post-0068-"-namorem-logo":-não-são-só-fãs-que-ficam-frustra.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **VÍDEO: PM mata homem que invadiu instituição que atende crianças e adolescentes ** (posts/post-0064-vídeo:-pm-mata-homem-que-invadiu-instituição-que-a.html) | ações=['fallback_regra_sem_groq']
@@ -123,4 +122,4 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Esportes a Motor** (posts/post-0007-esportes-a-motor.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Presidente do Irã confirma negociações com os EUA e diz que conversas devem ser ** (posts/post-0006-presidente-do-irã-confirma-negociações-com-os-eua-.html) | ações=['fallback_regra_sem_groq']
 
-- Resumo: edits=117 deletes=0
+- Resumo: edits=116 deletes=0

@@ -5,8 +5,23 @@ Relatório gerado automaticamente pelo editor.
 - Modo: APLICANDO correções
 - Limites: max_edits=25, max_deletes=10
 
+- ✏️ EDIT: **Software Alunos da USP ganham desafio internacional com IA que detecta fake news** (posts/post-0603-software-alunos-da-usp-ganham-desafio-internaciona.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Guillermo del Toro, James Cameron e Tom Cruise tentam há 20 anos adaptar este cl** (posts/post-0602-guillermo-del-toro,-james-cameron-e-tom-cruise-ten.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Botafogo e Flamengo decidem vaga na semifinal: onde assistir e escalações** (posts/post-0601-botafogo-e-flamengo-decidem-vaga-na-semifinal:-ond.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Rainha da Gaviões mostra primeiro look do sábado de carnaval de SP** (posts/post-0600-rainha-da-gaviões-mostra-primeiro-look-do-sábado-d.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Mais de 50 anos de reinado: as rainhas que fazem história à frente das baterias** (posts/post-0599-mais-de-50-anos-de-reinado:-as-rainhas-que-fazem-h.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Granada da 2ª Guerra é descoberta nas Olimpíadas de Inverno** (posts/post-0598-granada-da-2ª-guerra-é-descoberta-nas-olimpíadas-d.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Oposição pressiona por sessão conjunta para CPMI do Master e dosimetria** (posts/post-0597-oposição-pressiona-por-sessão-conjunta-para-cpmi-d.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Queria ir para casa agora e jogar todos os jogos que marcaram a minha infância** (posts/post-0596-queria-ir-para-casa-agora-e-jogar-todos-os-jogos-q.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Apostas Melhores bets no Brasil: ranking atualizado Há 1 hora** (posts/post-0595-apostas-melhores-bets-no-brasil:-ranking-atualizad.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Jet Li sobre sua rejeição à saga Matrix: " Eles teriam ficado com meus movimento** (posts/post-0594-jet-li-sobre-sua-rejeição-à-saga-matrix:-"-eles-te.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Baile de Carnaval: Vini Jr. confirma protagonismo no Real com show diante da Rea** (posts/post-0593-baile-de-carnaval:-vini-jr.-confirma-protagonismo-.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Amigos surdos, 4 irmãos cegos e um menino autista vivem carnaval em área inclusi** (posts/post-0592-amigos-surdos,-4-irmãos-cegos-e-um-menino-autista-.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Grupo Especial começa com as maiores campeãs em noite de homenagens a personalid** (posts/post-0591-grupo-especial-começa-com-as-maiores-campeãs-em-no.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Europeus rebatem EUA após afirmação de que continente enfrenta ' apagamento civi** (posts/post-0590-europeus-rebatem-eua-após-afirmação-de-que-contine.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Após noite de axé na Bahia, Lula desembarca no Carnaval do RJ hoje** (posts/post-0589-após-noite-de-axé-na-bahia,-lula-desembarca-no-car.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Epic Games libera jogo grátis no celular! Resgate agora no Android (15) Há 1 hor** (posts/post-0588-epic-games-libera-jogo-grátis-no-celular-resgate-.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Jogo do Galo: Conheça Project Windless, novo RPG de ação com trailer de gameplay** (posts/post-0580-jogo-do-galo:-conheça-project-windless,-novo-rpg-d.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Profissionais do sexo e bonecão de maconha: carro da Águia de Ouro celebra liber** (posts/post-0568-profissionais-do-sexo-e-bonecão-de-maconha:-carro-.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Poze do Rodo vai de megacolar à Sapucaí e tieta Stevie B** (posts/post-0567-poze-do-rodo-vai-de-megacolar-à-sapucaí-e-tieta-st.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **" Simplesmente não funcionou": Michael Caine ainda lamenta até hoje que este " m** (posts/post-0564-"-simplesmente-não-funcionou":-michael-caine-ainda.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Séries e TV Entrevista Com o Vampiro | Single de O Vampiro Lestat ganha versão d** (posts/post-0562-séries-e-tv-entrevista-com-o-vampiro-|-single-de-o.html) | ações=['fallback_regra_sem_groq']
@@ -121,4 +136,4 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Esportes a Motor** (posts/post-0007-esportes-a-motor.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Presidente do Irã confirma negociações com os EUA e diz que conversas devem ser ** (posts/post-0006-presidente-do-irã-confirma-negociações-com-os-eua-.html) | ações=['fallback_regra_sem_groq']
 
-- Resumo: edits=115 deletes=0
+- Resumo: edits=130 deletes=0

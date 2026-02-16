@@ -12,7 +12,7 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **EUA e Europa falam em união após tensões** (posts/post-0558-eua-e-europa-falam-em-união-após-tensões.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Atuações do Vasco: Spinelli salva, Gómez vai bem e Cuesta é o pior; dê suas nota** (posts/post-0553-atuações-do-vasco:-spinelli-salva,-gómez-vai-bem-e.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Mais de 1.200 pessoas entraram em um servidor de Minecraft sem regras; após 60 d** (posts/post-0548-mais-de-1.200-pessoas-entraram-em-um-servidor-de-m.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Spinelli celebra primeiro gol pelo Vasco: " Apresentação à torcida"** (posts/post-0545-spinelli-celebra-primeiro-gol-pelo-vasco:-"-aprese.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Spinelli celebra primeiro gol pelo Vasco: " Apresentação à torcida"** (posts/post-0545-spinelli-celebra-primeiro-gol-pelo-vasco:-"-aprese.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Esporte Lucas Pinheiro traz 1ª medalha de ouro do Brasil nos Jogos Olímpicos de ** (posts/post-0538-esporte-lucas-pinheiro-traz-1ª-medalha-de-ouro-do-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Lula celebra medalha inédita para o Brasil nas Olimpíadas de Inverno** (posts/post-0525-lula-celebra-medalha-inédita-para-o-brasil-nas-oli.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Minha Série Tabela do Oscar 2026: Organize sua maratona com a Planilha interativ** (posts/post-0523-minha-série-tabela-do-oscar-2026:-organize-sua-mar.html) | ações=['fallback_regra_sem_groq']

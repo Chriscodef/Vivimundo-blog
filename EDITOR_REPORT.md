@@ -5,9 +5,16 @@ Relatório gerado automaticamente pelo editor.
 - Modo: APLICANDO correções
 - Limites: max_edits=25, max_deletes=10
 
+- ✏️ EDIT: **Produto Primeiras imagens do Galaxy Z Fold “Wide” vazam e mostram formato de tab** (posts/post-0675-produto-primeiras-imagens-do-galaxy-z-fold-“wide”-.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Séries e TVBBB 26 | Votação no PPV irrita espectadores na internet; entenda2 min** (posts/post-0674-séries-e-tvbbb-26-|-votação-no-ppv-irrita-espectad.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Para ex-técnico de Serena, pressão " louca" atrapalha evolução de João Fonseca** (posts/post-0673-para-ex-técnico-de-serena,-pressão-"-louca"-atrapa.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Com fantasias da Turma do Chaves, policiais prendem suspeitos em blocos** (posts/post-0672-com-fantasias-da-turma-do-chaves,-policiais-prende.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Retiros religiosos atraem fiéis durante o carnaval na Região Metropolitana do Ri** (posts/post-0671-retiros-religiosos-atraem-fiéis-durante-o-carnaval.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Ano do Cavalo de Fogo: o que significa a chegada dessa combinação poderosa do zo** (posts/post-0670-ano-do-cavalo-de-fogo:-o-que-significa-a-chegada-d.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **" Tentam achar pelo em ovo", diz Boulos sobre desfile com homenagem a Lula** (posts/post-0669-"-tentam-achar-pelo-em-ovo",-diz-boulos-sobre-desf.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Fã de Stardew Valley dorme por 100 anos no jogo – e sua fazenda se transformou e** (posts/post-0668-fã-de-stardew-valley-dorme-por-100-anos-no-jogo-–-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Filmes Reviravolta? Warner considera negociar com Paramount após acordo com Netf** (posts/post-0666-filmes-reviravolta-warner-considera-negociar-com-.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **' Falta a vida da Ju', diz viúvo de mulher morta após natação em academia** (posts/post-0664-'-falta-a-vida-da-ju',-diz-viúvo-de-mulher-morta-a.html) | ações=['reescrito_groq']
-- ✏️ EDIT: **Mulher morta no Andaraí seguia para bloco quando foi baleada durante tiroteio en** (posts/post-0663-mulher-morta-no-andaraí-seguia-para-bloco-quando-f.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Mulher morta no Andaraí seguia para bloco quando foi baleada durante tiroteio en** (posts/post-0663-mulher-morta-no-andaraí-seguia-para-bloco-quando-f.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **5 jogos curtos no Xbox Game Pass para zerar em menos de 5 horas no feriadão Há 1** (posts/post-0660-5-jogos-curtos-no-xbox-game-pass-para-zerar-em-men.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Entenda Diretor de Jujutsu Kaisen da 3ª temporada deixa estúdio, aponta rumor** (posts/post-0658-entenda-diretor-de-jujutsu-kaisen-da-3ª-temporada-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Dragões, Tatuapé e Vai-Vai são destaques no 1º dia** (posts/post-0656-dragões,-tatuapé-e-vai-vai-são-destaques-no-1º-dia.html) | ações=['fallback_regra_sem_groq']
@@ -49,9 +56,9 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Juliana Paes sobre novo visual: ' Dá para ser o que a gente quiser no carnaval'** (posts/post-0447-juliana-paes-sobre-novo-visual:-'-dá-para-ser-o-qu.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Em reunião com delegados, Mendonça tem acesso a detalhes das investigações do Ma** (posts/post-0445-em-reunião-com-delegados,-mendonça-tem-acesso-a-de.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Segurança Navios da Marinha dos EUA colidem durante reabastecimento no Caribe Há** (posts/post-0443-segurança-navios-da-marinha-dos-eua-colidem-durant.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Play Station 5 Tudo sobre God of War Sons of Sparta** (posts/post-0434-play-station-5-tudo-sobre-god-of-war-sons-of-spart.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Play Station 5 Tudo sobre God of War Sons of Sparta** (posts/post-0434-play-station-5-tudo-sobre-god-of-war-sons-of-spart.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Federação diz confiar nos árbitros após polêmica na patinação; entenda** (posts/post-0433-federação-diz-confiar-nos-árbitros-após-polêmica-n.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Homem é preso depois de empurrar ex-companheira de viaduto em SP** (posts/post-0432-homem-é-preso-depois-de-empurrar-ex-companheira-de.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Homem é preso depois de empurrar ex-companheira de viaduto em SP** (posts/post-0432-homem-é-preso-depois-de-empurrar-ex-companheira-de.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Master: publicação de trechos de reunião favoráveis a Toffoli gera desconforto n** (posts/post-0429-master:-publicação-de-trechos-de-reunião-favorávei.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Tem co-op ou não? Descrição de God of War Sons of Sparta na PS Store deixa jogad** (posts/post-0428-tem-co-op-ou-não-descrição-de-god-of-war-sons-of-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Fantasia a R$ 50? Na Saara tem; veja desafio** (posts/post-0423-fantasia-a-r$-50-na-saara-tem;-veja-desafio.html) | ações=['fallback_regra_sem_groq']
@@ -130,4 +137,4 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Esportes a Motor** (posts/post-0007-esportes-a-motor.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Presidente do Irã confirma negociações com os EUA e diz que conversas devem ser ** (posts/post-0006-presidente-do-irã-confirma-negociações-com-os-eua-.html) | ações=['fallback_regra_sem_groq']
 
-- Resumo: edits=124 deletes=0
+- Resumo: edits=131 deletes=0

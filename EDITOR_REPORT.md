@@ -5,8 +5,7 @@ Relatório gerado automaticamente pelo editor.
 - Modo: APLICANDO correções
 - Limites: max_edits=25, max_deletes=10
 
-- ✏️ EDIT: **Integrante da Portela ‘voa’ em drone gigante na comissão de frente** (posts/post-0719-integrante-da-portela-‘voa’-em-drone-gigante-na-co.html) | ações=['reescrito_groq']
-- ✏️ EDIT: **Polícia Civil identifica e pede prisão de suspeitos de matar menina em Nova Igua** (posts/post-0711-polícia-civil-identifica-e-pede-prisão-de-suspeito.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Polícia Civil identifica e pede prisão de suspeitos de matar menina em Nova Igua** (posts/post-0711-polícia-civil-identifica-e-pede-prisão-de-suspeito.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Sindicatos da Argentina anunciam greve geral contra reforma trabalhista de Milei** (posts/post-0710-sindicatos-da-argentina-anunciam-greve-geral-contr.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Oposição critica desfile em homenagem a Lula na Sapucaí** (posts/post-0709-oposição-critica-desfile-em-homenagem-a-lula-na-sa.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Voxel Kena Scars of Kosmora: Confira gameplay e tudo sobreo jogo para PC e PS5 H** (posts/post-0707-voxel-kena-scars-of-kosmora:-confira-gameplay-e-tu.html) | ações=['fallback_regra_sem_groq']
@@ -37,7 +36,7 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Após desfile na Sapucaí, TSE analisa possível propaganda irregular pró-Lula** (posts/post-0637-após-desfile-na-sapucaí,-tse-analisa-possível-prop.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Filmes Michael | Cinebiografia do Rei do Pop ganha novo teaser1 min de leitura J** (posts/post-0618-filmes-michael-|-cinebiografia-do-rei-do-pop-ganha.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Séries e TV Entrevista Com o Vampiro | Single de O Vampiro Lestat ganha versão d** (posts/post-0562-séries-e-tv-entrevista-com-o-vampiro-|-single-de-o.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Diniz afirma que não deixará o Vasco e explica saída de Coutinho: " Não estava b** (posts/post-0561-diniz-afirma-que-não-deixará-o-vasco-e-explica-saí.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Diniz afirma que não deixará o Vasco e explica saída de Coutinho: " Não estava b** (posts/post-0561-diniz-afirma-que-não-deixará-o-vasco-e-explica-saí.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Pelo 2º dia consecutivo, camarote da Prefeitura de SP tem problemas com esgoto n** (posts/post-0560-pelo-2º-dia-consecutivo,-camarote-da-prefeitura-de.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **EUA e Europa falam em união após tensões** (posts/post-0558-eua-e-europa-falam-em-união-após-tensões.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Atuações do Vasco: Spinelli salva, Gómez vai bem e Cuesta é o pior; dê suas nota** (posts/post-0553-atuações-do-vasco:-spinelli-salva,-gómez-vai-bem-e.html) | ações=['fallback_regra_sem_groq']
@@ -48,7 +47,7 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Minha Série Tabela do Oscar 2026: Organize sua maratona com a Planilha interativ** (posts/post-0523-minha-série-tabela-do-oscar-2026:-organize-sua-mar.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Exército diz que Mário Fernandes cumpre requisitos para visita íntima** (posts/post-0517-exército-diz-que-mário-fernandes-cumpre-requisitos.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Análise: Campanha antecipada de Lula no Carnaval é questão interpretativa** (posts/post-0509-análise:-campanha-antecipada-de-lula-no-carnaval-é.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **PS Plus Extra e Deluxe de fevereiro terá Spider-Man 2 e mais jogos de peso! Veja** (posts/post-0508-ps-plus-extra-e-deluxe-de-fevereiro-terá-spider-ma.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **PS Plus Extra e Deluxe de fevereiro terá Spider-Man 2 e mais jogos de peso! Veja** (posts/post-0508-ps-plus-extra-e-deluxe-de-fevereiro-terá-spider-ma.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Voxel5 jogos grátis para curtir o fim de semana no PC, consoles e mobile (14) Há** (posts/post-0507-voxel5-jogos-grátis-para-curtir-o-fim-de-semana-no.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Veja blocos LGBT+ para curtir carnaval em SP** (posts/post-0504-veja-blocos-lgbt+-para-curtir-carnaval-em-sp.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Cunhado de Beira-Mar e ' braço' do traficante no Nordeste é preso no Polígono da** (posts/post-0495-cunhado-de-beira-mar-e-'-braço'-do-traficante-no-n.html) | ações=['fallback_regra_sem_groq']
@@ -83,7 +82,7 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Bafo da Onça celebra 70 anos com novo percurso, nova bateria e participação hist** (posts/post-0367-bafo-da-onça-celebra-70-anos-com-novo-percurso,-no.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Suspeição de Toffoli poderia anular atos do ministro no caso Master; STF optou p** (posts/post-0357-suspeição-de-toffoli-poderia-anular-atos-do-minist.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **State of Play revela gameplay estendido de Control: Resonant com combate e explo** (posts/post-0356-state-of-play-revela-gameplay-estendido-de-control.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Raphinha não foi titular nas derrotas do Barça na temporada** (posts/post-0353-raphinha-não-foi-titular-nas-derrotas-do-barça-na-.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Raphinha não foi titular nas derrotas do Barça na temporada** (posts/post-0353-raphinha-não-foi-titular-nas-derrotas-do-barça-na-.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Parentes de criança baleada na cabeça em Nova Iguaçu fazem protesto pedindo just** (posts/post-0351-parentes-de-criança-baleada-na-cabeça-em-nova-igua.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Deco reclama do VAR e critica jogadores do Barcelona após goleada sofrida** (posts/post-0345-deco-reclama-do-var-e-critica-jogadores-do-barcelo.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Com brasileiro, RB Leipzig lança camisa que brilha no escuro** (posts/post-0337-com-brasileiro,-rb-leipzig-lança-camisa-que-brilha.html) | ações=['fallback_regra_sem_groq']
@@ -98,7 +97,7 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Trump vai retirar agentes do ICE de Minnesota, diz ' czar da fronteira' dos EUA** (posts/post-0286-trump-vai-retirar-agentes-do-ice-de-minnesota,-diz.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Extremamente divertido: este filme da Netflix atingiu 104 milhões de visualizaçõ** (posts/post-0284-extremamente-divertido:-este-filme-da-netflix-atin.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Sambódromo: tire dúvidas sobre desvios, veja o mapa e saiba como chegar** (posts/post-0264-sambódromo:-tire-dúvidas-sobre-desvios,-veja-o-map.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Caso Master cria " guerra de todos contra todos", diz especialista** (posts/post-0261-caso-master-cria-"-guerra-de-todos-contra-todos",-.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Caso Master cria " guerra de todos contra todos", diz especialista** (posts/post-0261-caso-master-cria-"-guerra-de-todos-contra-todos",-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Xbox Game Pass recebe jogos de peso na semana! Confira os lançamentos (07)** (posts/post-0260-xbox-game-pass-recebe-jogos-de-peso-na-semana-con.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Por que a Rússia tentou ' bloquear completamente' Whats App no país** (posts/post-0254-por-que-a-rússia-tentou-'-bloquear-completamente'-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Le Bron fica inelegível para prêmios individuais da NBA** (posts/post-0249-le-bron-fica-inelegível-para-prêmios-individuais-d.html) | ações=['fallback_regra_sem_groq']
@@ -124,7 +123,7 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Donos de academia onde mulher morreu, na Zona Leste de SP, prestam depoimento à ** (posts/post-0152-donos-de-academia-onde-mulher-morreu,-na-zona-lest.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **The BRIEF Microsoft inaugura dois novos data centers para IA e nuvem no Brasil H** (posts/post-0147-the-brief-microsoft-inaugura-dois-novos-data-cente.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Segurança Mais de 40 sites falsos da Apple roubam senhas de brasileiros vítimas ** (posts/post-0107-segurança-mais-de-40-sites-falsos-da-apple-roubam-.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Esposa ficou horrorizada ao descobrir supostos crimes** (posts/post-0104-esposa-ficou-horrorizada-ao-descobrir-supostos-cri.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Esposa ficou horrorizada ao descobrir supostos crimes** (posts/post-0104-esposa-ficou-horrorizada-ao-descobrir-supostos-cri.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Minha Série The White Lotus Temporada 4: Conheça o elenco e tudo sobre a série H** (posts/post-0099-minha-série-the-white-lotus-temporada-4:-conheça-o.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Piloto suspeito de abuso sexual infantil admitiu conhecer vítimas** (posts/post-0096-piloto-suspeito-de-abuso-sexual-infantil-admitiu-c.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Receita Federal dos EUA divulgou dados fiscais confidenciais de milhares de imig** (posts/post-0094-receita-federal-dos-eua-divulgou-dados-fiscais-con.html) | ações=['fallback_regra_sem_groq']
@@ -143,8 +142,8 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Dr. Rubão perde recurso, e Itaguaí fica perto de ter novas eleições** (posts/post-0015-dr.-rubão-perde-recurso,-e-itaguaí-fica-perto-de-t.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Brasil é um dos países que mais acham Trump bom para o mundo** (posts/post-0014-brasil-é-um-dos-países-que-mais-acham-trump-bom-pa.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Novidades de Wolverine? Play Station anuncia State of Play para esta quinta-feir** (posts/post-0004-novidades-de-wolverine-play-station-anuncia-state.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Michael Jackson Veja o trailer grandioso de Michael, cinebiografia do rei do pop** (posts/post-0002-michael-jacksonveja-o-trailer-grandioso-de-michael.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Michael Jackson Veja o trailer grandioso de Michael, cinebiografia do rei do pop** (posts/post-0002-michael-jacksonveja-o-trailer-grandioso-de-michael.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Esportes a Motor** (posts/post-0007-esportes-a-motor.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Presidente do Irã confirma negociações com os EUA e diz que conversas devem ser ** (posts/post-0006-presidente-do-irã-confirma-negociações-com-os-eua-.html) | ações=['fallback_regra_sem_groq']
 
-- Resumo: edits=141 deletes=0
+- Resumo: edits=140 deletes=0

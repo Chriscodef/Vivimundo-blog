@@ -5,8 +5,8 @@ Relatório gerado automaticamente pelo editor.
 - Modo: APLICANDO correções
 - Limites: max_edits=25, max_deletes=10
 
-- ✏️ EDIT: **Segurança Pentágono ameaça romper com a Anthropic por exigências de segurança Há** (posts/post-0883-segurança-pentágono-ameaça-romper-com-a-anthropic-.html) | ações=['reescrito_groq']
-- ✏️ EDIT: **Lucas Pinheiro desce de " peixinho" numa das pistas do snowboard big air** (posts/post-0881-lucas-pinheiro-desce-de-"-peixinho"-numa-das-pista.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Segurança Pentágono ameaça romper com a Anthropic por exigências de segurança Há** (posts/post-0883-segurança-pentágono-ameaça-romper-com-a-anthropic-.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Lucas Pinheiro desce de " peixinho" numa das pistas do snowboard big air** (posts/post-0881-lucas-pinheiro-desce-de-"-peixinho"-numa-das-pista.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Garotinho acusa Cláudio Castro de retirar sua segurança dois meses após denúncia** (posts/post-0879-garotinho-acusa-cláudio-castro-de-retirar-sua-segu.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Minha Série Quando sai o episódio 8 de Jujutsu Kaisen? Saiba a data e hora após ** (posts/post-0875-minha-série-quando-sai-o-episódio-8-de-jujutsu-kai.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Gaviões da Fiel bate na trave e perde título do Carnaval de SP por um décimo** (posts/post-0872-gaviões-da-fiel-bate-na-trave-e-perde-título-do-ca.html) | ações=['fallback_regra_sem_groq']
@@ -34,7 +34,7 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Voxel Directive 8020: Veja trailer, gameplay, data de lançamento e tudo sobre o ** (posts/post-0795-voxel-directive-8020:-veja-trailer,-gameplay,-data.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **SAIU! Assista ao novo trailer de O Mandaloriano e Grogu** (posts/post-0794-saiu-assista-ao-novo-trailer-de-o-mandaloriano-e-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Moraes decreta quebra de sigilo bancário de suspeitos para apurar venda de dados** (posts/post-0789-moraes-decreta-quebra-de-sigilo-bancário-de-suspei.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Minha Série O Morro dos Ventos Uivantes lidera bilheteria global, apesar das con** (posts/post-0787-minha-série-o-morro-dos-ventos-uivantes-lidera-bil.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Minha Série O Morro dos Ventos Uivantes lidera bilheteria global, apesar das con** (posts/post-0787-minha-série-o-morro-dos-ventos-uivantes-lidera-bil.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Séries e TVBBB 26 | Quem vai ser eliminado no 5º Paredão? Confira parciais de en** (posts/post-0786-séries-e-tvbbb-26-|-quem-vai-ser-eliminado-no-5º-p.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Apuração: veja horário e como assistir ao vivo** (posts/post-0784-apuração:-veja-horário-e-como-assistir-ao-vivo.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **PF faz buscas para apurar vazamento de dados da Receita de ministros do STF e pa** (posts/post-0781-pf-faz-buscas-para-apurar-vazamento-de-dados-da-re.html) | ações=['fallback_regra_sem_groq']
@@ -47,7 +47,6 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Vídeo mostra momento em que avião da Latam aborta decolagem** (posts/post-0752-vídeo-mostra-momento-em-que-avião-da-latam-aborta-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Imperatriz diz que teve ' evolução impactada' pela dispersão da Niterói e que av** (posts/post-0751-imperatriz-diz-que-teve-'-evolução-impactada'-pela.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Ônibus atropela três pessoas em Jacarepaguá** (posts/post-0743-ônibus-atropela-três-pessoas-em-jacarepaguá.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Moraes autoriza visita de Derrite a Bolsonaro na Papudinha** (posts/post-0741-moraes-autoriza-visita-de-derrite-a-bolsonaro-na-p.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Produtoi OS 27 deve corrigir problemas de estabilidade e melhorar bateria do i P** (posts/post-0739-produtoi-os-27-deve-corrigir-problemas-de-estabili.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Fantasia será o critério de desempate na apuração do carnaval 2026 em SP** (posts/post-0736-fantasia-será-o-critério-de-desempate-na-apuração-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **SEM LUZ NÃO DÁ! Apagão atinge Copacabana e Leme** (posts/post-0735-sem-luz-não-dá-apagão-atinge-copacabana-e-leme.html) | ações=['fallback_regra_sem_groq']
@@ -81,14 +80,14 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Mocidade, Gaviões e Império são destaques no 2º dia do Grupo Especial** (posts/post-0648-mocidade,-gaviões-e-império-são-destaques-no-2º-di.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Lobisomem de 20 m e 4 ton da Imperatriz foi controlado por 13 profissionais de P** (posts/post-0647-lobisomem-de-20-m-e-4-ton-da-imperatriz-foi-contro.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Mulher é morta a facadas após discussão em festa de aniversário** (posts/post-0640-mulher-é-morta-a-facadas-após-discussão-em-festa-d.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Filmes Michael | Cinebiografia do Rei do Pop ganha novo teaser1 min de leitura J** (posts/post-0618-filmes-michael-|-cinebiografia-do-rei-do-pop-ganha.html) | ações=['fallback_regra_sem_groq']
+- ✏️ EDIT: **Filmes Michael | Cinebiografia do Rei do Pop ganha novo teaser1 min de leitura J** (posts/post-0618-filmes-michael-|-cinebiografia-do-rei-do-pop-ganha.html) | ações=['reescrito_groq']
 - ✏️ EDIT: **Séries e TV Entrevista Com o Vampiro | Single de O Vampiro Lestat ganha versão d** (posts/post-0562-séries-e-tv-entrevista-com-o-vampiro-|-single-de-o.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Diniz afirma que não deixará o Vasco e explica saída de Coutinho: " Não estava b** (posts/post-0561-diniz-afirma-que-não-deixará-o-vasco-e-explica-saí.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Pelo 2º dia consecutivo, camarote da Prefeitura de SP tem problemas com esgoto n** (posts/post-0560-pelo-2º-dia-consecutivo,-camarote-da-prefeitura-de.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **EUA e Europa falam em união após tensões** (posts/post-0558-eua-e-europa-falam-em-união-após-tensões.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Atuações do Vasco: Spinelli salva, Gómez vai bem e Cuesta é o pior; dê suas nota** (posts/post-0553-atuações-do-vasco:-spinelli-salva,-gómez-vai-bem-e.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Mais de 1.200 pessoas entraram em um servidor de Minecraft sem regras; após 60 d** (posts/post-0548-mais-de-1.200-pessoas-entraram-em-um-servidor-de-m.html) | ações=['fallback_regra_sem_groq']
-- ✏️ EDIT: **Spinelli celebra primeiro gol pelo Vasco: " Apresentação à torcida"** (posts/post-0545-spinelli-celebra-primeiro-gol-pelo-vasco:-"-aprese.html) | ações=['reescrito_groq']
+- ✏️ EDIT: **Spinelli celebra primeiro gol pelo Vasco: " Apresentação à torcida"** (posts/post-0545-spinelli-celebra-primeiro-gol-pelo-vasco:-"-aprese.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Esporte Lucas Pinheiro traz 1ª medalha de ouro do Brasil nos Jogos Olímpicos de ** (posts/post-0538-esporte-lucas-pinheiro-traz-1ª-medalha-de-ouro-do-.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Lula celebra medalha inédita para o Brasil nas Olimpíadas de Inverno** (posts/post-0525-lula-celebra-medalha-inédita-para-o-brasil-nas-oli.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Minha Série Tabela do Oscar 2026: Organize sua maratona com a Planilha interativ** (posts/post-0523-minha-série-tabela-do-oscar-2026:-organize-sua-mar.html) | ações=['fallback_regra_sem_groq']
@@ -193,4 +192,4 @@ Relatório gerado automaticamente pelo editor.
 - ✏️ EDIT: **Esportes a Motor** (posts/post-0007-esportes-a-motor.html) | ações=['fallback_regra_sem_groq']
 - ✏️ EDIT: **Presidente do Irã confirma negociações com os EUA e diz que conversas devem ser ** (posts/post-0006-presidente-do-irã-confirma-negociações-com-os-eua-.html) | ações=['fallback_regra_sem_groq']
 
-- Resumo: edits=187 deletes=0
+- Resumo: edits=186 deletes=0

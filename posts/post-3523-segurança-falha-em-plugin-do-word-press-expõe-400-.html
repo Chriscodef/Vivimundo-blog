@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:title" content="Segurança Falha em plugin do Word Press expõe 400 mil sites a ataques cibernéticos Há 12 minutos">
+<meta property="og:image" content="https://tm.ibxk.com.br/2024/08/22/22145958663384.png?ims=1600x900/filters:format(jpg)">
+<meta property="og:type" content="article">
+<title>Segurança Falha em plugin do Word Press expõe 400 mil sites a ataques cibernéticos Há 12 minutos - Vivimundo</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header><div class="container"><h1 class="logo">VIVIMUNDO</h1>
+<nav>
+<a href="../index.html">Início</a>
+<a href="../categoria-esportes.html">Esportes</a>
+<a href="../categoria-entretenimento.html">Entretenimento</a>
+<a href="../categoria-tecnologia.html">Tecnologia</a>
+<a href="../categoria-videogames.html">Videogames</a>
+<a href="../categoria-politica-nacional.html">Política Nacional</a>
+<a href="../categoria-politica-internacional.html">Política Internacional</a>
+<a href="../categoria-rio-de-janeiro.html">Rio de Janeiro</a>
+<a href="../categoria-sao-paulo.html">São Paulo</a>
+<a href="../sobre.html">Sobre</a>
+</nav>
+</div></header>
+<main class="container">
+<article class="post-completo">
+<div class="post-header">
+<span class="post-categoria">Tecnologia</span>
+
+<h1 class="post-titulo">Segurança Falha em plugin do Word Press expõe 400 mil sites a ataques cibernéticos Há 12 minutos</h1>
+<div class="post-data">Por Kevin Ribeiro • 12/03/2026 às 21:55</div>
+</div>
+<img src="https://tm.ibxk.com.br/2024/08/22/22145958663384.png?ims=1600x900/filters:format(jpg)" class="post-principal-imagem" alt="Segurança Falha em plugin do Word Press expõe 400 mil sites a ataques cibernéticos Há 12 minutos" loading="lazy">
+<div class="post-conteudo">
+<p>Segurança Falha em plugin do Word Press expõe 400 mil sites a ataques cibernéticos Há 12 minutos</p>
+<p>Falha em plugin do WordPress expõe 400 mil sites a ataques cibernéticos Uma vulnerabilidade de injeção SQL no plugin Ally, do WordPress, permite que atacantes sem autenticação acessem o banco de dados de sites e roubem hashes de senhas. update Atualizado em 12/03/2026, às 18:42 Uma vulnerabilidade crítica foi descoberta no Ally, plugin gratuito do WordPress voltado para acessibilidade digital . A brecha permite que qualquer atacante, sem precisar de login ou permissão especial, acesse o banco de dados do site e roube informações sensíveis , incluindo senhas criptografadas. O problema foi identificado em 4 de fevereiro de 2026 pelo engenheiro de segurança ofensiva Drew Webber, da empresa Acquia, e recebeu a classificação CVE-2026-2413 – com nota 7.5 de gravidade no sistema CVSS. O Ally, anteriormente conhecido como One Click Accessibility , é um plugin que ajuda criadores de sites a construírem páginas mais acessíveis . Ele oferece um scanner de acessibilidade com sugestões baseadas em inteligência artificial , um widget para visitantes e até um gerador automático de declarações de acessibilidade. O plugin está ativo em mais de 400 mil sites ao redor do mundo , o que aumenta o alcance da falha. O problema está na forma como o plugin constrói uma consulta ao banco de dados . Existe uma função chamada “get_global_remediations()” que usa a URL de uma página para montar uma busca do tipo JOIN no banco de dados. O erro está em como esse endereço é tratado antes de chegar à consulta . O plugin aplica uma função chamada “esc_url_raw()” para limpar a URL. Essa função é útil para garantir que um endereço seja válido do ponto de vista de formatação web. Mas ela não foi criada para proteger consultas de banco de dados . Caracteres como aspas simples e parênteses, que são os ingredientes básicos de um ataque de injeção SQL , passam sem nenhum problema por essa filtragem. O jeito seguro de fazer isso seria usar a função “wpdb->prepare()”, nativa do WordPress. Ela escapa os dados</p>
+
+</div>
+</article>
+</main>
+<footer><div class="container"><p>© 2026 Vivimundo</p><a href="https://x.com/Kevin_RSP0" target="_blank">Twitter</a></div></footer>
+</body></html>
